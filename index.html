@@ -167,14 +167,10 @@ capability its electricity system can afford.
 <p>
 <strong>The Israeli problem is specific and acute.</strong> Israel's grid is small and isolated. In July 2026 the
 Electricity Authority halted new data-center connection requests for 140 days, after the queue reached about 27,000
-MW, roughly three times average national consumption [2]. Israel's binding limit is therefore grid capacity in
-megawatts, not the electricity bill, and the national need is more AI work from every connected megawatt and
-kilowatt-hour, on hardware and connections that already exist.
+MW, roughly three times average national consumption [2]. Israel's binding limit is therefore grid capacity in megawatts, not the electricity bill; the national need is more AI work from every connected megawatt and kilowatt-hour, on what is already built.
 </p>
 <p>
-<strong>Today's operating decisions think in watts, not joules.</strong> When electricity becomes a problem, a data
-center either switches GPUs off, shedding power but discarding service, or caps GPU power to fit a facility limit,
-with no regard to the total energy each job will now consume. The trap is physical: a capped GPU computes slower, so
+<strong>Today's operating decisions think in watts, not joules.</strong> When electricity becomes a problem, a data center either switches GPUs off, shedding power but discarding service, or caps GPU power to fit a facility limit, ignoring the total energy each job will now consume. The trap is physical: a capped GPU computes slower, so
 its fixed power floor is paid for more seconds, and capping too deep lowers the watts on the dashboard while raising
 the joules on the bill. Unconstrained, the default is worse still: full rated power, where the last bit of speed
 carries a steep power surcharge. Current practice is either energy-blind capping or no capping at all.
@@ -292,8 +288,8 @@ clauses Chapter 2 lists as high priority for 2026:
 </p>
 <table>
 <tr><th>Clause</th><th>Text</th><th>How the project addresses it</th></tr>
-<tr><td><strong>16.2</strong></td><td class="rtl">טכנולוגיות תכנון וניהול הספקת אנרגיה לחוות שרתים</td><td>The core deliverable: power shaping manages the energy supplied to a server farm in real time, and the flexibility framework tells planners how much supply a farm actually needs.</td></tr>
-<tr><td><strong>6.2</strong></td><td class="rtl">טכנולוגיות לניהול אנרגיה מקומי וניהול ביקושים</td><td>Demand management is the project's literal mechanism: a facility that follows a power envelope on instruction, with ~0.2-second actuation, is a demand-response resource of grid-relevant size.</td></tr>
+<tr><td><strong>16.2</strong></td><td class="rtl">טכנולוגיות תכנון וניהול הספקת אנרגיה לחוות שרתים</td><td>The core deliverable: power shaping manages the energy supplied to a server farm in real time; the flexibility framework tells planners how much supply a farm needs.</td></tr>
+<tr><td><strong>6.2</strong></td><td class="rtl">טכנולוגיות לניהול אנרגיה מקומי וניהול ביקושים</td><td>Demand management is the project's literal mechanism: a facility following a power envelope on instruction, at ~0.2-second actuation, is a demand-response resource of grid-relevant size.</td></tr>
 <tr><td><strong>8</strong><br><span class="meta">2026 priority</span></td><td class="rtl">התייעלות באנרגיה וביזור מערכות אנרגיה</td><td>29–31 percent less energy per AI task at the card, 18–45 percent less per served job at the fleet, achieved in software on installed hardware.</td></tr>
 <tr><td><strong>16.1</strong><br><span class="meta">2026 priority</span></td><td class="rtl">שימוש בבינה מלאכותית ככלי עזר לפיתוח ומחקר בכל הנושאים לעיל</td><td>The subject is AI compute itself; learned models and control are the instruments; the deliverable is an energy-system tool.</td></tr>
 <tr><td><strong>15.3</strong></td><td class="rtl">פיתוח מתודולוגיה לבניית תחזיות ומודלים ופיתוח כלי עזר בקבלת החלטות</td><td>The flexibility products, compliance metrics and regulator-facing report are decision-support instruments for connection policy.</td></tr>
@@ -388,12 +384,12 @@ and authorities.
 <h3>2.5.7.3 Risks and mitigation</h3>
 <table>
 <tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr>
-<tr><td>Production serving software (continuous batching, shifting execution phases) blurs the per-card Joule Point</td><td>The static cap loses its near-optimality in the flagship LLM regime</td><td>This is measured first (WP1, M1) and is exactly what the job model (WP2) is for: where the constant breaks, the model predicts the moving optimum; the study already maps where online control keeps value over the static cap</td></tr>
+<tr><td>Production serving software (continuous batching, shifting execution phases) blurs the per-card Joule Point</td><td>The static cap loses its near-optimality in the flagship LLM regime</td><td>Measured first (WP1, M1), and exactly what the job model (WP2) is for: where the constant breaks, the model predicts the moving optimum; the study maps where online control beats the static cap</td></tr>
 <tr><td>Power-cap control unavailable on some rented platforms (needs root access; serverless providers deny it)</td><td>Measurement campaign narrowed</td><td>Use AWS EC2 GPU instances with full-GPU passthrough and root access, not serverless functions; where the cap's floor is too high, the graphics clock exposes the minimum, as shown on the L4 [1]; rented BMC-metered dedicated servers cover the wall tier and the demonstration</td></tr>
 <tr><td>Newest-generation availability (B200 class) limited or expensive within budget</td><td>Corpus thinner at the frontier</td><td>The transfer model (WP2) extrapolates to unmeasured cards; frontier cards are validation targets, not prerequisites; the H100/L40S class suffices and is rentable today</td></tr>
 <tr><td>Savings shrink when deadlines are tight</td><td>Overstated benefit for latency-critical fleets</td><td>Savings are reported as a function of deadline slack (+10 to +100 percent, as in [1]); the strict-deadline result (28 percent at 95 percent value kept) covers the tight regime; curtailment's service cost is priced explicitly</td></tr>
-<tr><td>No grid partner data for the Israel scenario</td><td>Demonstration less realistic</td><td>The scenario runs on public Noga / Electricity Authority signals and published tariff structures; a partner letter is being sought and is additive, not blocking</td></tr>
-<tr><td>The split incentive blocks adoption despite technical success</td><td>Impact confined to first-party operators</td><td>WP5 targets the incentive structure itself; first-party operators and regulated connections, the two cases where the electricity payer controls the cap, are the explicit early-adopter path, and both exist in Israel</td></tr>
+<tr><td>No grid partner data for the Israel scenario</td><td>Demonstration less realistic</td><td>The scenario runs on public Noga and Electricity Authority data; a partner letter is sought and is additive, not blocking</td></tr>
+<tr><td>The split incentive blocks adoption despite technical success</td><td>Impact confined to first-party operators</td><td>WP5 targets the incentive structure itself; first-party operators and regulated connections, where the electricity payer controls the cap, are the early-adopter path, and both exist in Israel</td></tr>
 </table>
 
 <h2>2.5.8 The applicant</h2>
