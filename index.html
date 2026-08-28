@@ -127,7 +127,21 @@ unmeasured GPUs; and a joint method assigns jobs and caps under a changing limit
 
 <h2 class="pagebreak">2.5.4 Objectives of the program</h2>
 
-<h3>2.5.4.1 The research question</h3>
+<h3>2.5.4.1 The objective</h3>
+<p>
+The objective of the program is to construct <strong>JouleFlex</strong>: a toolkit of models, software tools and a
+simulator for the effective energy management of GPU-rich AI data centers, built on the Joule Point concept. The
+toolkit comprises three layers. <strong>Models:</strong> the power-response law validated on current hardware and
+whole servers; a job model that calibrates the energy-optimal power cap per workload; a transfer model that places
+the Joule Point of GPUs not yet measured; and a joint method that assigns jobs to cards and sets their caps under a
+changing power limit. <strong>Tools:</strong> a characterization kit that qualifies any new GPU in hours, and a fleet
+controller that holds a whole facility inside its power envelope while meeting service deadlines. <strong>Simulation:</strong>
+a digital twin that replays measured curves, so any operating policy or grid-connection scenario is evaluated exactly
+before hardware is touched. All three layers are released openly, with the extended measurement corpus (ELF-2) that
+calibrates them.
+</p>
+
+<h3>2.5.4.2 The research question</h3>
 <p>
 Can AI data centers be operated as controllable electrical loads, with each GPU held at or near its energy-optimal
 power cap and the whole facility held inside a changing power limit, so that both the energy (joules) and the grid
