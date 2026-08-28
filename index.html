@@ -71,7 +71,7 @@ img { max-width:100%; display:block; margin:0 auto; }
 
 <h2>2.5.2 Abstract / תקציר</h2>
 
-<h3>English (294 words)</h3>
+<h3>English (298 words)</h3>
 <p>
 In July 2026 Israel's Electricity Authority froze new data-center connection requests after the queue reached 27,000 megawatts. Under electricity constraints, data centers switch GPUs (AI processors) off or cap their power, deciding in watts, the momentary draw, not joules, the energy consumed. A capped GPU computes slower and pays its fixed power floor longer, so total energy can rise while the meter shows fewer watts. A similar challenge exists in aviation, where it is solved: fuel flow rises far faster than speed, yet slow flight burns fuel longer, so airlines cruise at the speed minimizing fuel per kilometer.
 </p>
@@ -80,8 +80,8 @@ A recent study by the principal investigator measured this trade for AI (5,500 m
 with 18 to 45 percent less energy; a fixed power feed delivered about 50 percent more work per megawatt.
 </p>
 <p>
-To deploy these results, JouleFlex extends the models: the power law tested on current hardware, production software, and whole servers at the wall; a job model calibrates the cap per workload; a transfer model places the Joule Point of
-unmeasured GPUs; and a joint method assigns jobs and caps under a changing limit. It aims to deliver a toolkit with software to characterize hardware and workloads, control fleet power, and simulate policies. Operators cut energy under power limits, engineers qualify new hardware in hours, and the regulator can grant and audit conditional connections: capacity given if the facility lowers power when instructed.
+To deploy these results, JouleFlex extends the models: the power law is tested on current hardware, production software, and whole servers at the wall; a job model calibrates the cap per workload; a transfer model places the Joule Point of
+unmeasured GPUs; and a joint method assigns jobs and caps under a changing limit. The deliverable is a toolkit: software to characterize hardware and workloads, control fleet power in real time, and simulate policies before deployment. Operators cut energy under power limits, engineers qualify new hardware in hours, and the regulator can grant and audit conditional connections: capacity given if the facility lowers power when instructed.
 </p>
 
 <h3 class="rtl">עברית (279 מילים)</h3>
@@ -103,7 +103,7 @@ unmeasured GPUs; and a joint method assigns jobs and caps under a changing limit
 <p>
 כדי להפוך את התוצאות האלה לכלי עבודה, JouleFlex מרחיב תחילה את המידול: חוק ההספק ייבחן על חומרה עדכנית, על תוכנת הגשה תעשייתית ועל שרתים שלמים הנמדדים בשקע;
 מודל עומס יכייל את מגבלת ההספק לכל עומס; מודל העברה ימקם את נקודת הג'ול של מאיצים שלא נמדדו; ושיטה משולבת
-תשבץ עבודות ותקבע מגבלות תחת מגבלת הספק משתנה. הפרויקט שואף לספק ערכת כלים הכוללת תוכנה לאפיון חומרה ועומסים, לבקרת הספק הצי בזמן אמת, ולסימולציה של מדיניות לפני פריסה. בעזרתה מפעילים יחסכו אנרגיה תחת מגבלות הספק, מהנדסים יאפיינו חומרה חדשה בתוך שעות, והרגולטור יוכל להעניק ולבקר חיבורים מותנים: קיבולת הניתנת בתנאי שהמתקן יוריד את ההספק שלו לפי הוראה.
+תשבץ עבודות ותקבע מגבלות תחת מגבלת הספק משתנה. תוצר הפרויקט הוא ערכת כלים הכוללת תוכנה לאפיון חומרה ועומסים, לבקרת הספק הצי בזמן אמת, ולסימולציה של מדיניות לפני פריסה. בעזרתה מפעילים יחסכו אנרגיה תחת מגבלות הספק, מהנדסים יאפיינו חומרה חדשה בתוך שעות, והרגולטור יוכל להעניק ולבקר חיבורים מותנים: קיבולת הניתנת בתנאי שהמתקן יוריד את ההספק שלו לפי הוראה.
 </p>
 </div>
 
@@ -176,7 +176,7 @@ megawatts, not the electricity bill, and the national need is more AI work from 
 kilowatt-hour, on hardware and connections that already exist.
 </p>
 <p>
-<strong>What operators do today thinks in watts, not joules.</strong> When electricity becomes a problem, a data
+<strong>Today's operating decisions think in watts, not joules.</strong> When electricity becomes a problem, a data
 center either switches GPUs off, shedding power but discarding service, or caps GPU power to fit a facility limit,
 with no regard to the total energy each job will now consume. The trap is physical: a capped GPU computes slower, so
 its fixed power floor is paid for more seconds, and capping too deep lowers the watts on the dashboard while raising
@@ -235,8 +235,8 @@ the optimal total energy for each job on each card, then control power to achiev
 <p>
 <strong>The characterization instrument (WP1, WP2).</strong> Extends the ELF corpus to current hardware and
 production serving software, and adds the two measurements the original study did not make: job structure (the
-per-card constant is the null model; a job model is fitted where it is not enough) and PSU-input (wall-level) power on rented
-BMC-metered servers (so the Joule Point is placed where the grid meters the facility). A transfer model and a one-test
+per-card constant is the null model; a job model is fitted where it is not enough) and power above the board, at the
+RAPL node tier and the BMC PSU-input wall tier (so the Joule Point is placed where the grid meters the facility). A transfer model and a one-test
 protocol then qualify any new card model within hours, making the energy-optimal operating point of every (card, job)
 pair a computed quantity, at board and at wall level.
 </p>
@@ -328,7 +328,7 @@ pipeline exist and ran end to end; the project scales them out, it does not buil
 
 <h3>2.5.6.1 What the project delivers, concretely</h3>
 <p>
-The outcome is not a paper plus a prototype. It is five named artifacts, each with a defined user and use:
+The project delivers five named artifacts, each with a defined user and use:
 </p>
 <table>
 <tr><th>Deliverable</th><th>What it is</th><th>Who uses it, for what</th></tr>
@@ -361,12 +361,12 @@ uncapped, and each terawatt-hour of AI compute moved to its optimum avoids about
 at 0.5 kg per kilowatt-hour. The same curves correct the planning coefficient: nameplate-based forecasts overstate
 what a well-operated facility draws, and the twin lets a planner read off the megawatts a facility genuinely
 requires. The project's
-regulator-facing report quantifies this option on measured data, and the open release means any operator, vendor or
-authority can adopt or certify the mechanism without vendor dependency.
+regulator-facing report quantifies this option on measured data, and the open release lets any operator, vendor or
+authority adopt or certify the mechanism.
 </p>
 <p>
-<strong>For the environment:</strong> energy not consumed, and consumption that follows the grid's carbon intensity,
-concentrating compute in low-carbon hours through the same mechanism.
+<strong>For the environment:</strong> the same mechanism cuts carbon twice, through energy not consumed and through
+consumption that follows the grid's carbon intensity into low-carbon hours.
 </p>
 <p>
 <strong>Training of manpower.</strong> The project funds a doctoral researcher across both years at the intersection
@@ -639,7 +639,7 @@ criteria, not as guaranteed confirmations. That framing protects criterion 4 wit
 <div class="rtl">
 <p>
 תרשים הגאנט נדרש להיות ממולא ישירות במערכת ההגשה המקוונת (נספח א'1 §3), ולכלול תיאור של אבני הדרך, לוח זמנים לכל
-אבן דרך, ותפוקה מסירה, כמותית או לפחות בת שיפוט. הטבלאות שלמעלה נערכו בפורמט שניתן להעתיק ישירות לשדות המערכת.
+אבן דרך, ותפוקה למסירה, כמותית או לפחות בת שיפוט. הטבלאות שלמעלה נערכו בפורמט שניתן להעתיק ישירות לשדות המערכת.
 </p>
 </div>
 
