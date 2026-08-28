@@ -72,21 +72,18 @@ img { max-width:100%; display:block; margin:0 auto; }
 
 <h3>English (300 words)</h3>
 <p>
-In July 2026 Israel's Electricity Authority froze new data-center connection requests; the queue had reached 27,000
-megawatts. When electricity becomes a constraint, data centers switch GPUs (AI processors) off or cap their power, deciding in watts, the momentary draw, not in joules, the total energy consumed. A capped GPU computes slower and pays its fixed power floor longer, so total energy can rise while the meter shows fewer watts. A similar challenge exists in aviation, where it is solved: fuel flow rises much faster than speed, yet slow flight burns fuel longer, so airlines cruise at the speed minimizing fuel per kilometer.
+In July 2026 Israel's Electricity Authority froze new data-center connection requests after the queue reached 27,000 megawatts. Under electricity constraints, data centers switch GPUs (AI processors) off or cap their power, deciding in watts, the momentary draw, not joules, the total energy consumed. A capped GPU computes slower and pays its fixed power floor longer, so total energy can rise while the meter shows fewer watts. A similar challenge exists in aviation, where it is solved: fuel flow rises far faster than speed, yet slow flight burns fuel longer, so airlines cruise at the speed minimizing fuel per kilometer.
 </p>
 <p>
-The applicant's study (5,500 measurements, 20 AI models, four GPUs) found the computing equivalent:
-energy per task is U-shaped in the power cap, with its minimum, the Joule Point, at 43 to 46 percent of rated
-power. Holding a card there cut energy per task by 29 to 31 percent, with 1.2 times longer runs. A fleet simulation driven by the measured curves (only scheduling is simulated) served equal work with 18 to 45 percent less energy, and a
-fixed power feed delivered about 50 percent more work per megawatt.
+A recent study by the principal investigator measured this trade for AI (5,500 measurements, 20 models, four GPUs). The result: energy per task is U-shaped in the power cap. Its minimum, the Joule Point, sits at 43 to 46 percent of rated power. Holding a card there cut energy per task by 29 to 31 percent, with runs 1.2 times slower. At fleet scale, a simulation driven by measured curves (only scheduling is simulated) served equal work
+with 18 to 45 percent less energy; a fixed power feed delivered about 50 percent more work per megawatt.
 </p>
 <p>
 To deploy these results, JouleFlex extends the models: the power law tested on current hardware, production software, and whole servers at the wall; a job model calibrates the cap per workload; a transfer model places the Joule Point of
-unmeasured GPUs; and a joint method assigns jobs and caps under a changing power limit. The project aims to deliver a toolkit encompassing software for characterizing hardware and workloads, controlling fleet power in real time, and simulating operating policies. Operators cut energy under power limits, engineers qualify new hardware in hours, and the regulator can grant and audit conditional connections: capacity given if the facility lowers power on instruction.
+unmeasured GPUs; and a joint method assigns jobs and caps under a changing limit. It aims to deliver a toolkit encompassing software for characterizing hardware and workloads, controlling fleet power in real time, and simulating policies. Operators cut energy under power limits, engineers qualify new hardware in hours, and the regulator can grant and audit conditional connections: capacity given if the facility lowers power when instructed.
 </p>
 
-<h3 class="rtl">עברית (269 מילים)</h3>
+<h3 class="rtl">עברית (279 מילים)</h3>
 <div class="rtl">
 <p>
 ביולי 2026 הקפיאה רשות החשמל בקשות חיבור חדשות של מרכזי נתונים; התור הגיע ל-27,000 מגה-ואט. כשהחשמל הופך למגבלה,
@@ -96,11 +93,11 @@ unmeasured GPUs; and a joint method assigns jobs and caps under a changing power
 אך טיסה איטית שורפת דלק זמן רב יותר, ולכן חברות התעופה טסות במהירות הממזערת דלק לקילומטר.
 </p>
 <p>
-מחקר המדידה של המגיש (5,500 מדידות, 20 מודלים, ארבעה מאיצים) מצא את המקבילה החישובית: האנרגיה למשימה היא בצורת U
-ביחס למגבלת ההספק, והמינימום, נקודת הג'ול, נמצא ב-43 עד 46 אחוזים מההספק הנקוב. החזקת הכרטיס שם חסכה 29 עד 31
-אחוזים מהאנרגיה למשימה, בזמן ריצה ארוך פי 1.2.
-סימולציית צי המונעת מהעקומות שנמדדו (רק התזמון מדומה) סיפקה עבודה שווה ב-18 עד 45 אחוזים פחות אנרגיה,
-וחיבור בהספק קבוע סיפק כ-50 אחוזים יותר עבודה למגה-ואט.
+מחקר שנערך לאחרונה בידי החוקר הראשי מדד את אותו איזון עבור מחשוב בינה מלאכותית (5,500 מדידות, 20 מודלים, ארבעה
+מאיצים). התוצאה: האנרגיה למשימה היא בצורת U ביחס למגבלת ההספק. המינימום, שכונה נקודת הג'ול, נמצא ב-43 עד 46 אחוזים
+מההספק הנקוב. החזקת הכרטיס שם חסכה 29 עד 31 אחוזים מהאנרגיה למשימה, בריצות ארוכות פי 1.2. בקנה מידה של צי,
+סימולציה המונעת מהעקומות שנמדדו (רק התזמון מדומה) סיפקה עבודה שווה ב-18 עד 45 אחוזים פחות אנרגיה; חיבור בהספק
+קבוע סיפק כ-50 אחוזים יותר עבודה למגה-ואט.
 </p>
 <p>
 כדי להפוך את התוצאות האלה לכלי עבודה, JouleFlex מרחיב תחילה את המידול: חוק ההספק ייבחן על חומרה עדכנית, על תוכנת הגשה תעשייתית ועל שרתים שלמים הנמדדים בשקע;
