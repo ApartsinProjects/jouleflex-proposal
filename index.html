@@ -268,7 +268,7 @@ profitable. Everything is released openly: connection policy cannot rest on a ve
 <h3>2.5.5.5 Methods (work packages)</h3>
 <table>
 <tr><th>WP</th><th>Content</th></tr>
-<tr><td>WP1</td><td><strong>ELF-2: the extended measurement corpus, at board and at wall.</strong> The unchanged sweep protocol of [1], run on additional GPU generations (H100/L40S class; B200 as cloud availability allows) and on production serving engines (vLLM [16], TensorRT-LLM), covering LLM execution phases, shared-GPU operation, and fine-tuning workloads; sweeps deliberately extended into the regimes where the per-card constant should break. On the local physical node, wall power is measured alongside board power, so the node's fixed overhead enters the law and the Joule Point is placed at the level the grid actually sees. Rented root-access GPU servers provide cap control; one fixed measurement protocol throughout.</td></tr>
+<tr><td>WP1</td><td><strong>ELF-2: the extended measurement corpus, at board and at wall.</strong> The unchanged sweep protocol of [1], run on additional GPU generations (H100/L40S class; B200 as cloud availability allows) and on production serving engines (vLLM [16], TensorRT-LLM), covering LLM execution phases, shared-GPU operation, and fine-tuning workloads; sweeps deliberately extended into the regimes where the per-card constant should break. On the local physical node, wall power is measured alongside board power, so the node's fixed overhead enters the law and the Joule Point is placed at the level the grid actually sees. AWS EC2 GPU instances, rented with full-GPU passthrough and root access so the power cap is controllable, provide the hardware; one fixed measurement protocol throughout.</td></tr>
 <tr><td>WP2</td><td><strong>Job model, transfer model, and one-test protocol.</strong> Two prediction models over the corpus. The job model: with the per-card constant as the null model, predict the per-job optimum from job features (model family, batch, execution phase, memory pressure), and state, with measured error bars, exactly where the constant suffices and where the job model pays. The transfer model: predict the law's parameters for unmeasured cards, the exponent β from the card's published voltage-frequency behavior, the floor P₀ from one idle measurement, validated by holding out measured cards. Together they yield a standard procedure that qualifies a new card model in hours at known cost.</td></tr>
 <tr><td>WP3</td><td><strong>Joint allocation-and-capping controller, and the digital twin.</strong> Formulation and solution of the joint problem: assign jobs to heterogeneous cards and set every cap simultaneously, under a time-varying envelope, maximizing served work with deadlines as hard constraints. The twin replays measured curves for exact evaluation. Controllers compared on identical seeded traces, in strict order of sophistication: uncapped baseline, uniform static cap, per-card Joule Point cap, cap-only optimization under the fixed placement rule (the study's result), and the full joint controller; envelopes include fixed budgets, day-ahead price profiles, carbon signals, and step curtailment instructions, so the marginal value of each added decision is isolated and measured. At each epoch the problem is a mixed-integer program with a convex continuous core (the measured P(θ) law is convex over the operating range); it is solved by rolling-horizon decomposition, an assignment layer (greedy with regret, warm-started from the previous epoch) over an exact per-card convex capping subproblem, validated against the exact solution computed offline in the twin.</td></tr>
 <tr><td>WP4</td><td><strong>Grid flexibility and the Israel demonstration.</strong> Formal flexibility products (envelope commitment, offer, delivery record) with compliance, ramp and recovery metrics, all defined and judged at wall power, the quantity the grid meters; demonstrated on a physical multi-GPU node plus the twin at fleet scale, under the Israeli firm-plus-flexible connection scenario. The facility-level optimum is computed in the twin by aggregating measured node curves with facility overhead (cooling, distribution losses) taken from published PUE ranges.</td></tr>
@@ -404,7 +404,7 @@ and authorities.
 <table>
 <tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr>
 <tr><td>Production serving software (continuous batching, shifting execution phases) blurs the per-card Joule Point</td><td>The static cap loses its near-optimality in the flagship LLM regime</td><td>This is measured first (WP1, M1) and is exactly what the job model (WP2) is for: where the constant breaks, the model predicts the moving optimum; the study already maps where online control keeps value over the static cap</td></tr>
-<tr><td>Power-cap control unavailable on some rented platforms (needs root access; serverless providers deny it)</td><td>Measurement campaign narrowed</td><td>Rent dedicated root-access servers, not serverless functions; where the cap's floor is too high, the graphics clock exposes the minimum, as shown on the L4 [1]; the dedicated node covers the physical demonstration</td></tr>
+<tr><td>Power-cap control unavailable on some rented platforms (needs root access; serverless providers deny it)</td><td>Measurement campaign narrowed</td><td>Use AWS EC2 GPU instances with full-GPU passthrough and root access, not serverless functions; where the cap's floor is too high, the graphics clock exposes the minimum, as shown on the L4 [1]; the dedicated node covers the physical demonstration</td></tr>
 <tr><td>Newest-generation availability (B200 class) limited or expensive within budget</td><td>Corpus thinner at the frontier</td><td>The transfer model (WP2) extrapolates to unmeasured cards; frontier cards are validation targets, not prerequisites; the H100/L40S class suffices and is rentable today</td></tr>
 <tr><td>Savings shrink when deadlines are tight</td><td>Overstated benefit for latency-critical fleets</td><td>Savings are reported as a function of deadline slack (+10 to +100 percent, as in [1]); the strict-deadline result (28 percent at 95 percent value kept) covers the tight regime; curtailment's service cost is priced explicitly</td></tr>
 <tr><td>No grid partner data for the Israel scenario</td><td>Demonstration less realistic</td><td>The scenario runs on public Noga / Electricity Authority signals and published tariff structures; a partner letter is being sought and is additive, not blocking</td></tr>
@@ -435,8 +435,9 @@ signature, per נספח טז' §2.5.
 <p>
 <strong>Resources available to the applicant.</strong> The project is deliberately designed to need almost no
 institutional infrastructure, and this is a methodological advantage rather than a gap. The measurement campaigns
-run on rented root-access GPU servers, which allow the power-cap control that serverless platforms deny, are billed
-by the hour with no capital purchase, span many card models on one account, and keep every measurement reproducible
+run on AWS EC2 GPU instances rented with root access, which allow the fine-grained power and energy control that
+serverless platforms deny, are billed by the hour with no capital purchase, span many card models on one account,
+and keep every measurement reproducible
 by any other group at a cost of shekels per data point, which is exactly the property an open reference
 implementation needs. HIT provides laboratory space at the Department of Computer Science, standard computing,
 storage and networking, and the Research Authority's grant administration. The one physical asset the work plan
@@ -672,7 +673,7 @@ criteria, not as guaranteed confirmations. That framing protects criterion 4 wit
 <tr><td>שונות (כנסים, פרסומים, רישיונות תוכנה ייעודיים)</td><td class="num">29,000</td><td class="num">29,000</td><td class="num">58,000</td></tr>
 <tr><td><em>בסיס לחישוב תקורה</em></td><td class="num"><em>178,000</em></td><td class="num"><em>178,000</em></td><td class="num"><em>356,000</em></td></tr>
 <tr><td>תקורה למוסד המחקר (15%)</td><td class="num">26,700</td><td class="num">26,700</td><td class="num">53,400</td></tr>
-<tr><td>קבלני משנה ועבודות חוץ (שכירת שרתי GPU ייעודיים עם הרשאות root (RunPod/Vast) לצורך שליטה במגבלת ההספק) , פטור מתקורה</td><td class="num">45,000</td><td class="num">45,000</td><td class="num">90,000</td></tr>
+<tr><td>קבלני משנה ועבודות חוץ (שכירת מופעי GPU ייעודיים בענן AWS (EC2) עם הרשאות root לצורך שליטה עדינה בהספק ובאנרגיה) , פטור מתקורה</td><td class="num">45,000</td><td class="num">45,000</td><td class="num">90,000</td></tr>
 <tr class="total"><td>סה"כ תקציב מבוקש</td><td class="num">249,700</td><td class="num">249,700</td><td class="num">499,400</td></tr>
 </table>
 
@@ -742,9 +743,9 @@ criteria, not as guaranteed confirmations. That framing protects criterion 4 wit
 
 <h3>5. קבלני משנה ועבודות חוץ</h3>
 <p>
-שירותי מחשוב ענן לצורך הרצות מדידה מבוקרות על משפחות מאיצים שאינן זמינות במוסד. ההרצות הדורשות שליטה במגבלת ההספק (עיקר המדידות) יבוצעו על שרתים ייעודיים עם הרשאות root אצל ספקים כגון RunPod ו-Vast.ai, לפי מחירון פומבי; הרצות שאינן דורשות שליטה כזו יכולות לרוץ גם אצל
+שירותי מחשוב ענן לצורך הרצות מדידה מבוקרות על משפחות מאיצים שאינן זמינות במוסד. פלטפורמת הביצוע היא AWS: מופעי EC2 עם מאיץ מלא (GPU passthrough) והרשאות root, המאפשרים שליטה עדינה במגבלת ההספק ובמדידת האנרגיה ברמת המאיץ, לפי המחירון הפומבי של AWS (תמהיל on-demand ו-spot); תדפיס מחירון מתוארך יצורף כהצעת המחיר לפי §6.3. הרצות שאינן דורשות שליטה בהספק יכולות לרוץ גם אצל
 <strong>Modal Labs</strong> (modal.com), המספק גישה לעשר משפחות מאיצים שונות בחשבון אחד, בחיוב לפי שנייה וללא חיוב
-על זמן סרק. פירוט השעות והמחיר לשעה לפי §6.3 (מבוסס על המחירון הפומבי של Modal כבסיס תמחור שמרני; מחירי שרתים ייעודיים דומים):
+על זמן סרק. פירוט השעות להלן; העלויות מבוססות על מחירון serverless פומבי כבסיס תכנון, בהיקף דומה לתעריפי spot של AWS; ההתחשבנות בפועל לפי מחירון AWS המצורף (§6.3):
 </p>
 <table>
 <tr><th>סוג מאיץ</th><th class="num">מחיר לשנייה (USD)</th><th class="num">מחיר לשעה (USD)</th><th class="num">שעות בשנה</th><th class="num">עלות שנתית (USD)</th></tr>
