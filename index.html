@@ -628,6 +628,8 @@ criteria, not as guaranteed confirmations. That framing protects criterion 4 wit
 <tr><td>פרסום מדעי (עד 10,000 ₪ למאמר)</td><td class="num">10,000</td></tr>
 <tr><td>רישיונות תוכנה ייעודיים לניתוח ולמדידה</td><td class="num">6,000</td></tr>
 <tr><td>נסיעות לחו"ל להצגת העבודה (מחלקת תיירים, לפי תעריפי §5.4.5)</td><td class="num">4,000</td></tr>
+<tr><td>שירות כיול חוזר ואביזרי חיבור למד הייחוס (שנה ב' בלבד)</td><td class="num">3,000</td></tr>
+<tr class="total"><td>סה"כ שונות: שנה א' 29,000 ₪; שנה ב' 32,000 ₪</td><td class="num"></td></tr>
 </table>
 <p class="meta">
 תקרות נסיעה לחו"ל: כרטיס טיסה הלוך ושוב עד 8,000 ₪, קצבת שהייה עד 250 ₪ ליום, קצבת לינה עד 650 ₪ ליום.
@@ -639,39 +641,35 @@ criteria, not as guaranteed confirmations. That framing protects criterion 4 wit
 <p>
 שירותי מחשוב ענן לצורך הרצות מדידה מבוקרות על משפחות מאיצים שאינן זמינות במוסד. פלטפורמת הביצוע היא AWS: מופעי EC2 עם מאיץ מלא (GPU passthrough) והרשאות root, המאפשרים שליטה עדינה במגבלת ההספק ובמדידת האנרגיה ברמת המאיץ, לפי המחירון הפומבי של AWS (תמהיל on-demand ו-spot); תדפיס מחירון מתוארך יצורף כהצעת המחיר לפי §6.3. הרצות שאינן דורשות שליטה בהספק יכולות לרוץ גם אצל
 <strong>Modal Labs</strong> (modal.com), המספק גישה לעשר משפחות מאיצים שונות בחשבון אחד, בחיוב לפי שנייה וללא חיוב
-על זמן סרק. פירוט השעות להלן; העלויות מבוססות על מחירון serverless פומבי כבסיס תכנון, בהיקף דומה לתעריפי spot של AWS; ההתחשבנות בפועל לפי מחירון AWS המצורף (§6.3):
+על זמן סרק. פירוט השעות והעלויות להלן מחושב מתדפיסי המחירון הפומבי של AWS המצורפים (נאספו 29.08.2026, אזור us-east-1): תעריפי spot לריצות סריקה הניתנות להפסקה, on-demand היכן שמצוין; מופעים מרובי-מאיצים מתומחרים לשעת GPU; כרטיסי דור חזית מתוכננים לפי תעריף H100 ומתומחרים בפועל לפי המחירון בעת הריצה (§6.3):
 </p>
 <table>
-<tr><th>סוג מאיץ</th><th class="num">מחיר לשנייה (USD)</th><th class="num">מחיר לשעה (USD)</th><th class="num">שעות בשנה</th><th class="num">עלות שנתית (USD)</th></tr>
-<tr><td>NVIDIA T4</td><td class="num">0.000164</td><td class="num">0.590</td><td class="num">600</td><td class="num">354</td></tr>
-<tr><td>NVIDIA L4</td><td class="num">0.000222</td><td class="num">0.799</td><td class="num">600</td><td class="num">480</td></tr>
-<tr><td>NVIDIA A10</td><td class="num">0.000306</td><td class="num">1.102</td><td class="num">600</td><td class="num">661</td></tr>
-<tr><td>NVIDIA L40S</td><td class="num">0.000542</td><td class="num">1.951</td><td class="num">500</td><td class="num">976</td></tr>
-<tr><td>NVIDIA A100 40GB</td><td class="num">0.000583</td><td class="num">2.099</td><td class="num">450</td><td class="num">944</td></tr>
-<tr><td>NVIDIA A100 80GB</td><td class="num">0.000694</td><td class="num">2.498</td><td class="num">450</td><td class="num">1,124</td></tr>
-<tr><td>NVIDIA RTX PRO 6000</td><td class="num">0.000842</td><td class="num">3.031</td><td class="num">300</td><td class="num">909</td></tr>
-<tr><td>NVIDIA H100 SXM5</td><td class="num">0.001097</td><td class="num">3.949</td><td class="num">700</td><td class="num">2,764</td></tr>
-<tr><td>NVIDIA H200 SXM</td><td class="num">0.001261</td><td class="num">4.540</td><td class="num">400</td><td class="num">1,816</td></tr>
-<tr><td>NVIDIA B200</td><td class="num">0.001736</td><td class="num">6.250</td><td class="num">150</td><td class="num">937</td></tr>
-<tr class="total"><td>סה"כ שעות GPU</td><td class="num"></td><td class="num"></td><td class="num">4,750</td><td class="num">10,966</td></tr>
-<tr><td>מעבד מארח (4 ליבות פיזיות)</td><td class="num">0.0000131 / ליבה</td><td class="num">0.047 / ליבה</td><td class="num">4,750</td><td class="num">896</td></tr>
-<tr><td>זיכרון מארח (32 GiB)</td><td class="num">0.00000222 / GiB</td><td class="num">0.008 / GiB</td><td class="num">4,750</td><td class="num">1,215</td></tr>
-<tr class="total"><td>סה"כ עלות מחשוב שנתית</td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num">13,077</td></tr>
+<tr><th>מאיץ</th><th>מופע AWS</th><th>בסיס תמחור</th><th class="num">USD לשעת GPU</th><th class="num">שעות GPU בשנה</th><th class="num">עלות שנתית (USD)</th></tr>
+<tr><td>NVIDIA T4</td><td>g4dn.xlarge</td><td>spot</td><td class="num">0.220</td><td class="num">600</td><td class="num">132</td></tr>
+<tr><td>NVIDIA A10G</td><td>g5.xlarge</td><td>spot</td><td class="num">0.501</td><td class="num">600</td><td class="num">300</td></tr>
+<tr><td>NVIDIA L4</td><td>g6.xlarge</td><td>spot</td><td class="num">0.105</td><td class="num">600</td><td class="num">63</td></tr>
+<tr><td>NVIDIA L40S</td><td>g6e.xlarge</td><td>on-demand</td><td class="num">1.861</td><td class="num">500</td><td class="num">931</td></tr>
+<tr><td>NVIDIA V100</td><td>p3.2xlarge</td><td>spot</td><td class="num">1.381</td><td class="num">450</td><td class="num">621</td></tr>
+<tr><td>NVIDIA A100 40GB</td><td>p4d.24xlarge (8 מאיצים)</td><td>spot, לשעת GPU</td><td class="num">1.633</td><td class="num">900</td><td class="num">1,470</td></tr>
+<tr><td>NVIDIA H100</td><td>p5.48xlarge (8 מאיצים)</td><td>on-demand, לשעת GPU</td><td class="num">6.880</td><td class="num">700</td><td class="num">4,816</td></tr>
+<tr><td>דור חזית (H200/B200)</td><td>לפי זמינות</td><td>תכנון לפי תעריף H100</td><td class="num">6.880</td><td class="num">400</td><td class="num">2,752</td></tr>
+<tr class="total"><td>סה"כ שעות GPU</td><td></td><td></td><td class="num"></td><td class="num">4,750</td><td class="num">11,085</td></tr>
+<tr><td>מעבד מארח, אחסון ותעבורה (הקצאה)</td><td></td><td></td><td class="num"></td><td class="num"></td><td class="num">1,000</td></tr>
+<tr><td>שכירת שרתים ייעודיים עם טלמטריית BMC (מדידת שקע והדגמת WP4)</td><td></td><td>לפי מחירון ספק מצורף</td><td class="num"></td><td class="num"></td><td class="num">2,400</td></tr>
+<tr class="total"><td>סה"כ עלות שנתית לסעיף</td><td></td><td></td><td class="num"></td><td class="num"></td><td class="num">14,485</td></tr>
 </table>
 <table>
 <tr><th>המרה לשקלים</th><th class="num">ערך</th></tr>
-<tr><td>תקציב שנתי מבוקש לסעיף</td><td class="num">54,000 ₪ (כ-45,000 מחשוב ענן AWS; כ-9,000 שכירת שרתים ייעודיים עם טלמטריית הספק out-of-band לפי שעה)</td></tr>
+<tr><td>תקציב שנתי מבוקש לסעיף</td><td class="num">54,000 ₪</td></tr>
 <tr><td>שער תכנון שמרני USD/ILS</td><td class="num">3.20</td></tr>
-<tr><td>שווי בדולרים</td><td class="num">14,063 $</td></tr>
-<tr><td>עלות מחשוב מתוכננת</td><td class="num">13,077 $</td></tr>
-<tr><td>רזרבה לשינויי שער ולתעריפים</td><td class="num">986 $ (7.0%)</td></tr>
+<tr><td>שווי בדולרים</td><td class="num">16,875 $</td></tr>
+<tr><td>עלות מתוכננת (ענן + שרתי BMC)</td><td class="num">14,485 $</td></tr>
+<tr><td>רזרבה לשינויי שער ולתעריפים</td><td class="num">2,390 $ (14.2%)</td></tr>
 </table>
 <p class="meta">
-סעיף זה פטור מתקורה (§7.1). התשלום מבוצע כנגד חשבוניות (§6.4). מחירי Modal נלקחו ממחירון הספק המפורסם
-(modal.com/pricing) נכון ל-18.08.2026; שער החליפין נבדק לאותו מועד (כ-2.96 ₪ לדולר), ולצורכי תכנון נעשה שימוש
-בשער שמרני של 3.20 ₪ לדולר, מעל השער הגבוה ביותר שנרשם בשנת 2026, כדי שהיקף המדידות המתוכנן יישמר גם אם השקל
-ייחלש. סה"כ לשנתיים: 9,500 שעות GPU על פני עשר משפחות מאיצים, בעלות של 90,000 ₪.
-</p>
+סעיף זה פטור מתקורה (§7.1). התשלום מבוצע כנגד חשבוניות (§6.4). תעריפי AWS נלקחו מנקודות הקצה הפומביות של מחירון AWS (on-demand ו-spot) ב-29.08.2026, ותדפיסים מתוארכים מצורפים;
+תעריפי שרתי BMC לפי מחירון ספק מפורסם (תדפיס מצורף). שער החליפין נבדק (כ-2.96 ₪ לדולר) ולצורכי תכנון נעשה שימוש
+בשער שמרני של 3.20 ₪ לדולר</p>
 <div class="note noprint">
 המחירון המפורסם של הספק מהווה את הצעת המחיר לצורך §6.3, שכן מדובר בשירות עצמי (self-serve) עם תמחור פומבי ולא בהתקשרות
 פרטנית. יש לצרף להגשה תדפיס של עמוד התמחור עם תאריך. הנימוק המקצועי לבחירה בענן על פני רכישת חומרה מופיע בסעיף
