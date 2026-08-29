@@ -78,13 +78,13 @@ In July 2026 Israel's Electricity Authority froze new data-center connection req
 <p>
 A recent PI study measured this for AI (5,500 measurements, 20 models, four GPUs). Energy per task is U-shaped in the power cap. Its minimum, the Joule Point, sits at 43 to 46 percent of rated power. Holding a card there cut energy per task 29 to 31 percent, runs 1.2 times slower. A fleet simulation on the measured curves (only scheduling simulated) served equal work with 18 to 45 percent less energy; a fixed GPU power budget delivered about 50 percent more work per megawatt.
 </p>
-<p>These results cover a few cards at the board; to become an instrument the Israeli grid can use, they
-must hold on current hardware, production serving software, and whole servers metered at the wall, and become deployable decisions. JouleFlex will deliver an open toolkit for this: a measurement dataset, a characterization kit that places any GPU’s Joule Point in hours, a fleet controller, a digital twin, and grid-facing interfaces. The
-work is to extend the law across hardware and workloads, fit a job model and a transfer model, solve the joint
-allocation-and-capping problem under a changing power limit, and demonstrate flexibility in an Israeli connection
-scenario.</p>
+<p>These insights reshape how AI data centers are planned, managed, and priced, raising decisions no current tool supports: how to build a fleet whose cards can run near their Joule Points; how to measure
+and predict the Joule Point for new cards and AI jobs; and how to price service so customers trade speed for energy.
+Each is a modeling problem, and this project will build the decision-support toolkit that answers them:
+an open dataset, a characterization-and-prediction kit for any card and workload; a fleet controller that holds cards
+near the Joule Point under a changing power limit, a digital twin, and grid-facing and pricing interfaces.</p>
 
-<h3 class="rtl">עברית (298 מילים)</h3>
+<h3 class="rtl">עברית (300 מילים)</h3>
 <div class="rtl">
 <p>
 ביולי 2026 הקפיאה רשות החשמל בקשות חיבור חדשות של מרכזי נתונים לאחר שהתור הגיע ל-27,000 מגה-ואט. כאשר אספקת החשמל מוגבלת, מרכזי נתונים מכבים מעבדי GPU (מעבדי בינה מלאכותית) או קובעים להם תקרת הספק. החלטות אלה מתקבלות בוואטים, המבטאים הספק רגעי, ולא בג'ולים, המבטאים את האנרגיה הנצרכת. מעבד GPU תחת תקרת הספק מחשב לאט יותר ופועל זמן רב יותר תוך צריכת הספק בסיס קבוע; לכן האנרגיה ליחידת חישוב מועיל עלולה לעלות אף שהמונה מציג פחות ואטים, כלומר פחות עבודה שימושית לכל קילוואט-שעה. אתגר דומה קיים בתעופה האזרחית, ושם הוא נפתר: קצב צריכת הדלק עולה מהר בהרבה מן המהירות, אך בטיסה איטית נצרך דלק במשך זמן רב יותר. לכן חברות התעופה טסות במהירות הממזערת את צריכת הדלק לקילומטר.
@@ -94,11 +94,10 @@ scenario.</p>
 מחקר שנערך לאחרונה בידי החוקר הראשי בחן כמותית את יחסי הגומלין האלה במחשוב בינה מלאכותית (5,500 מדידות, 20 מודלים, ארבעה מעבדי GPU). נמצא כי האנרגיה למשימה כתלות בתקרת ההספק מתארת עקומת U. המינימום, נקודת הג'ול (Joule Point), נמצא ב-43 עד 46 אחוזים מההספק הנקוב. הפעלת מעבד GPU בנקודה זו הפחיתה את האנרגיה למשימה ב-29 עד 31 אחוזים, כאשר זמן הריצה גדל פי 1.2. סימולציית צי על בסיס העקומות שנמדדו (רק התזמון מדומה) סיפקה אותה כמות עבודה בצריכת אנרגיה נמוכה ב-18 עד 45 אחוזים; תקציב הספק קבוע ל-GPU סיפק כ-50 אחוזים יותר עבודה למגה-ואט.
 </p>
 
-<p>תוצאות אלה נמדדו על מספר כרטיסים ברמת המאיץ; כדי שיהפכו לכלי שהמשק הישראלי יכול להשתמש בו, עליהן להתקיים בחומרה
-עדכנית, בתוכנה בסביבת ייצור ובשרתים שלמים הנמדדים בכניסת החשמל, ולהיות מתורגמות להחלטות בנות-יישום. לשם כך יספק
-JouleFlex ערכת כלים פתוחה: מסד מדידות, ערכת אפיון הממקמת את נקודת הג'ול של כל מאיץ בתוך שעות, בקר צי, תאום דיגיטלי
-וממשקים מול הרשת. העבודה הנדרשת: להרחיב את החוק על פני חומרה ועומסים, לכייל מודל משימה ומודל העברה, לפתור את בעיית
-השיבוץ ובקרת ההספק המשולבת תחת מגבלת הספק משתנה, ולהדגים גמישות בתרחיש חיבור ישראלי.</p>
+<p>תובנות אלה משנות את האופן שבו מתוכננים, מנוהלים ומתומחרים מרכזי נתונים לבינה מלאכותית תחת הפעלה מודעת-אנרגיה, ומעלות החלטות שאף כלי קיים אינו תומך בהן: כיצד לבנות צי שכרטיסיו יכולים לפעול סמוך לנקודות הג'ול; כיצד למדוד ולחזות את נקודת הג'ול עבור כרטיסים ועבודות חדשים; וכיצד לתמחר שירות כך שלקוחות יחליפו מהירות באנרגיה.
+כל אחת מהן היא בעיית מידול, והפרויקט יפתח את ערכת התמיכה בהחלטות מבוססת-המודל שתענה עליהן: מסד מדידות פתוח,
+ערכת אפיון וחיזוי לכל כרטיס ועומס, בקר צי המחזיק כרטיסים סמוך לנקודת הג'ול תחת מגבלת הספק משתנה, תאום דיגיטלי
+וממשקי תמחור ורשת.</p>
 </div>
 
 <h2>2.5.3 Glossary</h2>
