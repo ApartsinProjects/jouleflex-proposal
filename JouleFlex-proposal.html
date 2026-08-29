@@ -75,7 +75,7 @@ In July 2026 Israel's Electricity Authority froze new data-center connection req
 <p>
 A recent PI study measured the time-power tradeoff for AI workloads on GPUs (5,500 measurements, 20 models, four GPUs). Energy per task is U-shaped in the power cap. Its minimum, the Joule Point (JP), sits at 43 to 46 percent of rated power. Holding a card there cut energy per task 29 to 31 percent, runs 1.2 times slower. A fleet simulation on the measured curves (only scheduling simulated) served equal work with 18 to 45 percent less energy; a fixed GPU power budget delivered about 50 percent more work per megawatt.
 </p>
-<p>These insights reshape how AI data centers are planned, managed, and priced, raising decisions no current tool supports: how to build a fleet whose cards run near their JP; how to measure and predict the JP for new cards and jobs; and how to price service to motivate customers, not today’s per-hour billing that rewards the energy-worst point.
+<p>These insights reshape how AI data centers are planned, managed, and priced, raising decisions no current tool supports: how to build a flexible-connection-ready fleet whose cards run near their JP; how to measure and predict the JP for new cards and jobs; and how to price service to motivate customers, not per-hour billing that rewards the energy-worst point.
 Each is a modeling problem, and this project will build the decision-support toolkit that answers them:
 an open dataset, models to predict the JP for any card and workload, models for fleet design and operation near the JP, and grid and pricing interfaces.</p>
 
@@ -89,7 +89,7 @@ an open dataset, models to predict the JP for any card and workload, models for 
 מחקר שנערך לאחרונה בידי החוקר הראשי מדד את יחסי הגומלין בין זמן להספק בעומסי בינה מלאכותית על GPU (5,500 מדידות, 20 מודלים, ארבעה מעבדי GPU). נמצא כי האנרגיה למשימה כתלות בתקרת ההספק מתארת עקומת U. המינימום, נקודת הג'ול (Joule Point; JP), נמצא ב-43 עד 46 אחוזים מההספק הנקוב. הפעלת מעבד GPU בנקודה זו הפחיתה את האנרגיה למשימה ב-29 עד 31 אחוזים, כאשר זמן הריצה גדל פי 1.2. סימולציית צי על בסיס העקומות שנמדדו (רק התזמון מדומה) סיפקה אותה כמות עבודה בצריכת אנרגיה נמוכה ב-18 עד 45 אחוזים; תקציב הספק קבוע ל-GPU סיפק כ-50 אחוזים יותר עבודה למגה-ואט.
 </p>
 
-<p>תובנות אלה משנות את האופן שבו מתוכננים, מנוהלים ומתומחרים מרכזי נתונים לבינה מלאכותית תחת הפעלה מודעת-אנרגיה, ומעלות החלטות שאף כלי קיים אינו תומך בהן: כיצד לבנות צי שכרטיסיו יכולים לפעול סמוך ל-JP; כיצד למדוד ולחזות את ה-JP לכרטיסים ועבודות חדשים; וכיצד לתמחר שירות כך שיתמרץ לקוחות, במקום החיוב השעתי המתגמל את ההפעלה הגרועה אנרגטית.
+<p>תובנות אלה משנות את האופן שבו מתוכננים, מנוהלים ומתומחרים מרכזי נתונים לבינה מלאכותית תחת הפעלה מודעת-אנרגיה, ומעלות החלטות שאף כלי קיים אינו תומך בהן: כיצד לבנות צי מוכן-לחיבור-גמיש שכרטיסיו פועלים סמוך ל-JP; כיצד למדוד ולחזות את ה-JP לכרטיסים ועבודות חדשים; וכיצד לתמחר שירות כך שיתמרץ לקוחות, במקום החיוב השעתי המתגמל את ההפעלה הגרועה אנרגטית.
 כל אחת מהן היא בעיית מידול, והפרויקט יפתח את ערכת התמיכה בהחלטות מבוססת-המודל שתענה עליהן: מסד מדידות פתוח, מודלים לחיזוי ה-JP לכל כרטיס ועומס, מודלים לתכנון ולהפעלת צי סמוך ל-JP, וממשקי תמחור ורשת.</p>
 </div>
 
