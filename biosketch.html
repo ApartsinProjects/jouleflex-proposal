@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alexander Apartsin — Biosketch</title>
+<style>
+:root{
+  --ink:#16202b; --muted:#54636f; --rule:#dbe3ea; --accent:#0b4f6c; --accent2:#1c7a9c;
+  --bg:#ffffff; --card:#f6f9fb; --chip:#eaf2f6; --ok:#0a6b4f;
+}
+:root:not([data-theme=light]) { }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme=light]){
+    --ink:#e7edf3; --muted:#9fb0bd; --rule:#26333d; --accent:#7fc7e0; --accent2:#57a9c6;
+    --bg:#0f161c; --card:#161f27; --chip:#17303a; --ok:#5fd0ab;
+  }
+}
+:root[data-theme=dark]{
+  --ink:#e7edf3; --muted:#9fb0bd; --rule:#26333d; --accent:#7fc7e0; --accent2:#57a9c6;
+  --bg:#0f161c; --card:#161f27; --chip:#17303a; --ok:#5fd0ab;
+}
+*{box-sizing:border-box}
+body{
+  font-family:"Segoe UI",-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink); background:var(--bg); line-height:1.55; font-size:16px;
+  max-width:58rem; margin:0 auto; padding:2.4rem 1.4rem 4rem;
+}
+header{border-bottom:3px solid var(--accent); padding-bottom:1rem; margin-bottom:1.2rem}
+h1{font-size:1.85rem; margin:0 0 .15em; letter-spacing:.2px}
+.sub{color:var(--muted); font-size:1.02rem; margin:0}
+.contact{margin-top:.6rem; font-size:.9rem; color:var(--muted); display:flex; flex-wrap:wrap; gap:.2rem 1rem}
+.contact a{color:var(--accent2); text-decoration:none}
+.contact a:hover{text-decoration:underline}
+h2{font-size:1.12rem; color:var(--accent); border-bottom:1px solid var(--rule); padding-bottom:.25rem; margin:1.8rem 0 .7rem}
+h3{font-size:1rem; margin:1rem 0 .3rem}
+p{margin:.4rem 0}
+.lead{background:var(--card); border-left:4px solid var(--accent); border-radius:0 8px 8px 0; padding:.8rem 1rem; margin:.6rem 0 0}
+.fit{background:var(--chip); border-radius:8px; padding:.8rem 1rem; margin:.7rem 0}
+.fit b{color:var(--accent)}
+ul{margin:.3rem 0 .3rem 0; padding-left:1.15rem}
+li{margin:.28rem 0}
+.row{display:flex; justify-content:space-between; gap:1rem; align-items:baseline; border-bottom:1px solid var(--rule); padding:.4rem 0}
+.row:last-child{border-bottom:none}
+.row .what{font-weight:600}
+.row .who{color:var(--muted); font-size:.92rem}
+.row .when{color:var(--muted); font-size:.85rem; white-space:nowrap; font-variant-numeric:tabular-nums}
+.chips{display:flex; flex-wrap:wrap; gap:.4rem; margin:.5rem 0}
+.chip{background:var(--chip); color:var(--ink); border-radius:999px; padding:.22rem .7rem; font-size:.82rem}
+.pub{margin:.5rem 0; padding-left:.2rem}
+.pub .t{font-weight:600}
+.pub .v{color:var(--muted); font-size:.9rem}
+.tag{display:inline-block; font-size:.72rem; font-weight:700; color:var(--ok); border:1px solid var(--ok); border-radius:4px; padding:.02em .35em; margin-left:.3em; vertical-align:.08em}
+.tag.q1{color:var(--accent2); border-color:var(--accent2)}
+.metrics{display:flex; gap:1.4rem; flex-wrap:wrap; margin:.4rem 0}
+.metric{background:var(--card); border:1px solid var(--rule); border-radius:8px; padding:.5rem .9rem; text-align:center}
+.metric .n{font-size:1.3rem; font-weight:700; color:var(--accent); line-height:1}
+.metric .l{font-size:.74rem; color:var(--muted); text-transform:uppercase; letter-spacing:.5px}
+.note{font-size:.85rem; color:var(--muted)}
+footer{margin-top:2.2rem; border-top:1px solid var(--rule); padding-top:.9rem; font-size:.85rem; color:var(--muted)}
+a.cvlink{color:var(--accent2)}
+@media print{ body{max-width:none; padding:0; font-size:11.5pt; color:#000} header{border-color:#000} h2{color:#000} .lead,.fit,.metric,.chip{background:#f2f2f2} }
+</style>
+</head>
+<body>
+<header>
+  <h1>Alexander (Sasha) Apartsin, Ph.D.</h1>
+  <p class="sub">Senior Lecturer, School of Computer Science, Faculty of Sciences · Holon Institute of Technology (HIT)</p>
+  <div class="contact">
+    <span>alexanderapartsin@hit.ac.il</span>
+    <a href="https://apartsin.com">apartsin.com</a>
+    <a href="https://scholar.google.com/citations?user=-5He5joAAAAJ">Google Scholar</a>
+    <a href="https://www.linkedin.com/in/apartsin/">LinkedIn</a>
+  </div>
+</header>
+
+<p class="lead">
+Machine-learning-systems researcher with two decades of building and measuring AI at production scale, now working at the intersection of <b>energy-efficient AI computation</b>, measurement methodology, and optimization. Principal investigator for the JouleFlex proposal on energy-optimal power control for AI data centers.
+</p>
+
+<div class="fit">
+<b>Fit to an energy-and-AI research program.</b> Three threads of this record converge on the proposed work:
+(1) a peer-reviewed lineage in <b>energy-efficient signal estimation and measurement under noise</b>, including an IEEE JSTARS paper on energy-efficient time-of-flight estimation;
+(2) a sustained output of <b>benchmark and measurement methodologies</b> for AI systems, the exact skill an energy-per-useful-compute metric requires;
+(3) senior <b>industry roles carrying deployment and techno-economic responsibility</b> (AVP at Citi, Head of AI at Motorola Solutions, Head of Data Science at Questar), where compute cost and capacity modeling were operational concerns.
+</div>
+
+<h2>Research expertise</h2>
+<div class="chips">
+  <span class="chip">Energy-efficient AI inference</span>
+  <span class="chip">ML systems &amp; measurement</span>
+  <span class="chip">Benchmarking methodology</span>
+  <span class="chip">Optimization</span>
+  <span class="chip">Signal processing under noise</span>
+  <span class="chip">Computer vision</span>
+  <span class="chip">LLMs &amp; generative AI</span>
+  <span class="chip">Anomaly detection</span>
+  <span class="chip">Multi-agent coordination</span>
+</div>
+
+<h2>Bibliometrics</h2>
+<div class="metrics">
+  <div class="metric"><div class="n">9</div><div class="l">h-index (Scholar)</div></div>
+  <div class="metric"><div class="n">500+</div><div class="l">citations</div></div>
+  <div class="metric"><div class="n">3</div><div class="l">granted US patents</div></div>
+  <div class="metric"><div class="n">7</div><div class="l">patent applications</div></div>
+</div>
+
+<h2>Education</h2>
+<div class="row"><span class="what">Ph.D., Computer Science</span><span class="who">Tel-Aviv University · Machine Learning &amp; Signal Processing (adv. Prof. Nathan Intrator)</span><span class="when">2012</span></div>
+<div class="row"><span class="what">Post-doctoral Fellow</span><span class="who">Weizmann Institute of Science · Computer Vision (host Dr. Anat Levin)</span><span class="when">2012–13</span></div>
+<div class="row"><span class="what">M.Sc., Management (Information Systems)</span><span class="who">Polytechnic Institute of NYU, Israel Extension</span><span class="when">2006</span></div>
+<div class="row"><span class="what">M.Sc., Computer Science</span><span class="who">Weizmann Institute of Science · Computer Vision (adv. Prof. Ronen Basri)</span><span class="when">2005</span></div>
+<div class="row"><span class="what">B.Sc., Computer Science</span><span class="who">Technion, Israel Institute of Technology</span><span class="when">1995</span></div>
+<p class="note">Professional certifications: IEEE CSDP (2008); PMI PMP (2009).</p>
+
+<h2>Academic appointments</h2>
+<div class="row"><span class="what">Senior Lecturer (equivalent)</span><span class="who">Holon Institute of Technology (HIT), Computer Science</span><span class="when">2024–now</span></div>
+<div class="row"><span class="what">Principal Investigator, Samsung joint research project</span><span class="who">HIT · supervising a student research team</span><span class="when">2025–now</span></div>
+<div class="row"><span class="what">Head, Software Engineering Track</span><span class="who">HIT, School of Computer Science</span><span class="when">2024–25</span></div>
+<div class="row"><span class="what">Adjunct Lecturer</span><span class="who">Bar-Ilan (2022), Tel-Aviv University (2013, 2015), Academic College of Tel-Aviv-Yaffo (2011)</span><span class="when">2011–22</span></div>
+
+<h2>Selected industry experience</h2>
+<div class="row"><span class="what">Head of Data Science</span><span class="who">Questar Automotive (SafeRide) · AI for predictive maintenance at fleet scale</span><span class="when">2020–24</span></div>
+<div class="row"><span class="what">Vice President, Artificial Intelligence</span><span class="who">Harmon.IE · AI for enterprise document management</span><span class="when">2019–20</span></div>
+<div class="row"><span class="what">Head of AI Research; Distinguished Member of Technical Staff</span><span class="who">Motorola Solutions Israel Innovation Center</span><span class="when">2015–19</span></div>
+<div class="row"><span class="what">AVP, Data Science</span><span class="who">Citigroup TLV Innovation Lab · ML for trading-flow analytics</span><span class="when">2013–15</span></div>
+<div class="row"><span class="what">Data Scientist</span><span class="who">Amdocs · capacity modeling for high-scale distributed systems</span><span class="when">2010–11</span></div>
+<p class="note">Earlier: CTO/Founder SearchNG (distributed search); algorithm and architecture roles at Comverse, McGraw-Hill (Tegrity), Product Computers, SmartLight.</p>
+
+<h2>Selected publications</h2>
+<p class="note">Grant-relevant work first; full list of 20+ peer-reviewed articles at <a class="cvlink" href="https://scholar.google.com/citations?user=-5He5joAAAAJ">Google Scholar</a>.</p>
+
+<div class="pub"><span class="t">Energy-efficient time-of-flight estimation in the presence of outliers: a machine-learning approach.</span> <span class="v">Apartsin, Cooper &amp; Intrator. IEEE J. Selected Topics in Applied Earth Observations &amp; Remote Sensing, 7(4), 2014.</span> <span class="tag q1">WoS Q1</span></div>
+<div class="pub"><span class="t">A benchmark for evaluating diagnostic questioning efficiency of LLMs in patient conversation.</span> <span class="v">Werthaim, Kimhi, Apartsin &amp; Aperstein. Scientific Reports, 2026.</span> <span class="tag q1">WoS Q1</span></div>
+<div class="pub"><span class="t">IRC-Bench: recognizing entities from contextual cues.</span> <span class="v">Aperstein, Moran &amp; Apartsin. Machine Learning &amp; Knowledge Extraction, 8(7), 2026.</span> <span class="tag q1">WoS Q1</span></div>
+<div class="pub"><span class="t">CoEval: ranking language models for custom tasks without labeled data or trustworthy benchmarks.</span> <span class="v">Apartsin &amp; Aperstein, 2026 (under review).</span></div>
+<div class="pub"><span class="t">CalexNet: soft cascade-aligned training and calibration for lightweight early-exit branches.</span> <span class="v">Aperstein &amp; Apartsin. Electronics, 15, 2026.</span> <span class="tag">WoS Q2</span></div>
+<div class="pub"><span class="t">Mapping license-plate recoverability under extreme viewing angles for opportunistic urban sensing.</span> <span class="v">Adamenko, Ben-Aharon, Aperstein &amp; Apartsin. AI (MDPI), 7(7), 2026.</span> <span class="tag q1">WoS Q1</span></div>
+<div class="pub"><span class="t">Time-of-flight estimation in the presence of outliers, Parts I &amp; II.</span> <span class="v">Apartsin, Cooper &amp; Intrator. IEEE Trans. Geoscience &amp; Remote Sensing, 52(6–7), 2013.</span> <span class="tag q1">WoS Q1</span></div>
+<div class="pub"><span class="t">Accurate blur models vs. image priors in single-image super-resolution.</span> <span class="v">Efrat, Glasner, Apartsin, Nadler &amp; Levin. IEEE ICCV, 2013.</span> <span class="v">(230+ citations)</span></div>
+<p class="note"><b>Book:</b> <i>Hands-On AI Science</i>, Apartsin &amp; Aperstein.</p>
+
+<h2>Patents (selected)</h2>
+<ul>
+  <li><b>System and method for the unification and optimization of machine-learning inference pipelines</b> — US 2024/0013905 A1 (application). <span class="note">Directly relevant to inference-systems efficiency.</span></li>
+  <li>System and method for physical model-based machine learning — US 2022/0382939 A1 (application).</li>
+  <li>System and method for model-configuration selection — US 11,868,899 B2 (granted, 2024).</li>
+  <li>Response determination with public-safety impact — US 10,825,450 B2 (granted, 2020).</li>
+  <li>Matching portions of input images — US 8,175,412 B2 (granted, 2012).</li>
+</ul>
+
+<h2>Grants &amp; awards</h2>
+<ul>
+  <li><b>BIRD</b> (Israel–US Binational Industrial R&amp;D Foundation), group leader, 2018 — on-device video analytics.</li>
+  <li><b>Israel Innovation Authority — Magneton</b>, group leader, 2017 — academia–industry transfer (with Tel-Aviv University).</li>
+  <li>Citi Lablink Venture Grant, leader, 2015; Israel Innovation Authority incubation grant, founder, 1999.</li>
+  <li>Informa Tech "Automotive AI Product of the Year", 2021 (Questar / SafeRide).</li>
+  <li>Don &amp; Sara Marejn Foundation award for outstanding Ph.D. achievement, Tel-Aviv University, 2011.</li>
+</ul>
+
+<h2>Teaching &amp; mentoring</h2>
+<p>Graduate and undergraduate courses at HIT: Large Language Models in Action, Practical Generative AI Models for Visual and Signal Data, Image Processing and Computer Vision with Deep Learning, NLP for Healthcare, Introduction to Computer Science; the <i>Hands-On AI Science</i> course series. Established two Industry Advisory Boards defining graduate-readiness competencies; supervises a large cohort of applied AI student projects.</p>
+
+<h2>Current research direction</h2>
+<p>
+Energy-optimal operation of AI accelerators: measuring where energy per unit of useful compute is minimized on GPUs (the "Joule Point"), modeling the underlying power–time tradeoff, and turning it into fleet-design, control, and grid-facing decisions. The foundational measurement study is a manuscript under review; the JouleFlex proposal to the Israeli Ministry of Energy extends it into an open dataset, prediction models, and a decision-support toolkit for energy-constrained AI data centers.
+</p>
+
+<footer>
+Prepared for the Israeli Ministry of Energy competitive R&amp;D call (34/2026). Full official CV available on request. Bibliometrics from Google Scholar; publication tiers from Web of Science / SCImago.
+</footer>
+</body>
+</html>
