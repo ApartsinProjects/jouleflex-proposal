@@ -71,7 +71,7 @@ img { max-width:100%; display:block; margin:0 auto; }
 
 <h2>2.5.2 Abstract / תקציר</h2>
 
-<h3>English (299 words)</h3>
+<h3>English (300 words)</h3>
 <p>
 In July 2026 Israel's Electricity Authority froze new data-center connection requests after the queue reached 27,000 megawatts. Under electricity limits, data centers switch GPUs (AI processors) off or cap their power, deciding in watts, the momentary draw, not joules, the energy consumed. A capped GPU computes slower and pays its fixed power floor longer, so energy per unit of useful work can rise even as the meter shows fewer watts: less AI per kilowatt-hour. A similar challenge exists in aviation, where it is solved: fuel flow rises far faster than speed, yet slow flight burns fuel longer, so airlines cruise at the speed minimizing fuel per kilometer.
 </p>
@@ -81,8 +81,7 @@ A recent PI study measured this for AI (5,500 measurements, 20 models, four GPUs
 <p>These insights reshape how AI data centers are planned, managed, and priced, raising decisions no current tool supports: how to build a fleet whose cards can run near their Joule Points; how to measure
 and predict the Joule Point for new cards and AI jobs; and how to price service so customers trade speed for energy.
 Each is a modeling problem, and this project will build the decision-support toolkit that answers them:
-an open dataset, a characterization-and-prediction kit for any card and workload; a fleet controller that holds cards
-near the Joule Point under a changing power limit, a digital twin, and grid-facing and pricing interfaces.</p>
+an open dataset, models to characterize and predict the Joule Point for any card and workload, models for fleet design and operation near the Joule Point under a changing limit, and grid-facing and pricing interfaces.</p>
 
 <h3 class="rtl">עברית (300 מילים)</h3>
 <div class="rtl">
@@ -95,9 +94,7 @@ near the Joule Point under a changing power limit, a digital twin, and grid-faci
 </p>
 
 <p>תובנות אלה משנות את האופן שבו מתוכננים, מנוהלים ומתומחרים מרכזי נתונים לבינה מלאכותית תחת הפעלה מודעת-אנרגיה, ומעלות החלטות שאף כלי קיים אינו תומך בהן: כיצד לבנות צי שכרטיסיו יכולים לפעול סמוך לנקודות הג'ול; כיצד למדוד ולחזות את נקודת הג'ול עבור כרטיסים ועבודות חדשים; וכיצד לתמחר שירות כך שלקוחות יחליפו מהירות באנרגיה.
-כל אחת מהן היא בעיית מידול, והפרויקט יפתח את ערכת התמיכה בהחלטות מבוססת-המודל שתענה עליהן: מסד מדידות פתוח,
-ערכת אפיון וחיזוי לכל כרטיס ועומס, בקר צי המחזיק כרטיסים סמוך לנקודת הג'ול תחת מגבלת הספק משתנה, תאום דיגיטלי
-וממשקי תמחור ורשת.</p>
+כל אחת מהן היא בעיית מידול, והפרויקט יפתח את ערכת התמיכה בהחלטות מבוססת-המודל שתענה עליהן: מסד מדידות פתוח, מודלים לאפיון ולחיזוי נקודת הג'ול לכל כרטיס ועומס, מודלים לתכנון ולהפעלת צי סמוך לנקודת הג'ול תחת מגבלת הספק משתנה, וממשקי תמחור ורשת.</p>
 </div>
 
 <h2>2.5.3 Glossary</h2>
