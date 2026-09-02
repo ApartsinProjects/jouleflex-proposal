@@ -88,40 +88,40 @@ The budget is typed directly into the form as fields (section 3 totals + section
 <div class="paste">In July 2026 Israel's Electricity Authority froze new data-center connection requests after the queue reached 27,000 megawatts. Under electricity limits, data centers switch GPUs (AI processors) off or cap their power, deciding in watts (the momentary draw), not joules (the energy consumed). A capped GPU computes slower and pays its fixed power floor longer, so energy per unit of useful work can rise even as the meter shows fewer watts: less AI per kilowatt-hour. A similar challenge exists in aviation, where it is solved: fuel flow rises far faster than speed, yet slow flight burns fuel longer, so airlines cruise at the speed minimizing fuel per kilometer. The PI's recent study measured the time-power tradeoff for AI workloads (5,500 measurements, 20 models, four GPUs). Energy per task is U-shaped in the power cap. On the large GPUs its minimum, the Joule Point (JP), sits at 43 to 46 percent of rated power; holding a card there cut energy per task 29 to 31 percent while running 1.2 times slower. Even under a strict deadline, capping saved 28 percent of energy while keeping 95 percent of workload value. A fleet simulation on the measured curves (only scheduling simulated) served equal work with 18 to 45 percent less energy. These insights reshape how AI data centers are planned, managed, and priced, raising decisions no current tool supports: how to design a flexible-connection-ready fleet whose cards run near their JP; how to measure and predict the JP for new cards and jobs; and how to price service to motivate customers toward efficiency, not per-hour billing rewarding the energy-worst point. Each is a modeling problem. This project delivers the decision-support toolkit answering all three, released with an open measurement dataset. Run near its JP, a fleet frees dispatchable power headroom for Israel’s flexible-connection scheme.</div>
 
 <h2><span class="n">8</span> &#1488;&#1489;&#1504;&#1497; &#1491;&#1512;&#1498; + &#1514;&#1511;&#1510;&#1497;&#1489; &#1500;&#1508;&#1497; &#1505;&#1506;&#1497;&#1507; &mdash; Milestones &amp; per-category budget</h2>
-<p class="wc">Budget by online-form section &mdash; copy each row's fields into the matching section of the form:</p>
+<p class="wc">התקציב מוזן <strong>לפי שנה</strong> (לשוניות שנה א' / שנה ב'). שתי השנים זהות: יש להזין את אותם הערכים בכל אחת. העתק כל שורה אל סעיף הטופס המתאים. הסכומים למטה הם <strong>לשנה אחת</strong>.</p>
 
-<h3 style="font-size:1rem;margin:1rem 0 .3rem">כוח אדם (Personnel)</h3>
+<h3 style="font-size:1rem;margin:1rem 0 .3rem">כוח אדם (Personnel) — לשנה</h3>
 <table class="budget he">
 <tr><th>עובד</th><th>תפקיד</th><th>שיוך לאבן דרך</th><th>% משרה</th><th>חודשים</th><th>שכר חודשי מלא (₪)</th><th>תקציב מבוקש (₪)</th></tr>
-<tr><td>לא נקבע</td><td>מלגאי דוקטורנט</td><td>כללי</td><td>90</td><td>24</td><td>12,500</td><td>270,000</td></tr>
+<tr><td>לא נקבע</td><td>מלגאי בתר-דוקטורט</td><td>כללי</td><td>90</td><td>12</td><td>12,500</td><td>135,000</td></tr>
 </table>
-<div class="note warn"><strong>תקרות מלגה למשרה מלאה (נספח טז' §2.3):</strong> מסטרנט 120,000 ₪/שנה · דוקטורנט 150,000 ₪/שנה · בתר-דוקטורט 168,000 ₪/שנה. הסכום המבוקש שקול ל-150,000 ₪/שנה במשרה מלאה (12,500 ₪/חודש), המתאים ל<strong>דוקטורנט או בתר-דוקטורט</strong>. <strong>מלגאי מסטרנט חורג מהתקרה בסכום זה</strong>: לבחירת מסטרנט יש להזין שכר חודשי מלא של 10,000 ₪ (120,000 ₪/שנה), כלומר 216,000 ₪ ל-24 חודשים ב-90% (הפחתה של 54,000 ₪ מכוח האדם). אם הטופס מגביל חודשים ל-12, יש להזין שתי שורות של 12 חודשים (135,000 ₪ כל אחת).</div>
+<div class="note warn"><strong>מלגאי בתר-דוקטורט.</strong> תקרת המלגה למשרה מלאה היא 168,000 ₪/שנה (14,000 ₪/חודש). הבקשה היא 12,500 ₪/חודש (150,000 ₪/שנה במשרה מלאה, 135,000 ₪ ב-90% משרה), <strong>מתחת לתקרת הבתר-דוקטורט</strong>, כדי לשמור על התקציב השנתי בתוך תקרת 250,000 ₪ לשנה. תקרות אחרות (נספח טז' §2.3): מסטרנט 120,000 ₪/שנה, דוקטורנט 150,000 ₪/שנה. לתשלום בתעריף המלא של בתר-דוקטורט (14,000 ₪/חודש) יש להפחית סעיף אחר כדי לא לחרוג מ-250,000 ₪ לשנה.</div>
 
-<h3 style="font-size:1rem;margin:1rem 0 .3rem">חומרים אזילים וציוד מתכלה (Consumables)</h3>
+<h3 style="font-size:1rem;margin:1rem 0 .3rem">חומרים אזילים וציוד מתכלה (Consumables) — לשנה</h3>
 <table class="budget he">
 <tr><th>תת סעיף</th><th>הסבר הצורך</th><th>שיוך לאבן דרך</th><th>עלות (₪)</th><th>אחוז מימון</th></tr>
-<tr><td>חומרים מתכלים ואמצעי אחסון וגיבוי</td><td>אחסון וגיבוי של קורפוס המדידות ותוצרי הביניים; פריטים מתכלים לקמפיין המדידות</td><td>D1 • מסד נתונים ELF-2</td><td>4,000</td><td>100</td></tr>
+<tr><td>חומרים מתכלים ואמצעי אחסון וגיבוי</td><td>אחסון וגיבוי של קורפוס המדידות ותוצרי הביניים; פריטים מתכלים לקמפיין המדידות</td><td>D1 • מסד נתונים ELF-2</td><td>2,000</td><td>100</td></tr>
 </table>
 
 <h3 style="font-size:1rem;margin:1rem 0 .3rem">ציוד (Equipment)</h3>
-<div class="note">אין. הפרויקט אינו רוכש ציוד; כל החומרה שכורה. יש להשאיר סעיף זה ריק.</div>
+<div class="note">אין. הפרויקט אינו רוכש ציוד; כל החומרה שכורה. יש להשאיר סעיף זה ריק בשתי השנים.</div>
 
-<h3 style="font-size:1rem;margin:1rem 0 .3rem">קבלני משנה ועבודות חוץ (Subcontractors, פטור מתקורה)</h3>
+<h3 style="font-size:1rem;margin:1rem 0 .3rem">קבלני משנה ועבודות חוץ (Subcontractors, פטור מתקורה) — לשנה</h3>
 <table class="budget he">
 <tr><th>תת סעיף</th><th>הסבר הצורך</th><th>שיוך לאבן דרך</th><th>עלות (₪)</th><th>אחוז מימון</th></tr>
-<tr><td>שכירת מחשוב GPU בענן ושרתים ייעודיים</td><td>סריקות מדידה, אימות מודל ההעברה וקמפיין הגמישות (AWS ושרתי BMC)</td><td>D1 • מסד נתונים ELF-2</td><td>108,000</td><td>100</td></tr>
+<tr><td>שכירת מחשוב GPU בענן ושרתים ייעודיים</td><td>סריקות מדידה, אימות מודל ההעברה וקמפיין הגמישות (AWS ושרתי BMC)</td><td>D1 • מסד נתונים ELF-2</td><td>54,000</td><td>100</td></tr>
 </table>
 <div class="note">מחירון פומבי מתוארך של הספק משמש כהצעת המחיר הנדרשת בסעיף 6.3.</div>
 
-<h3 style="font-size:1rem;margin:1rem 0 .3rem">שונות ונסיעות (Misc &amp; Travel)</h3>
+<h3 style="font-size:1rem;margin:1rem 0 .3rem">שונות ונסיעות (Misc &amp; Travel) — לשנה</h3>
 <table class="budget he">
 <tr><th>תת סעיף</th><th>הסבר הצורך</th><th>שיוך לאבן דרך</th><th>עלות (₪)</th><th>אחוז מימון</th></tr>
-<tr><td>כנסים מדעיים</td><td>הצגת התוצאות בכנסים רלוונטיים</td><td>כללי</td><td>18,000</td><td>100</td></tr>
-<tr><td>פרסום מדעי (גישה פתוחה)</td><td>דמי פרסום למאמרים</td><td>כללי</td><td>20,000</td><td>100</td></tr>
-<tr><td>רישיונות תוכנה לניתוח ומדידה</td><td>כלי ניתוח ומדידה ייעודיים</td><td>כללי</td><td>12,000</td><td>100</td></tr>
-<tr><td>נסיעות לחו"ל להצגת העבודה</td><td>מחלקת תיירים, לפי §5.4.5</td><td>כללי</td><td>8,000</td><td>100</td></tr>
+<tr><td>כנסים מדעיים</td><td>הצגת התוצאות בכנסים רלוונטיים</td><td>כללי</td><td>9,000</td><td>100</td></tr>
+<tr><td>פרסום מדעי (גישה פתוחה)</td><td>דמי פרסום למאמרים</td><td>כללי</td><td>10,000</td><td>100</td></tr>
+<tr><td>רישיונות תוכנה לניתוח ומדידה</td><td>כלי ניתוח ומדידה ייעודיים</td><td>כללי</td><td>6,000</td><td>100</td></tr>
+<tr><td>נסיעות לחו"ל להצגת העבודה</td><td>מחלקת תיירים, לפי §5.4.5</td><td>כללי</td><td>4,000</td><td>100</td></tr>
 </table>
-<div class="note good">סכום כל הסעיפים: 440,000 ₪ · בסיס לתקורה (ללא קבלני משנה): 332,000 ₪ · תקורה 15% = 49,800 ₪ · <strong>סה"כ מבוקש 489,800 ₪</strong> (מתאים לסעיף 3).</div>
+<div class="note good"><strong>לשנה:</strong> בסיס לתקורה (ללא קבלני משנה) 166,000 ₪ · תקורה 15% = 24,900 ₪ · קבלני משנה 54,000 ₪ · <strong>סה"כ לשנה 244,900 ₪</strong>. שתי שנים זהות · <strong>סה"כ מבוקש 489,800 ₪</strong> (מתאים לסעיף 3).</div>
 <p class="wc">Milestones (&#1488;&#1489;&#1503; &#1491;&#1512;&#1498;): add each with start/end month + description:</p>
 <table>
 <tr><th>שם אבן דרך</th><th>תיאור אבן דרך</th><th class="num">התחלה (חודש)</th><th class="num">סיום (חודש)</th><th class="num">סך חודשים</th></tr>
