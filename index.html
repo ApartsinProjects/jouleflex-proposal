@@ -51,9 +51,22 @@ figcaption { font-size:10.5pt; margin-top:.5em; text-align:justify; }
 img { max-width:100%; display:block; margin:0 auto; }
 .fignum { font-weight:700; }
 .appendix-rule { border-top:2px solid var(--accent); margin:2.5em 0 1em; }
+
+.submitbadges{position:fixed;top:.55rem;right:.6rem;display:flex;gap:.4rem;flex-wrap:wrap;justify-content:flex-end;max-width:46vw;z-index:2000}
+.submitbadges a{background:#0b4f6c;color:#fff;text-decoration:none;font:600 .76rem/1 "Segoe UI",Arial,sans-serif;padding:.4rem .65rem;border-radius:999px;box-shadow:0 1px 4px rgba(0,0,0,.28);white-space:nowrap}
+.submitbadges a:hover{background:#0d5f80}
+@media (prefers-color-scheme:dark){.submitbadges a{background:#1c6f8f}.submitbadges a:hover{background:#2a86aa}}
+@media print{.submitbadges{display:none!important}}
+@media (max-width:640px){.submitbadges{position:static;max-width:none;margin:0 0 1rem;justify-content:flex-start}}
 </style>
 </head>
 <body>
+<div class="submitbadges noprint">
+<a href="JouleFlex-submission-2026-08-29.pdf" title="Full proposal, PDF">📄 Proposal PDF</a>
+<a href="biosketch.html" title="PI biosketch">👤 Biosketch</a>
+<a href="form-guide.html" title="Point-by-point form-filling guide">📝 Form guide</a>
+</div>
+
 
 
 <div class="titleblock">
