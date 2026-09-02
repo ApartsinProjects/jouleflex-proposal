@@ -91,7 +91,7 @@ In July 2026 Israel's Electricity Authority froze new data-center connection req
 <p>
 The PI's recent study measured the time-power tradeoff for AI workloads (5,500 measurements, 20 models, four GPUs). Energy per task is U-shaped in the power cap. On the large GPUs its minimum, the Joule Point (JP), sits at 43 to 46 percent of rated power; holding a card there cut energy per task 29 to 31 percent while running 1.2 times slower. Even under a strict deadline, capping saved 28 percent of energy while keeping 95 percent of workload value. A fleet simulation on the measured curves (only scheduling simulated) served equal work with 18 to 45 percent less energy.
 </p>
-<p>These insights reshape how AI data centers are planned, managed, and priced, raising decisions no current tool supports: how to design a flexible-connection-ready fleet whose cards run near their JP; how to measure and predict the JP for new cards and jobs; and how to price service to motivate customers toward efficiency, not per-hour billing rewarding the energy-worst point.
+<p>These insights change how AI data centers are planned, managed, and priced, raising decisions no current tool supports: how to design a flexible-connection-ready fleet whose cards run near their JP; how to measure and predict the JP for new cards and jobs; and how to price service to motivate customers toward efficiency, not per-hour billing rewarding the energy-worst point.
 Each is a modeling problem. This project delivers the decision-support toolkit answering all three, released with an open measurement dataset. Run near its JP, a fleet frees dispatchable power headroom for Israel’s flexible-connection scheme.</p>
 
 <h3 class="rtl">עברית (300/300 מילים)</h3>
@@ -173,7 +173,7 @@ follows a simple physical law in the computing rate θ,
 <p class="eq">P(θ) = P₀ + a·θ^β,&nbsp;&nbsp; median R² = 0.99,</p>
 <p>
 a fixed floor P₀ plus a superlinear term.  Energy per task, E = P/θ, is therefore U-shaped in the cap; its minimum, the <strong>JP</strong>, sits at 43 to 46 percent of rated power on the large GPUs, cutting energy per task by 29 to 31 percent at an exactly priced cost: tasks run about 1.2 times slower, and holding throughput takes that factor more cards. The cap is one software command, settling in about 0.2 seconds,
-fast enough to follow grid signals; behind a fixed feed the measured A100 case yields about 50 percent more AI tasks per megawatt [1].
+fast enough to follow grid signals; behind a fixed feed the measured A100 curve implies about 50 percent more AI tasks per megawatt [1].
 </p>
 
 <h3>2.5.5.2 Review of existing knowledge</h3>
@@ -277,7 +277,7 @@ The project delivers five artifacts: the ELF-2 open dataset, the characterizatio
 </p>
 <p>
 <strong>For the Israeli grid and regulator:</strong> the larger benefit. The binding constraint is connection
-capacity: about 27,000 MW of pending requests [2] strain planned generation through 2035. The JP converts efficiency into capacity: in the measured A100 case, capping delivered about 50 percent more work per megawatt of GPU power. Power shaping lets facilities accept <em>conditional</em> connections: firm plus flexible capacity curtailed on
+capacity: about 27,000 MW of pending requests [2] strain planned generation through 2035. The JP converts efficiency into capacity: in the measured A100 case, capping implies about 50 percent more work per megawatt of GPU power. Power shaping lets facilities accept <em>conditional</em> connections: firm plus flexible capacity curtailed on
 instruction. With flexibility measured, committed and audited (WP4), the regulator gains a third option and the frozen queue stops being all-or-nothing. The measured capacity gain is a GPU-board-level result; as an illustrative upper bound, every 1,000 MW of the
 queue connected under JP operation could deliver the AI work of up to 1,500 MW uncapped, and a workload
 that would consume 1 TWh uncapped would avoid about 0.3 TWh, roughly 150,000 tonnes of CO2 at an assumed grid intensity of 0.5 kg per kilowatt-hour;
@@ -409,7 +409,7 @@ The project delivers five named artifacts, each with a defined user and use:
 <tr><th>Deliverable</th><th>What it is</th><th>Who uses it, for what</th></tr>
 <tr><td><strong>ELF-2</strong></td><td>An open dataset: power, throughput and latency at every operating point, board to wall, on current GPUs and production serving software</td><td>Researchers and vendors, as ground truth; every other deliverable is built and validated on it</td></tr>
 <tr><td><strong>The characterization kit</strong></td><td>Software plus protocol: a one-test procedure and the two fitted models placing the JP of a new or unmeasured card within the validated hardware domain, in hours</td><td>A GPU engineer or operator qualifying a new card model or a new serving stack before deployment, at known cost</td></tr>
-<tr><td><strong>The control engine</strong></td><td>An open-source controller engine that assigns jobs and sets caps to keep a fleet inside its envelope, evaluated in the twin and demonstrated on a metered rented server before any deployment</td><td>An AI data-center manager, to cut energy per job and honor a committed envelope; its report doubles as the compliance record</td></tr>
+<tr><td><strong>The control engine</strong></td><td>An open-source control engine that assigns jobs and sets caps to keep a fleet inside its envelope, evaluated in the twin and demonstrated on a metered rented server before any deployment</td><td>An AI data-center manager, to cut energy per job and honor a committed envelope; its report doubles as the compliance record</td></tr>
 <tr><td><strong>The digital twin</strong></td><td>A simulator replaying the measured curves of a described fleet and job mix, evaluating any policy or envelope scenario exactly before hardware is touched</td><td>An operator testing policies before deployment; a planner or regulator asking what a proposed facility could deliver and shed under a given connection</td></tr>
 <tr><td><strong>The grid interface and policy report</strong></td><td>A blueprint: open formats for the envelope commitment, the flexibility offer and the delivery record, plus a regulator-facing report quantifying firm-plus-flexible connections against the national queue</td><td>The Electricity Authority and Noga, as the technical basis for offering conditional connections and auditing compliance</td></tr>
 </table>
@@ -527,7 +527,7 @@ criteria, not as guaranteed confirmations.
 <tr><th>מגבלה</th><th>מקור</th><th>הנדרש</th><th>בפועל</th><th>סטטוס</th></tr>
 <tr><td>תקציב שנתי מרבי</td><td>נספח טז' §1.4</td><td class="num">≤ 250,000</td><td class="num">247,190</td><td class="ok">עומד</td></tr>
 <tr><td>תקציב כולל למחקר דו-שנתי</td><td>נספח טז' §1.4</td><td class="num">≤ 500,000</td><td class="num">494,380</td><td class="ok">עומד</td></tr>
-<tr><td>שיעור כוח אדם מהתקציב השנתי</td><td>נספח טז' §2.4</td><td class="num">≤ 60%</td><td class="num">57.7%</td><td class="ok">עומד</td></tr>
+<tr><td>שיעור כוח אדם (מבסיס טרום-תקורה)</td><td>נספח טז' §2.4</td><td class="num">≤ 60%</td><td class="num">57.7%</td><td class="ok">עומד</td></tr>
 <tr><td>מלגת בתר-דוקטורט למשרה מלאה</td><td>נספח טז' §2.3.3</td><td class="num">≤ 168,000</td><td class="num">144,000 (129,600 ב-90%)</td><td class="ok">עומד</td></tr>
 <tr><td>שיעור ציוד מהתקציב השנתי</td><td>נספח טז' §4.4</td><td class="num">≤ 20%</td><td class="num">0%</td><td class="ok">עומד</td></tr>
 <tr><td>שיעור תקורה</td><td>נספח טז' §7.1</td><td class="num">≤ 15%</td><td class="num">15%</td><td class="ok">עומד</td></tr>
@@ -550,7 +550,7 @@ criteria, not as guaranteed confirmations.
 </p>
 <div class="todo noprint">
 אם יידרש שילוב מסטרנט במערך המדידות, ניתן להוסיף מלגאי מסטרנט בחלקיות משרה. שימו לב: כל תוספת כוח אדם מקרבת
-לתקרת ה-60%. בהיקף הנוכחי נותר מרחב של כ-1,300 ₪ בשנה בלבד עד תקרת התקציב השנתי.
+לתקרת ה-60%. בהיקף הנוכחי נותר מרחב של כ-2,810 ₪ בשנה בלבד עד תקרת התקציב השנתי.
 </div>
 
 <h3>2. חומרים אזילים וציוד מתכלה</h3>
