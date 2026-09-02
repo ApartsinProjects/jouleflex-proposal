@@ -139,7 +139,7 @@ work keeps its service promises, under Israeli grid constraints?
 </p>
 <p>Six sub-questions structure the work plan:</p>
 <ol>
-  <li><strong>Does the law generalize?</strong> The power law and JP were measured on 20 models and 4 GPUs; do they hold on H100/B200-class hardware, production serving software, and shared GPUs?</li>
+  <li><strong>Does the law generalize?</strong> The power law and JP were measured on 20 models and 4 GPUs; do they hold on H100-class and, as access allows, B200-class hardware, production serving software, and shared GPUs?</li>
   <li><strong>When is one cap per card enough?</strong> The measured JP was nearly constant per card in the loaded regime; the project maps where that constant breaks and fits a job model there.</li>
   <li><strong>Where is the true optimum at the wall?</strong> Board-power measurements miss host overhead, and the grid connection is sized at the wall: what is the JP of the whole node, and of the facility?</li>
   <li><strong>Can we skip the measurement?</strong> Can an unmeasured GPU's JP be predicted from published electrical characteristics plus at most one short test, characterizing a new card model in hours?</li>
@@ -188,7 +188,7 @@ with auditable compliance, or that quantifies AI facilities as providers of firm
 
 <h3>2.5.5.3 Knowledge gaps</h3>
 <ul>
-  <li><strong>The law's reach is unmapped.</strong> The law and JP are established for single jobs at fixed settings on three inference GPUs; their persistence on H100/B200-class hardware, production serving software and shared cards is unknown, and placing the JP on a new GPU still requires a full sweep, since prediction from published characteristics is the study's stated next step [1].</li>
+  <li><strong>The law's reach is unmapped.</strong> The law and JP are established for single jobs at fixed settings on three inference GPUs; their persistence on H100-class and, as access allows, B200-class hardware, production serving software and shared cards is unknown, and placing the JP on a new GPU still requires a full sweep, since prediction from published characteristics is the study's stated next step [1].</li>
   <li><strong>The job-dependence structure is unmapped.</strong> The per-card constant holds in the measured loaded regime; outside it the optimum moves, and no model predicts a job's operating point from its features.</li>
   <li><strong>All published numbers are board numbers.</strong> Energy studies measure board power, but the grid meters the wall; host overhead (CPU, memory, cooling, power-supply losses) shifts the true optimum upward by an unmeasured amount; until it is placed at node level, no megawatt claim is grounded.</li>
   
@@ -205,7 +205,7 @@ JouleFlex builds one measured foundation and three tools on it: first work out t
 <h3>2.5.5.5 Methods (work packages)</h3>
 <table>
 <tr><th>WP</th><th>Objective</th><th>Approach and output</th></tr>
-<tr><td><strong>WP1</strong></td><td>Extend the energy-versus-power measurements to current GPUs, production software, and whole-server power.</td><td>Re-run the study's measurement sweep on new GPUs (H100/L40S class) and production serving engines (vLLM, TensorRT-LLM), reading power at three rented tiers: the GPU board (NVML), the node (RAPL), and the server's power-supply input (BMC, read out-of-band via IPMI/Redfish). Accuracy is taken from vendor specifications and cross-checked across tiers. <em>Output:</em> the ELF-2 open dataset (board and server-input).</td></tr>
+<tr><td><strong>WP1</strong></td><td>Extend the energy-versus-power measurements to current GPUs, production software, and whole-server power.</td><td>Re-run the study's measurement sweep on new GPUs (H100/L40S class) and production serving engines (vLLM [16], TensorRT-LLM), reading power at three rented tiers: the GPU board (NVML), the node (RAPL), and the server's power-supply input (BMC, read out-of-band via IPMI/Redfish). Accuracy is taken from vendor specifications and cross-checked across tiers. <em>Output:</em> the ELF-2 open dataset (board and server-input).</td></tr>
 <tr><td><strong>WP2</strong></td><td>Predict any new card's or job's efficient operating point without a full measurement sweep.</td><td>A job model predicts a job's best power cap from its features; a transfer model predicts a new card's curve from its published specifications plus one short test. Both report error bars and a stated range of validity, and a short proof bounds the small penalty of using one cap per card. <em>Output:</em> the characterization kit (models and one-test protocol).</td></tr>
 <tr><td><strong>WP3</strong></td><td>Decide, in real time, which job runs on which card and at what power cap, to do the most useful work within a changing power limit.</td><td>A controller that makes both choices together, since moving a job changes the power left for the others, tested in a digital twin that replays the measured curves against exact baselines. When power is too tight it defers or rejects low-priority work and reports the cost. The joint problem is NP-hard; the per-card capping step is solved exactly. <em>Output:</em> the open control engine and digital twin.</td></tr>
 <tr><td><strong>WP4</strong></td><td>Define what flexibility a controlled facility can offer the grid, and measure it.</td><td>Specify the contractable quantities, a committed power envelope, a flexibility offer, and an auditable delivery record, with ramp and recovery metrics; demonstrate them on a rented metered server and at fleet scale in the twin, under an Israeli firm-plus-flexible scenario. <em>Output:</em> the flexibility products and the Israel demonstration.</td></tr>
@@ -260,12 +260,15 @@ simulator and analysis pipeline ran end to end; the project scales them out rath
 
 <h3>2.5.6.1 What the project delivers, concretely</h3>
 <p>
-The project delivers five artifacts: the ELF-2 open dataset, the characterization kit, the control engine, the digital twin, and the grid package (open data formats for the facility's power-envelope commitment and delivery record, plus a regulator-facing report of measured coefficients and pricing). Appendix Table A1 states what each is and who uses it. Each artifact is released openly on delivery, every release crediting the Ministry’s R&D program under call 34/2026 [18].
+The project delivers five artifacts: the ELF-2 open dataset, the characterization kit, the control engine, the digital twin, and the grid interfaces and policy report (open data formats for the facility's power-envelope commitment and delivery record, plus a regulator-facing report of measured coefficients and pricing). Appendix Table A1 states what each is and who uses it. Each artifact is released openly on delivery, every release crediting the Ministry’s R&D program under call 34/2026 [18].
 </p>
 
 <h3>2.5.6.2 Benefit and impact</h3>
 <p>
 <strong>For operators:</strong> the preliminary results indicate 29–31 percent lower energy per task (measured) and 18–45 percent lower per served job (fleet simulation), through software control on installed hardware.
+</p>
+<p>
+<strong>Training:</strong> the project trains one funded researcher across GPU energy measurement, fleet control and energy-market analysis; the open ELF-2 dataset and twin become teaching material, building Israeli capacity at the AI-energy interface.
 </p>
 <p>
 <strong>For the Israeli grid and regulator:</strong> the larger benefit. The binding constraint is connection
@@ -283,9 +286,9 @@ coefficient is recommended. The regulator-facing report quantifies this option a
 <table>
 <tr><th>Months</th><th>Stage</th><th>Deliverable</th><th>Success metric</th></tr>
 <tr><td>M1–M6</td><td>WP1: harness; new-generation and production-engine (vLLM) sweeps; three-tier instrumentation</td><td>D1: ELF-2 v1</td><td>Law fit R² ≥ 0.95 per sweep or deviation documented; JP located (or absence documented) per platform, board and server-input</td></tr>
-<tr><td>M5–M8</td><td>WP1: shared GPUs, LLM phases, fine-tuning; sweeps where the constant should break</td><td>MS1: regime map</td><td>Documented validity domain of the law and the constant; where a job model is required</td></tr>
+<tr><td>M5–M8</td><td>WP1: shared GPUs, LLM phases, fine-tuning; sweeps where the constant should break</td><td>MS1: regime map</td><td>Documented validity domain of the law and the constant; where a job model is required; an M8 technical brief to the chief scientist unit</td></tr>
 <tr><td>M7–M12</td><td>WP2: job model; transfer model; one-test characterization protocol</td><td>MS2: models result</td><td>Job-model error versus the constant, per regime; transfer-model placement within 5 percentage points of TDP on held-out cards; protocol cost ≤ 8 hours and ≤ ₪1,500 per card model</td></tr>
-<tr><td>M9–M16</td><td>WP3: twin; joint controller under fixed, price, carbon and curtailment envelopes</td><td>MS3: controller result</td><td>Energy per served job and SLO compliance versus uncapped, static and cap-only baselines; a pre-registered floor of at least 10 percent below cap-only energy per served job at equal compliance in one or more envelopes; marginal value of joint assignment; zero exceedance beyond the WP1 noise band (defined in D1) in committed windows, overshoot magnitude and duration reported; transient violations within the band in fewer than 1 percent of control-interval epochs</td></tr>
+<tr><td>M9–M16</td><td>WP3: twin; joint controller under fixed, price, carbon and curtailment envelopes</td><td>MS3: controller result</td><td>Energy per served job and SLO compliance versus uncapped, static-cap and cap-only baselines; a pre-registered floor of at least 10 percent below cap-only energy per served job at equal compliance in one or more envelopes; marginal value of joint assignment; zero exceedance beyond the WP1 noise band (defined in D1) in committed windows, overshoot magnitude and duration reported; transient violations within the band in fewer than 1 percent of control-interval epochs</td></tr>
 <tr><td>M14–M20</td><td>WP4: flexibility products and metrics; demonstration on rented BMC-metered servers; Israel scenario</td><td>MS4: flexibility demonstration</td><td>Sheddable power as a fraction of the committed envelope (pre-registered floor: at least 15 percent within the ramp deadline at bounded SLO loss), measured on a BMC-metered server, projected to fleet scale in the twin; ramp within 60 seconds, recovery within 5 minutes; delivery-record compliance and curtailment service cost</td></tr>
 <tr><td>M16–M21</td><td>WP5: incentive model; connection valuation on published Israeli data; twin evaluation</td><td>MS5: policy report draft</td><td>Alignment condition per billing structure, confirmed in the twin; option value per MW and break-even curtailment frequency, with sensitivity to every price input</td></tr>
 <tr><td>M21–M24</td><td>WP5: release, documentation, validation, publication</td><td>D2: open release; D3: final report</td><td>Public repositories with reproducing pipelines; metered validation; final scientific and policy reports</td></tr>
@@ -300,7 +303,7 @@ Two interim briefings to the chief scientist unit are named deliverables: an M8 
 <tr><td>M1–M8 (WP1; WP2 begins)</td><td>30%</td><td>146,940</td><td>Funded researcher; GPU rentals for cap sweeps</td></tr>
 <tr><td>M9–M16 (WP2 ends; WP3; WP4 begins)</td><td>33%</td><td>161,634</td><td>Funded researcher; card-model rentals for transfer validation; twin and controller work</td></tr>
 <tr><td>M17–M21 (WP4 ends; WP5)</td><td>25%</td><td>122,450</td><td>Funded researcher; BMC-metered rentals; flexibility campaign</td></tr>
-<tr><td>M22–M24 (WP5: release and validation)</td><td>12%</td><td>58,776</td><td>Metered validation runs; documentation; dissemination and publication</td></tr>
+<tr><td>M22–M24 (WP5: release and validation)</td><td>12%</td><td>58,776</td><td>Funded researcher; metered validation runs; documentation; dissemination and publication</td></tr>
 <tr><td colspan="2"><strong>Total</strong></td><td><strong>489,800</strong></td><td>Full itemization in the מפרט תקציבי</td></tr>
 </table>
 
@@ -465,7 +468,7 @@ Every milestone below carries a deliverable that is quantitative or at least jud
 <table>
 <tr><th>ID</th><th>Month</th><th>Deliverable</th><th>Quantitative or judgeable output</th></tr>
 <tr><td>D1</td><td>M6</td><td>ELF-2 v1: extended measurement corpus, board and server-input</td><td>Cap sweeps on at least two GPU generations beyond ELF and one production serving engine (vLLM); the three measurement tiers operational (NVML board; RAPL node proxy; BMC PSU input at server power); per-tier accuracy bands reported from vendor specifications, and cross-tier consistency shown on identical workloads (board &lt; node &lt; server-input, stable ratio); law fit R² ≥ 0.95 per sweep, or the deviation regime documented; JP location reported per card and engine at both levels</td></tr>
-<tr><td>MS1</td><td>M8</td><td>Regime map</td><td>Documented domain of validity of the response law and of the per-card constant across engines, prefill/decode phases, co-location and fine-tuning; where a job model is required</td></tr>
+<tr><td>MS1</td><td>M8</td><td>Regime map</td><td>Documented domain of validity of the response law and of the per-card constant across engines, prefill/decode phases, co-location and fine-tuning; where a job model is required; an M8 technical brief to the chief scientist unit</td></tr>
 <tr><td>MS2</td><td>M12</td><td>Job model, transfer model, one-test protocol</td><td>Job-model error versus the per-card constant, per regime; transfer-model placement within 5 percentage points of TDP, leave-one-out over at least five fully swept models; protocol cost ≤ 8 hours and ≤ ₪1,500 per card model</td></tr>
 <tr><td>MS3</td><td>M16</td><td>Joint controller result</td><td>Energy per served job and SLO compliance versus uncapped, static-cap and cap-only baselines on seeded traces, under fixed, price-following, carbon-following and step-curtailment envelopes; the isolated marginal value of joint assignment; a pre-registered floor of at least 10 percent below cap-only energy per served job at equal SLO compliance in one or more envelopes; zero exceedance beyond the WP1 noise band (defined in D1) in committed windows, overshoot magnitude and duration reported; transient violations within the band in fewer than 1 percent of control-interval epochs, per envelope class</td></tr>
 <tr><td>MS4</td><td>M20</td><td>Flexibility demonstration (rented BMC-metered server + fleet-scale twin)</td><td>Sheddable power as a fraction of the committed envelope (pre-registered floor: at least 15 percent within the ramp deadline at bounded SLO loss): kilowatts measured on the rented BMC-metered server, megawatts projected at fleet scale in the twin; ramp within 60 seconds, recovery within 5 minutes; delivery-record compliance and service cost of curtailment</td></tr>
@@ -493,7 +496,7 @@ criteria, not as guaranteed confirmations.
 
 <div class="meta">
 קול קורא 34/2026 · משרד האנרגיה והתשתיות · מסלול אקדמיה · מוסד: המכון הטכנולוגי חולון (HIT)<br>
-מנהל הפרויקט: אלכסנדר אפרטסין, מרצה בכיר, המחלקה למדעי המחשב · משך המחקר: 24 חודשים · תחילת עבודה: לא לפני 1.1.2027
+מנהל הפרויקט: אלכסנדר אפארצין, מרצה בכיר, המחלקה למדעי המחשב · משך המחקר: 24 חודשים · תחילת עבודה: לא לפני 1.1.2027
 </div>
 
 <div class="note noprint">
@@ -505,7 +508,7 @@ criteria, not as guaranteed confirmations.
 <h2>סיכום</h2>
 <table>
 <tr><th>סעיף</th><th class="num">שנה א' (₪)</th><th class="num">שנה ב' (₪)</th><th class="num">סה"כ (₪)</th></tr>
-<tr><td>כוח אדם (חוקר/ת: דוקטורנט/מסטרנט/בתר-דוקטורט, 90% משרה)</td><td class="num">135,000</td><td class="num">135,000</td><td class="num">270,000</td></tr>
+<tr><td>כוח אדם (חוקר/ת: דוקטורנט/מסטרנט/בתר-דוקטורט, 90% משרה; בכפוף לתקרת המלגה לפי התואר)</td><td class="num">135,000</td><td class="num">135,000</td><td class="num">270,000</td></tr>
 <tr><td>חומרים אזילים וציוד מתכלה</td><td class="num">2,000</td><td class="num">2,000</td><td class="num">4,000</td></tr>
 <tr><td>שונות (כנסים, פרסומים, רישיונות)</td><td class="num">29,000</td><td class="num">29,000</td><td class="num">58,000</td></tr>
 <tr><td><em>בסיס לחישוב תקורה</em></td><td class="num"><em>166,000</em></td><td class="num"><em>166,000</em></td><td class="num"><em>332,000</em></td></tr>
@@ -520,7 +523,7 @@ criteria, not as guaranteed confirmations.
 <tr><td>תקציב שנתי מרבי</td><td>נספח טז' §1.4</td><td class="num">≤ 250,000</td><td class="num">244,900</td><td class="ok">עומד</td></tr>
 <tr><td>תקציב כולל למחקר דו-שנתי</td><td>נספח טז' §1.4</td><td class="num">≤ 500,000</td><td class="num">489,800</td><td class="ok">עומד</td></tr>
 <tr><td>שיעור כוח אדם מהתקציב השנתי</td><td>נספח טז' §2.4</td><td class="num">≤ 60%</td><td class="num">55.1%</td><td class="ok">עומד</td></tr>
-<tr><td>עלות כוח אדם למשרה מלאה</td><td>נספח טז' §2.3.2</td><td class="num">≤ 150,000</td><td class="num">135,000 (90%)</td><td class="ok">עומד</td></tr>
+<tr><td>עלות כוח אדם למשרה מלאה</td><td>נספח טז' §2.3.2</td><td class="num">≤ 150,000</td><td class="num">150,000 (משרה מלאה; 135,000 ב-90%)</td><td class="ok">עומד</td></tr>
 <tr><td>שיעור ציוד מהתקציב השנתי</td><td>נספח טז' §4.4</td><td class="num">≤ 20%</td><td class="num">0%</td><td class="ok">עומד</td></tr>
 <tr><td>שיעור תקורה</td><td>נספח טז' §7.1</td><td class="num">≤ 15%</td><td class="num">15%</td><td class="ok">עומד</td></tr>
 <tr><td>תשלום עבור פרסום מדעי</td><td>נספח טז' §5.4.9</td><td class="num">≤ 10,000 למאמר</td><td class="num">10,000 × 2</td><td class="ok">עומד</td></tr>
@@ -533,7 +536,7 @@ criteria, not as guaranteed confirmations.
 <h3>1. כוח אדם</h3>
 <table>
 <tr><th>שם</th><th>תפקיד</th><th class="num">% משרה</th><th class="num">חודשי העסקה</th><th class="num">עלות שנתית (₪)</th></tr>
-<tr><td>לא נקבע</td><td>חוקר/ת (דוקטורנט/מסטרנט/בתר-דוקטורט)</td><td class="num">90%</td><td class="num">12</td><td class="num">135,000</td></tr>
+<tr><td>לא נקבע</td><td>חוקר/ת (דוקטורנט/מסטרנט/בתר-דוקטורט, בכפוף לתקרת המלגה לפי התואר)</td><td class="num">90%</td><td class="num">12</td><td class="num">135,000</td></tr>
 </table>
 <p class="meta">
 החוקר יבצע את קמפיין המדידות (ELF-2), את מודל ההעברה, את פיתוח בקר עיצוב-ההספק ואת ניסויי הגמישות מול הרשת, ויהיה מעורב בכל אבני
@@ -548,7 +551,7 @@ criteria, not as guaranteed confirmations.
 <h3>2. חומרים אזילים וציוד מתכלה</h3>
 <table>
 <tr><th>שם הפריט</th><th class="num">סה"כ שנתי (₪)</th></tr>
-<tr><td>כבילה, מתאמים ופריטי חיבור למערך המדידה</td><td class="num">2,000</td></tr>
+<tr><td>חומרים מתכלים, אמצעי אחסון וגיבוי לקמפיין המדידות</td><td class="num">2,000</td></tr>
 </table>
 
 <h3>3. ציוד</h3>
