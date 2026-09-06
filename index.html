@@ -61,6 +61,20 @@ img { max-width:100%; display:block; margin:0 auto; }
 </style>
 </head>
 <body>
+<div id="gate" style="position:fixed;inset:0;z-index:99999;background:#0b1f2a;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:'Segoe UI',Arial,sans-serif;color:#eef4f7">
+  <div style="font-size:1.05rem;margin-bottom:.9rem;letter-spacing:.02em">JouleFlex &middot; Ministry of Energy 34/2026</div>
+  <input id="gatepw" type="password" placeholder="Password" autocomplete="off" style="font-size:1rem;padding:.55rem .8rem;border-radius:8px;border:1px solid #2a6a86;background:#0f2a38;color:#fff;text-align:center;outline:none;width:220px">
+  <div id="gateerr" style="height:1.1rem;margin-top:.55rem;color:#ff9db0;font-size:.85rem"></div>
+</div>
+<script>
+(function(){
+  var g=document.getElementById('gate'),i=document.getElementById('gatepw'),e=document.getElementById('gateerr');
+  try{if(sessionStorage.getItem('jf_ok')==='1'){g.remove();return;}}catch(_){}
+  function chk(){if(i.value==='12345'){try{sessionStorage.setItem('jf_ok','1');}catch(_){}g.remove();}else{e.textContent='Incorrect';i.value='';i.focus();}}
+  i.addEventListener('keydown',function(ev){if(ev.key==='Enter')chk();});
+  i.focus();
+})();
+</script>
 <div class="submitbadges noprint">
 <a href="JouleFlex-submission-2026-08-29.pdf" title="Full proposal, PDF">📄 Proposal PDF</a>
 <a href="biosketch.html" title="PI biosketch">👤 Biosketch</a>
