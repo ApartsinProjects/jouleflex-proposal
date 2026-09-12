@@ -25,7 +25,7 @@
   .rtl p, .rtl li { text-align: justify; }
   .meta { font-size: 10.5pt; color: var(--muted); }
   .titleblock { border-bottom: 2px solid var(--accent); padding-bottom: .7em; margin-bottom: 1em; }
-  .eq { text-align:center; font-style:italic; margin:.55em 0; }
+  .eq { text-align:center; margin:.7em 0; font-size:1.05em; }
   .note { background:#f7f9fb; border-left:3px solid var(--accent); padding:.45em .7em; font-size:10.5pt; margin:.6em 0; }
   .todo { background:#fff6e5; border-left:3px solid #c88a00; padding:.45em .7em; font-size:10.5pt; margin:.6em 0; }
   .pagemark { border-top:1px dashed #999; color:#777; font-size:9.5pt; margin:1.4em 0 .6em; padding-top:.25em; }
@@ -170,7 +170,7 @@ MW, roughly three times average national consumption [2]. The binding limit is g
 instrumented measurements, released as the ELF dataset), how energy per task depends on the power cap: board power
 follows a simple physical law in the computing rate θ,
 </p>
-<p class="eq">P(θ) = P₀ + a·θ^β,&nbsp;&nbsp; median R² = 0.99,</p>
+<p class="eq"><i>P</i>(<i>θ</i>) = <i>P</i><sub>0</sub> + <i>a</i>·<i>θ</i><sup><i>β</i></sup>,&nbsp;&nbsp; median <i>R</i><sup>2</sup> = 0.99,</p>
 <p>
 a fixed floor P₀ plus a superlinear term.  Energy per task, E = P/θ, is therefore U-shaped in the cap; its minimum, the <strong>JP</strong>, sits at 43 to 46 percent of rated power on the large GPUs, cutting energy per task by 29 to 31 percent at an exactly priced cost: tasks run about 1.2 times slower, and holding throughput takes that factor more cards. The cap is one software command, settling in about 0.2 seconds,
 fast enough to follow grid signals; behind a fixed feed the measured A100 curve implies about 50 percent more AI tasks per megawatt [1].
@@ -374,8 +374,8 @@ diagrams, up to 5 A4 pages, outside the 10-page limit). All figures are measured
 <figcaption>
 <span class="fignum">Figure A1.</span> The response law is a card property. One panel per GPU (A100, A10G, L4); each dot
 is a measured operating point for one of the 20 workloads in the loaded regime, rate normalized to the workload's own
-maximum and power to the card's TDP. All workloads follow a single fitted law per card, P(θ) = P₀ + a·θ^β (pooled
-per-card R² of 0.92, 0.88 and higher per-sweep), showing the exponent travels with the card rather than the model. This
+maximum and power to the card's TDP. All workloads follow a single fitted law per card, <i>P</i>(<i>θ</i>) = <i>P</i><sub>0</sub> + <i>a</i>·<i>θ</i><sup><i>β</i></sup> (pooled
+per-card <i>R</i><sup>2</sup> of 0.92, 0.88 and higher per-sweep), showing the exponent travels with the card rather than the model. This
 is the empirical basis for the one-time per-card characterization that WP2 turns into a transfer model.
 </figcaption>
 </figure>
