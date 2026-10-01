@@ -60,6 +60,8 @@ img { max-width:100%; display:block; margin:0 auto; }
 @media (prefers-color-scheme:dark){.submitbadges a{background:#1c6f8f}.submitbadges a:hover{background:#2a86aa}}
 @media print{.submitbadges{display:none!important}}
 @media (max-width:640px){.submitbadges{position:static;max-width:none;margin:0 0 1rem;justify-content:flex-start}}
+.rtl th, .rtl td, [dir="rtl"] th, [dir="rtl"] td { text-align:right; }
+  .rtl .num, [dir="rtl"] .num { text-align:left; direction:ltr; }
 </style>
 </head>
 <body>
@@ -74,12 +76,12 @@ img { max-width:100%; display:block; margin:0 auto; }
 <a href="JouleFlex-budget-2026-09-06.pdf" title="Per-year budget by section (from guide section 8)">💰 Budget</a>
 <a href="JouleFlex-budget-2026-09-06.xlsx" title="Budget spreadsheet (Excel, self-computing)">📊 Budget XLSX</a>
 <a href="JouleFlex-price-quotes.pdf" title="§6.3 price quotes: AWS on-demand + spot, GPU Mart dedicated">💲 Price quotes</a>
-<a href="https://doi.org/10.13140/RG.2.2.20385.36964" title="The Joule Point preprint (ResearchGate)">🔬 Joule Point paper</a>
+<a href="https://arxiv.org/abs/2609.27926" title="The Joule Point preprint (arXiv)">🔬 Joule Point paper</a>
 </div>
 
 <div class="titleblock">
   <h2 style="border:none;margin:0 0 .3em">2.5.1 Title, researchers and institution</h2>
-  <div class="meta">קול קורא 34/2026 · משרד האנרגיה והתשתיות · יחידת המדען הראשי · מסלול אקדמיה</div>
+  <div class="meta rtl">קול קורא 34/2026 · משרד האנרגיה והתשתיות · יחידת המדען הראשי · מסלול אקדמיה</div>
   <h1>JouleFlex: A Model-Based Decision and Control Framework for Maximizing Useful AI Work under Dynamic Power Limits</h1>
   <div class="meta" style="direction:rtl;font-size:1.05rem;font-weight:600;margin:.15em 0 0">JouleFlex: מודלים ובקרה חכמה למקסום תפוקת AI תחת מגבלות הספק משתנות</div>
   <div class="meta">
@@ -90,176 +92,165 @@ img { max-width:100%; display:block; margin:0 auto; }
 
 <h2>2.5.2 Abstract / תקציר</h2>
 
-<h3>English (<span class="r">299</span>/300 words)</h3>
+<h3>English (<span class="r">300</span>/300 words)</h3>
 <p>
-<span class="r">In July 2026 Israel's Electricity Authority froze new data-center grid-connection requests for 140 days: the queue had reached about 27,000 MW, roughly three times the country's average demand [2]. The binding limit is connection capacity, not generation. The PI's study [1] found that a GPU, the chip that runs AI, has an energy-optimal operating power, the Joule Point, well below its maximum; running at maximum, today's default and the level the grid is sized for, is the energy-worst choice. A capped GPU draws less power, so more GPUs fit behind the same connection. JouleFlex makes this a measured third option between full-power connection and refusal: connect on condition of flexibility.</span>
+<span class="r">In July 2026 Israel's Electricity Authority froze new data-center grid connections for 140 days, after the queue reached about 27,000 MW, three times the country's average demand [2]. One way forward, proposed in the Authority's June 2026 hearing [19], is flexible connection: the system operator may curtail its consumption at peak. Most of it goes to GPUs, the chips that run AI. Today a data center adjusts by capping their power or switching some off.</span>
 </p>
 <p>
-<span class="r">Existing approaches limit power draw or switch GPUs off; this project asks instead how much useful AI work a given power and energy budget can deliver, a question that yields different operating strategies.</span>
+<span class="r">The PI's study [1] shows that both are wasteful. Switching GPUs off forfeits their work. Capping too hard makes jobs run so long that the GPU's fixed baseline power adds up. Capping too little spends much more energy for very little extra speed. Energy per task is therefore U-shaped. At its bottom, the Joule Point, each unit of energy does the most AI work. Measured on 20 AI models and four GPU types, it sits well below full power and cuts energy per task by 29 to 31 percent. A fleet simulation did the same work with 18 to 45 percent less energy. Capped GPUs draw less power, so more fit behind the same connection: up to about 50 percent more AI work per megawatt of GPU power. Servers and cooling draw power that capping does not cut, so the project measures the real gain at the building's meter.</span>
 </p>
 <p>
-<span class="r">The PI's ELF dataset, the first dense enough to locate the Joule Point, holds about 5,500 measurements over 20 AI models and four GPU types; no public equivalent exists. Operating at the Joule Point uses 29 to 31 percent less energy per task at about 1.2 times the runtime; a fleet simulation on the measured curves delivers the same work with 18 to 45 percent less energy; and on the measured A100 curve a fixed connection delivers up to about 50 percent more AI work per megawatt at the chip, to be confirmed at the facility meter.</span>
-</p>
-<p>
-<span class="r">The project develops models and tools for operating and planning AI data centers under constrained and variable power. These include power-control and workload-allocation methods, pricing that rewards efficient use of flexible power, fleet planning for power-variable operation, and connection-scenario analyses showing how much of the connection queue firm-plus-flexible connections could serve by region, under technical, economic and policy constraints.</span>
+<span class="r">Knowing this optimum turns flexibility from forced cutbacks into a design choice. This project builds the tools: control that keeps each GPU near its Joule Point and lowers power when the grid asks, pricing that rewards efficient use of flexible power, planning how many GPUs to install behind a connection, and connection scenarios showing how much of the queue flexible connections could serve, by region. This gives a measured third option between full-power connection and refusal.</span>
 </p>
 
-<h3 class="rtl">עברית (<span class="r">275</span>/300 מילים)</h3>
-<div class="rtl">
-<p><span class="r">ביולי 2026 הקפיאה רשות החשמל לתקופה של 140 יום את קבלת הבקשות החדשות לחיבור חוות שרתים לרשת החשמל, לאחר שתור הבקשות הגיע לכ-27,000 מגה-וואט, פי שלושה בקירוב מהביקוש הממוצע לחשמל בישראל [2]. האילוץ הכובל הוא קיבולת החיבור, לא כושר הייצור. מחקר קודם של החוקר הראשי [1] מצא כי למעבד GPU, השבב שמריץ בינה מלאכותית, קיים הספק עבודה אופטימלי מבחינה אנרגטית, ה-Joule Point, הנמוך בהרבה מההספק המרבי שלו; הפעלה בהספק המרבי, ברירת המחדל כיום והערך שלפיו מתוכננת רשת החשמל, היא דרך ההפעלה הגרועה ביותר מבחינה אנרגטית. מעבד מוגבל-הספק צורך פחות הספק, ולכן ניתן להציב יותר מעבדים מאחורי אותו חיבור לרשת. JouleFlex הופך זאת לאפשרות שלישית ומדודה, בין חיבור בהספק מלא לבין סירוב: חיבור בתנאי של גמישות.</span></p>
-<p><span class="r">הגישות הקיימות מגבילות את צריכת ההספק או מכבות מעבדים; פרויקט זה שואל במקום זאת כמה עבודת AI שימושית ניתן להפיק מתקציב הספק ואנרגיה נתון, שאלה המובילה לאסטרטגיות הפעלה שונות.</span></p>
-<p><span class="r">מערך הנתונים ELF, המדידה הראשונה הצפופה דיה לאיתור ה-Joule Point, כולל כ-5,500 מדידות על 20 מודלים של AI וארבעה סוגי GPU, ללא מקבילה ציבורית. עבודה בנקודה זו צורכת 29 עד 31 אחוז פחות אנרגיה למשימה, בזמן ריצה ארוך פי 1.2 בקירוב; סימולציית צי על העקומות המדודות מספקת עבודה זהה ב-18 עד 45 אחוז פחות אנרגיה; ועל עקומת ה-A100 המדודה, חיבור קבוע מספק עד כ-50 אחוז יותר עבודת AI לכל מגה-וואט ברמת השבב, ממצא שייבדק במונה המתקן.</span></p>
-<p><span class="r">הפרויקט יפתח מודלים וכלים להפעלה ולתכנון של חוות שרתים לבינה מלאכותית בתנאי הספק מוגבל ומשתנה: שיטות לבקרת הספק ולהקצאת עומסי חישוב, מנגנוני תמחור המתגמלים ניצול יעיל של הספק גמיש, תכנון צי GPU לעבודה בהספק משתנה, וניתוחי תרחישי חיבור המראים לרגולטור כמה מתור החיבור ניתן לספק תחת משטר חיבורים גמישים, לפי אזור, בהתחשב באילוצים טכניים, כלכליים ורגולטוריים.</span></p>
+<h3 class="rtl">עברית (<span class="r">292</span>/300 מילים)</h3>
+<div class="rtl" lang="he">
+<p><span class="r">ביולי 2026 פרסמה רשות החשמל הוראת שעה להתליית הליכי הבחינה של בקשות חדשות ותלויות לחיבור חוות שרתים לרשת החשמל למשך 140 יום, לאחר שצבר הבקשות הגיע לכ-27,000 מגה-וואט, פי שלושה מהביקוש הממוצע לחשמל בישראל [2]. דרך אחת להתקדם היא ניהול גמיש של צריכת החשמל, כפי שמוצע בשימוע של רשות החשמל מיוני 2026 [19]: מנהל המערכת יוכל לצמצם חלק מצריכת החשמל של חוות השרתים בשעות עומס. רוב הצריכה הזו היא של מעבדי GPU, השבבים שמריצים בינה מלאכותית, וכיום חוות שרתים מסתגלת על ידי הגבלת ההספק שלהם או כיבוי חלק מהם.</span></p>
+<p><span class="r">מחקר החוקר הראשי [1] מראה ששתי הדרכים בזבזניות. כיבוי מעבדים מוותר על העבודה שלהם. הגבלה חזקה מדי מאריכה את זמן הריצה, וצריכת הבסיס הקבועה של המעבד מצטברת. הגבלה חלשה מדי מוציאה הרבה יותר אנרגיה תמורת מעט מאוד מהירות נוספת. לכן האנרגיה למשימה יוצרת עקומה בצורת U. בתחתיתה נמצאת ה-Joule Point, הנקודה שבה כל יחידת אנרגיה מבצעת את מרב עבודת ה-AI. במדידות על 20 מודלים של AI וארבעה סוגי GPU היא נמצאה הרבה מתחת להספק המלא, והפחיתה את האנרגיה למשימה ב-29 עד 31 אחוז. סימולציית צי ביצעה עבודה זהה ב-18 עד 45 אחוז פחות אנרגיה. מעבדים מוגבלים צורכים פחות הספק, ולכן יותר מהם נכנסים מאחורי אותו חיבור: עד כ-50 אחוז יותר עבודת AI לכל מגה-וואט של הספק המעבדים. שרתים וקירור צורכים חשמל שהגבלת ההספק אינה מורידה, ולכן הפרויקט מודד את הרווח האמיתי במונה של המבנה.</span></p>
+<p><span class="r">הכרת הנקודה המיטבית הופכת את הגמישות מקיצוץ כפוי לבחירה תכנונית. פרויקט זה בונה את הכלים לכך: בקרה שמחזיקה כל מעבד קרוב ל-Joule Point ומורידה את ההספק כשמנהל המערכת מבקש, תמחור שמתגמל שימוש יעיל בהספק גמיש, תכנון של מספר המעבדים שכדאי להתקין מאחורי חיבור נתון, ותרחישים שמראים כמה מצבר הבקשות ניתן לאשר עם ניהול גמיש של הצריכה, לפי אזור. כך נוצרת אפשרות שלישית ומדודה בין חיבור במלוא ההספק לבין סירוב.</span></p>
 </div>
 
 <h2>2.5.3 Glossary</h2>
 <table>
 <tr><th>Term</th><th>Meaning</th></tr>
-<tr><td>Power</td><td>How fast electricity is drawn at a given moment; watts (W) or megawatts (MW). The grid connection is sized by peak power.</td></tr>
-<tr><td>Energy</td><td>The total electricity consumed: power × time; joules or kilowatt-hours. The bill and the carbon footprint are set by energy.</td></tr>
-<tr><td>Power cap</td><td>A software limit on a GPU's power draw. Set with one command; takes effect in ~0.2 seconds. The control knob of this project.</td></tr>
+<tr><td>Power cap</td><td>A software limit on a GPU's power draw. It is set with one command and takes effect in about 0.2 seconds. The control knob of this project.</td></tr>
 <tr><td>TDP</td><td>A GPU's full rated power. Running at TDP is today's default.</td></tr>
-<tr><td>Joule Point (JP)</td><td>The power cap at which energy per task is lowest for a given card; measured at 43–46% of TDP on large GPUs.</td></tr>
+<tr><td>Joule Point (JP)</td><td>The power cap at which energy per task is lowest for a given card. Measured at 43–46% of TDP on large GPUs.</td></tr>
 <tr><td>Operating point</td><td>The pair (GPU, power cap) a job runs at.</td></tr>
-<tr><td>Power envelope</td><td>A limit on a facility's total power draw that can change over time, set by a budget, a price or carbon signal, or a grid instruction.</td></tr>
+<tr><td>Power limit</td><td>A limit on a facility's total power draw that can change over time, set by a budget, a price or carbon signal, or a grid instruction.</td></tr>
 <tr><td>Digital twin / simulator</td><td>A simulator that replays the measured power-versus-rate curves of a described fleet to evaluate any policy or power envelope.</td></tr>
 <tr><td>ELF</td><td>The PI's released dataset and measurement software: dense power-cap sweeps of 20 AI models on 4 GPUs, ~5,500 measured rows.</td></tr>
 <tr><td>SLO</td><td>Service level objective: the deadline or latency a job must meet.</td></tr>
 <tr><td>Firm / flexible capacity</td><td>Grid connection capacity guaranteed at all times, versus capacity given on condition that the facility reduces power when instructed.</td></tr>
-<tr><td>Noga</td><td>Israel's independent electricity system operator, which dispatches generation and would call on flexible loads.</td></tr>
 <tr><td>Firm-plus-flexible connection</td><td>A grid connection combining a guaranteed (firm) part with a curtailable (flexible) part.</td></tr>
 <tr><td>Energy-worst point</td><td>The operating point with the highest energy per task: full power (TDP).</td></tr>
 <tr><td>Card / board</td><td>Card: one GPU. Board power is the GPU's own draw, from its built-in meter, excluding the host server, cooling and building losses.</td></tr>
-<tr><td>Server input (BMC)</td><td>The power entering the server, read by its management controller (BMC); what the grid meters, before cooling and building losses.</td></tr>
+<tr><td>Server input (BMC)</td><td>The power entering the server, read by its management controller (BMC). This is what the grid meters, before cooling and building losses.</td></tr>
 <tr><td>Cap binds</td><td>The power cap actually limits the GPU (the GPU is busy enough to reach it).</td></tr>
 <tr><td>LLM</td><td>Large language model: the AI model class behind chat and text services.</td></tr>
-<tr><td>TAOZ</td><td>Israel's time-of-use electricity tariff.</td></tr>
 <tr><td>FTE</td><td>Full-time-equivalent: one full-time researcher's work.</td></tr>
-<tr><td>Bounding result</td><td>A documented limit on where the law or the JP holds; itself a deliverable.</td></tr>
+<tr><td>Bounding result</td><td>A documented limit on where the law or the JP holds. Itself a deliverable.</td></tr>
 </table>
 
 <h2 class="pagebreak">2.5.4 Objectives of the program</h2>
 
 <h3>2.5.4.1 The objective</h3>
 <p>
-<span class="r"><strong>The problem.</strong> In July 2026 the Electricity Authority stopped accepting new data-center connection requests for 140 days: the connection queue had reached about 27,000 MW, roughly three times Israel's average electricity consumption [2]. The binding limit is connection capacity at specific substations, not generation. <strong>The Joule Point.</strong> A GPU (the chip that runs AI) does its most work per joule below full power: lower its power cap (a software ceiling on its electricity draw) and output falls more slowly than power, so energy per task reaches a minimum, the <strong>Joule Point (JP)</strong>, before rising again. The PI's study [1] measured the JP across 20 models and 4 GPUs: well below the thermal design power (TDP, the card's full rated power), near-constant per card, and 29&ndash;31 percent less energy per task at about 1.2 times the runtime. A capped card draws less power, so more cards fit behind the same connection: on the measured A100 curve, up to about 50 percent more AI work per connected megawatt at the chip. Data centers still run cards at maximum power, the energy-worst point, and Israel's grid is sized for it.</span>
+<span class="r"><strong>The problem.</strong> In July 2026 the Electricity Authority stopped accepting new data-center connection requests for 140 days. The queue had reached about 27,000 MW, three times Israel's average demand [2].AI data centers are the fastest-growing load in that queue, and most of their power goes to GPUs (the chips that run AI).</span>
 </p>
 <p>
-<span class="r"><strong>The objective</strong> is to give the Ministry (policy) and the Electricity Authority (connection licensing) measured tools to license AI load on condition of flexibility, so that <strong>each connected megawatt does more useful AI work</strong>. The instrument is <strong>JouleFlex</strong>: models and tools for operating and planning AI data centers under constrained and variable power. Within 24 months the project extends the measured foundation to current hardware, builds the control engine and a simulator that replays the measurements, measures the flexibility a facility can offer, and analyzes the pricing and connection rules, with a stated minimum-success path (2.5.7.1); multi-site deployment follows the grant. Four capabilities, each built on the JP:
-<strong>(C1) Power-control and workload-allocation methods:</strong> the power-response law validated on current hardware and whole servers; job and transfer models that place the energy-optimal cap for any workload or unmeasured GPU; and a control engine that assigns jobs and caps together to hold a facility inside its power envelope while meeting deadlines.
-<strong>(C2) Pricing rules evaluated in the simulator</strong> that reward efficient use of flexible power instead of per-hour billing, which rewards the energy-worst point.
-<strong>(C3) Fleet-planning methods for power-variable operation:</strong> which cards, how many, with what power headroom, deliver the most work behind a variable connection.
-<strong>(C4) Connection-scenario analysis for the regulator:</strong> by transmission region, how much of the connection queue could be served under firm-plus-flexible connections at each flexibility level, under technical, economic and policy constraints.
-A simulator replaying the measured curves evaluates all four; C3 and C4 are scenario analyses run in the simulator on public Noga and Electricity Authority data (milestones in 2.5.7.1); they are studies, not deployed systems; everything is released openly with ELF-2, the extended dataset.</span>
+<span class="r"><strong>GPU power control.</strong> Today a data center adjusts its AI load by capping GPU power or by switching GPUs off. A GPU's power draw is a software setting: one command sets a cap, and within about 0.2 s the GPU uses less power and runs a little slower. Capping lets a facility fit its load to the power it has, and fit more GPUs behind one connection. Switching off forfeits work, and capping blindly throws away work too.</span>
+</p>
+<p>
+<span class="r"><strong>The Joule Point.</strong> There is a best cap. The PI's study [1] measured 20 AI models on 4 GPUs. It found a simple rule, the <strong>power-response law</strong>: when the cap is lowered, the GPU's output drops more slowly than its power. Energy per task therefore drops to a minimum, the <strong>Joule Point (JP)</strong>, and rises again below it. Airlines face the same trade-off: flying faster burns fuel much faster, but flying too slowly keeps the engines running longer, so planes cruise at the speed that uses the least fuel per kilometer. The Joule Point is the GPU's cruising speed. Measured at the GPU board, the JP sits well below rated power (TDP) and is nearly the same for every job on a given card. At the JP a GPU uses 29&ndash;31 percent less energy per task and takes about 1.2 times longer. Run at the JP, a fixed connection delivers up to about 50 percent more AI work per connected megawatt (measured A100 curve, at the chip, to be confirmed at the facility meter). Running at maximum, today's default, is the energy-worst point, and it is the point the grid is being sized for.</span>
+</p>
+<p>
+<span class="r"><strong>The objective</strong> is to research, validate and develop a set of models and methods for controlling, pricing, planning and allocating power in AI data centers whose power is limited and changes over time. With them, a data center can be connected on condition of flexibility: it runs its GPUs near the Joule Point and lowers their power further when the grid asks. <strong>Each connected megawatt then does more useful AI work.</strong> This is a third option between full-power connection and refusal.</span>
+</p>
+<p>
+<span class="r"><strong>Deliverables.</strong> Within 24 months the project delivers <strong>JouleFlex</strong>, an open software toolkit built on the JP (minimum-success path in 2.5.7.1). At its core is a control engine (C1). It predicts the best power cap for each job and each GPU, decides which GPU runs which job, and keeps the facility within its power limit while jobs meet their deadlines. Around it, the toolkit sets prices that reward efficient use of flexible power, instead of today's per-hour billing that pushes renters to full power (C2). It designs the fleet: for an expected workload and power limit, it picks which GPUs to buy, and how many, by weighing their cost against the revenue they earn when each runs at its estimated Joule Point (C3). And it shows, region by region, how much of the queue could be connected if part of each connection were flexible (C4). A simulator built from the measurements tests all four. C3 and C4 are studies on public data, not deployed systems, and everything is released openly (2.5.6.1).</span>
 </p>
 
 <h3>2.5.4.2 The research question</h3>
 <p>
-<span class="r">Can an AI data center run as a controllable electrical load under Israeli grid constraints: each GPU near its energy-optimal cap, the facility inside a power limit that changes over time, more AI work per unit of energy and of connected power, and every admitted job meeting its deadline?</span>
+<span class="r">The central question is whether an AI data center can act as a flexible electrical load: one that runs efficiently, follows a power limit that changes over time, and still finishes its work on time. Four research questions follow. Each answers one knowledge gap (2.5.5.3), is worked on in the work packages named with it (2.5.5.5), and yields one deliverable (2.5.4.1).</span>
 </p>
-<p>Six sub-questions structure the work plan:</p>
 <ol>
-  <li><strong>Does the law generalize?</strong> <span class="r">Do the power law and JP (measured on 20 models, 4 GPUs) hold on H100/L40S-class hardware, production inference software (running a trained AI model to answer requests), and shared GPUs?</span></li>
-  <li><strong>When is one cap per card enough,</strong> and where must a job model replace the near-constant per-card JP?</li>
-  <li><strong>Where is the true optimum at the wall?</strong> <span class="r">What is the JP at the server's electrical input, which the grid meters, not just the board?</span></li>
-  <li><strong>Can we skip the measurement?</strong> Can an unmeasured GPU's JP be predicted from published specs plus at most one short test?</li>
-  <li><strong>Can allocation and power be optimized together?</strong> <span class="r">Can job placement and per-card caps be chosen jointly under a time-varying power limit with every deadline met, and which card mix and power headroom deliver the most work behind a variable connection (C1, C3)?</span></li>
-  <li><strong>How much flexibility can a facility sell?</strong> How much power can be shed, how fast, for how long, at what notice and cost; which pricing rules make flexibility profitable; <span class="r">and how much of the queue, by transmission region, firm-plus-flexible connections could serve (C2, C4)?</span></li>
+  <li><strong>Control (C1).</strong> <span class="r">Can the Joule Point be predicted for any job and GPU, and can a controller keep a whole facility near it under a changing power limit while meeting deadlines? (WP1&ndash;WP3)</span></li>
+  <li><strong>Pricing (C2).</strong> <span class="r">Which prices reward a data center for using flexible power efficiently instead of running at full power? (WP5)</span></li>
+  <li><strong>Planning (C3).</strong> <span class="r">For an expected workload and a limited, changing power supply, which GPUs, and how many, give the best return once hardware cost, energy cost and revenue are counted? (WP2&ndash;WP3)</span></li>
+  <li><strong>Allocation (C4).</strong> <span class="r">How much power can a facility give back to the grid, and how much of the connection queue could flexible connections serve, region by region? (WP4&ndash;WP5)</span></li>
 </ol>
 
 <h2>2.5.5 The proposed research</h2>
 
 <h3>2.5.5.1 Scientific and technological background</h3>
 <p>
-<strong>The Israeli challenge is specific and pressing.</strong> Data centers, with AI the main growth driver, approach 945 TWh of electricity demand by 2030 [3]<span class="r">; Israel's grid is isolated, with no cross-border connections, so the 27,000 MW queue [2] makes connected megawatts, not energy, the binding national limit; today's operating decisions think in watts, not joules.</span>
+<strong>The Israeli challenge is specific and pressing.</strong> <span class="r">Data centers, with AI the main growth driver, approach 945 TWh of electricity demand by 2030 [3]. On Israel's island grid, the 27,000 MW queue [2] makes connected megawatts, not energy, the binding national limit. Yet how much AI work a connected megawatt delivers is set by the energy each task uses. Today's operating decisions think in watts, not joules.</span>
 </p>
 <p>
-<strong>The discovery.</strong> The PI's study [1] (the ELF dataset) mapped how energy per task depends on the power cap: board power follows a simple empirical law in the computing rate θ,
+<strong>The discovery.</strong> <span class="r">The PI's study [1] (the ELF dataset) measured how energy per task depends on the power cap. Board power follows a simple empirical law in the computing rate θ,</span>
 </p>
 <p class="eq"><i>P</i>(<i>θ</i>) = <i>P</i><sub>0</sub> + <i>a</i>·<i>θ</i><sup><i>β</i></sup>,&nbsp;&nbsp; median <i>R</i><sup>2</sup> = 0.99,</p>
 <p>
-<span class="r">a fixed floor P₀ plus a superlinear term, so energy per task, E = P/θ, is U-shaped in the cap with its minimum, the <strong>JP</strong>, at 43 to 46 percent of rated power on the large GPUs; the cap is one software command, fast enough to follow grid signals [1]. These are GPU board numbers; server-input (BMC) power adds host overhead but excludes cooling and building losses (PUE), so WP1 and WP4 confirm the facility megawatt the grid sees.</span>
+<span class="r">a fixed floor P₀ plus a term that grows faster than the rate. Energy per task, E = P/θ, is therefore U-shaped in the cap. Its minimum, the <strong>JP</strong>, sits at 43 to 46 percent of rated power on the large GPUs. These are GPU board numbers. The grid meters further up a chain: the board, then the server input (adding the host's own power), then the facility (adding cooling and building losses, PUE). WP1 measures the board-to-server step. WP4 carries it to the facility megawatt the grid sees.</span>
 </p>
 
 <h3>2.5.5.2 Review of existing knowledge</h3>
 <p>
-<span class="r">Four research lines meet here. <em>Energy-proportional computing</em> [4] named the fixed, work-independent part of server power the central inefficiency; our floor P₀ measures it for GPUs. <em>Speed-scaling theory</em> proved that energy is minimized at a sub-maximal speed [5,6,7]; ELF gives the measured form for GPU inference. <em>GPU energy systems</em>, Zeus [8] and the ML.ENERGY benchmarks [9,10], search for a setting per job at runtime; the per-card-constant JP replaces the search with one measurement. <em>Production context</em>: cluster studies [11] and public traces [12] supply job arrivals; energy-aware GPU schedulers [13,14] leave device power at its default; methodology reviews [15] motivate the fixed protocol. Recent work power-caps inference servers at one recommended cap [20], finds capping ineffective for memory-bound decode [23], and runs AI data centers as grid assets by following a facility power target [21]; 2.5.5.6 states where JouleFlex departs from each.</span>
+<span class="r">Four research lines meet here. <em>Energy-proportional computing</em> [4] identified the power a server draws even when idle as the main waste. Our floor P₀ measures this idle draw for GPUs. <em>Speed-scaling theory</em> proved that energy is minimized at a speed below maximum [5,6,7]. ELF gives the measured form for GPU inference. <em>GPU energy systems</em>: Zeus [8] and the ML.ENERGY benchmarks [9,10] search for the best GPU setting for each job while it runs. Because the JP is nearly the same for every job on a given card, one measurement replaces that search. <em>Production context</em>: cluster studies [11] and public traces [12] show how jobs arrive. Energy-aware GPU schedulers [13,14] leave GPU power at its default. Method reviews [15] support our fixed measurement protocol. Recent work caps inference servers at one fixed power [20]. Other work finds capping does little during decode [23], the step where a language model writes its answer word by word and is slowed by memory, not computation. A third line runs AI data centers as grid assets that follow a facility power target [21].</span>
 </p>
 
 <h3>2.5.5.3 Knowledge gaps</h3>
 <ul>
-  <li><strong>The law's reach and job dependence are unmapped.</strong> <span class="r">The law is established for single jobs at fixed settings on three finely swept GPUs (A100, A10G, L4); its persistence on H100 and B200-class hardware, production serving software and shared cards is unknown; the per-card constant holds only when the GPU is busy enough that the cap binds, no model predicts a job's operating point from its features, and placing the JP on a new GPU still requires a full sweep [1].</span></li>
-  <li><strong>All published numbers are board numbers.</strong> <span class="r">The grid meters the facility; host overhead and power-supply losses shift the optimum upward by an amount WP1 measures; the chip-level megawatt figure awaits facility confirmation.</span></li>
-  <li><strong>Allocation and power control are not jointly optimized.</strong> <span class="r">The 18 to 45 percent fleet saving used a fixed budget, a fixed placement rule and caps chosen afterward; the joint problem, coupling discrete scheduling to continuous control through one power budget, is unsolved.</span></li>
-  <li><strong>Flexibility is unquantified.</strong> How much power an AI facility can shed, how fast, for how long, at what cost has never been measured or standardized; <span class="r">the Authority's hearing [19] is open and these numbers are not yet in it.</span></li>
-  <li><strong>The incentive problem is identified but unsolved.</strong> Per-hour billing makes the renter's cheapest choice the energy-worst point, and a per-joule surcharge is too weak [1]; which structural instruments work is open.</li>
+  <li><strong>Control (C1): the optimum is mapped only in the lab.</strong> <span class="r">The Joule Point is established for single jobs at fixed settings on three GPUs (A100, A10G, L4) [1]. Whether it holds on newer hardware, on production AI software and on shared GPUs is unknown. No model yet predicts the best cap for a new job or GPU without a full measurement sweep. And no controller yet chooses job placement and power caps together under one changing power limit: the 18 to 45 percent fleet saving used a fixed placement and caps chosen afterward.</span></li>
+  <li><strong>Pricing (C2): the incentive points the wrong way.</strong> <span class="r">Under per-hour billing, full power is the renter's cheapest option. A per-joule surcharge is too small to change that, because energy is a small part of the hourly rent [1]. Which prices do work is open.</span></li>
+  <li><strong>Planning (C3): fleets are sized for full power.</strong> <span class="r">Data centers choose GPUs as if each runs at full power and power were unlimited. No method yet picks the GPU mix that earns the most for an expected workload under a power limit, using each card's own optimum.</span></li>
+  <li><strong>Allocation (C4): flexibility is unmeasured.</strong> <span class="r">All published numbers are GPU-board numbers, while the grid meters the whole facility, where server and power-supply losses add to the fixed power floor and move the optimum. How much power an AI facility can give back, how fast, for how long and at what cost has never been measured. The Authority's open hearing on the large-load connection track [19] does not yet have these numbers.</span></li>
 </ul>
 
 <h3>2.5.5.4 Description of the proposed research</h3>
 <p>
-<span class="r">JouleFlex builds one measured foundation and four tools on it: <strong>WP1&ndash;WP2 measure and predict</strong> the energy-optimal operating point per job and card; <strong>WP3 controls</strong> allocation and power in real time in a digital twin; <strong>WP4&ndash;WP5 connect to the grid</strong>, defining the flexibility a facility can offer and the rules that reward it.</span>
+<span class="r">JouleFlex builds one measured foundation and four tools on it. <strong>WP1 and WP2 measure and predict</strong> the best cap for each job and card. <strong>WP3 controls</strong> job placement and power in real time, tested in a digital twin (a simulator replaying the measurements). <strong>WP4 and WP5 connect to the grid</strong>: the flexibility a facility can offer, and the rules that reward it.</span>
 </p>
 
 <h3>2.5.5.5 Methods (work packages)</h3>
 <table>
 <tr><th>WP</th><th>Objective</th><th>Approach and output</th></tr>
-<tr><td><strong>WP1</strong></td><td>Extend the energy-versus-power measurements to current GPUs, production software, and whole-server power.</td><td>Re-run the study's measurement sweep on current GPUs (H100/L40S class) and production serving engines (vLLM [16] and TensorRT-LLM, <span class="r">the software that runs AI models for users</span>), reading power at three tiers: GPU board (NVML, <span class="r">the GPU's built-in power meter</span>), host CPU (RAPL, <span class="r">the CPU's built-in meter</span>), and server input, the wall tier (<span class="r">BMC, the server's management controller</span>). <span class="r">The JP is where the tangent from the origin meets P(θ) (dE/dθ = 0); a meter gain error leaves it unchanged and an additive offset shifts it, so JP location and per-card savings are gain-robust while absolute board-to-wall and megawatt figures carry the offset caveat.</span> <em>Output:</em> the ELF-2 open dataset (board and server-input).</td></tr>
-<tr><td><strong>WP2</strong></td><td>Predict any new card's or job's efficient operating point without a full measurement sweep.</td><td>A job model predicts a job's best power cap from its features; <span class="r">a transfer model, a parametric per-card scaling rule calibrated by one short test, places a new card's curve and is validated leave-one-out across the measured cards.</span> Both report error bars and a range of validity; a short proof bounds the penalty of one cap per card. <em>Output:</em> the characterization kit (models and one-test protocol).</td></tr>
-<tr><td><strong>WP3</strong></td><td>Decide, in real time, which job runs on which card and at what power cap, to do the most useful work within a changing power limit.</td><td>A controller that makes both choices together, since moving a job changes others' power budget, tested in a digital twin that replays measured curves against exact baselines. When power is tight it defers low-priority work and reports the cost. Per-card capping is already solved exactly [1]; the joint step is a heuristic scored against that bound. <em>Output:</em> the open control engine and digital twin.</td></tr>
-<tr><td><strong>WP4</strong></td><td><span class="r">Measure and characterize the flexibility a controlled facility can offer, in grid-contract form.</span></td><td><span class="r">Measure the contractable quantities: a committed power envelope; a flexibility offer stated as MW shed of facility load measured at the connection point, ramp (seconds), hold duration (hours, through the evening peak), notice time, maximum events per season, recovery, work lost and cost; and an auditable delivery record. Demonstrate them on a rented metered server, no operator site required, and at fleet scale in the twin under an Israeli firm-plus-flexible scenario. WP4 measures both instruments defined in 2.5.6.2 (the connection coefficient and the two-tier curtailment product) at the connection point, against a stated baseline, with the work lost per MW shed.</span> <em>Output:</em> the flexibility products and the Israel demonstration.</td></tr>
-<tr><td><strong>WP5</strong></td><td><span class="r">Evaluate, in the simulator, which pricing and connection rules reward efficient operation, and release everything openly.</span></td><td>An incentive model showing why per-hour billing rewards the energy-worst point and what changes fix it; <span class="r">a simulation-based valuation of the flexible-connection option from public figures (the TAOZ tariff, Noga marginal price, the Authority's capacity-holding payment and curtailment right [19]), reviewed by the advisor for energy-economics validity</span>; each rule tested in the WP3 twin. <em>Output:</em> the policy report and the open release of the dataset, control engine, twin, and interfaces.</td></tr>
+<tr><td><strong>WP1</strong></td><td><span class="r"><strong>Foundation for C1&ndash;C4.</strong> Repeat the energy-versus-power measurements on current GPUs, production software and whole servers.</span></td><td><span class="r">WP1 re-runs the study's cap sweep (how much power and energy a GPU uses at each cap) on current GPUs (H100/L40S class) and on production serving engines (vLLM [16] and TensorRT-LLM, the software that runs AI models for users). Power is read at three points: the GPU board (NVML, the GPU's built-in meter), the host CPU (RAPL, the CPU's built-in meter), and the server input, the wall (BMC, the server's management controller). Meter error matters little: the JP is where a line from the origin touches the power curve P(θ) (dE/dθ = 0), so a meter that reads a few percent high or low leaves it unchanged. Only a fixed offset moves it, and WP1 states that caveat for absolute megawatt figures.</span> <em>Output:</em> the ELF-2 open dataset (board and server-input).</td></tr>
+<tr><td><strong>WP2</strong></td><td><span class="r"><strong>Control (C1).</strong> Predict the best cap for a new card or a new job without a full measurement sweep.</span></td><td><span class="r">A job model predicts a job's best cap from the job's features. A transfer model scales a measured card's curve to a new card after one short test. It is validated by predicting each measured card from the others. Both report error bars and a range of validity. A short proof bounds how much is lost by using one cap per card.</span> <em>Output:</em> the characterization kit (models and one-test protocol).</td></tr>
+<tr><td><strong>WP3</strong></td><td><span class="r"><strong>Control and planning (C1, C3).</strong> Decide, in real time, which job runs on which card and at what cap, to do the most useful work within a changing power limit. Then use the simulator to design the fleet: for an expected workload and power limit, compare each GPU option's cost with the revenue it earns at its estimated JP.</span></td><td><span class="r">The controller makes both choices together, because moving a job changes the power left for the others. It is tested in a digital twin that replays the measured curves, against baselines with known exact answers. When power is tight it defers low-priority work and reports the cost. For a fixed placement, the best cap per card is already solved exactly [1]. That exact solution is the floor the joint heuristic must beat.</span> <em>Output:</em> the open control engine and digital twin.</td></tr>
+<tr><td><strong>WP4</strong></td><td><span class="r"><strong>Allocation (C4).</strong> Measure how much power a controlled facility can give up, how fast and for how long, in the form a grid contract needs.</span></td><td><span class="r">WP4 defines three contract terms. First, a committed power limit. Second, a flexibility offer: how many MW the facility sheds at the connection point, how fast (seconds), for how long (hours, through the evening peak), with how much notice, how many times per season, and how fast it recovers, with the work lost and the cost. Third, an auditable record of delivery. It demonstrates them on a rented metered server, so no operator site is needed, and at fleet scale in the twin under an Israeli firm-plus-flexible scenario.</span> <em>Output:</em> the flexibility products and the Israel demonstration.</td></tr>
+<tr><td><strong>WP5</strong></td><td><span class="r"><strong>Pricing and allocation (C2, C4).</strong> Test, in the simulator, which pricing and connection rules reward efficient operation, and release everything openly.</span></td><td><span class="r">An incentive model shows why per-hour billing rewards the energy-worst point and which changes fix it. A simulation puts a value, in shekels per megawatt, on the flexible-connection option, using public figures: the TAOZ tariff, the Noga marginal price, and the Authority's capacity payment and curtailment right [19]. The project's energy-systems advisor (2.5.8) reviews the economics. Each rule is tested in the WP3 twin.</span> <em>Output:</em> the policy report and the open release of the dataset, control engine, twin, and interfaces.</td></tr>
 </table>
 
 <h3>2.5.5.6 Novelty and originality</h3>
 <ul>
-  <li><strong>AI load as a grid resource, grounded in the measured optimum.</strong> Unlike grid-following curtailment to a power target [21], JouleFlex runs each card at its measured energy-optimal cap and makes the resulting flexibility contractable and audited, quantified in MW, ramp, <span class="r">hold duration</span> and recovery.</li>
-  <li><strong>Energy first, power as the means.</strong> <span class="r">Inference power-capping saves energy at a chosen cap [20] and can be ineffective for memory-bound decode [23]; JouleFlex sets power to the computed energy optimum per (card, job) where the cap binds, and every recommendation carries its capital cost in extra cards.</span></li>
-  <li><strong>An open dataset with no equivalent.</strong> <span class="r">WattGPU [22] and ML.ENERGY [9,10] report inference power at one operating point and open power-cap sweeps cover training or HPC; no sweep dense enough to locate the inference energy optimum existed before ELF.</span></li>
-  <li><strong>The joint allocation-and-capping problem, to the measured optimum.</strong> <span class="r">Placing jobs and setting every cap at the energy optimum is a joint problem grid-following controllers [21] do not address; the JouleFlex engine is a first solution on measured curves.</span></li>
+  <li><strong>AI load as a grid resource, grounded in the measured optimum.</strong> <span class="r">Grid-following controllers [21] cut a facility to whatever power target the grid sets. JouleFlex instead runs each card at its measured best cap, and turns the flexibility that results into a contract: MW shed, ramp, hold duration and recovery, measured and audited.</span></li>
+  <li><strong>Energy first, power as the means.</strong> <span class="r">Published inference capping saves energy at one chosen cap [20] and can fail for memory-bound decode [23]. JouleFlex sets each card and job to its computed energy minimum where the cap binds. Every recommendation also states its capital cost: the extra cards needed to cover the 1.2 times longer runtime.</span></li>
+  <li><strong>An open dataset with no equivalent.</strong> <span class="r">WattGPU [22] and ML.ENERGY [9,10] report inference power at one setting, and open power-cap sweeps cover training or HPC. No sweep dense enough to locate the inference energy minimum existed before ELF.</span></li>
+  <li><strong>Job placement and capping solved together, to the measured optimum.</strong> <span class="r">Placing jobs and setting every cap at the energy minimum is one joint problem, which grid-following controllers [21] do not address. The JouleFlex engine is a first solution on measured curves.</span></li>
   
 </ul>
 
 <h3>2.5.5.7 Fit to the Ministry's R&amp;D goals</h3>
 <p>
-Submitted under topic 16.2 (AI and energy for data centers) of the Ministry's 2026 R&amp;D policy [17], call 34/2026 [18]; the core deliverable answers 16.2 and the methods land on three 2026 priorities (8, 16.1, 6.3). Clause by clause (Chapter 1 numbering):
+Submitted under topic 16.2 (AI and energy for data centers) of the Ministry's 2026 R&amp;D policy [17], call 34/2026 [18]. <span class="r">The core deliverable answers 16.2, and the methods land on three 2026 priorities (8, 16.1, 6.3). Clause by clause (Chapter 1 numbering):</span>
 </p>
 <table>
 <tr><th>Clause</th><th>How the project addresses it</th></tr>
-<tr><td class="rtl"><strong>16.2</strong> · טכנולוגיות תכנון וניהול הספקת אנרגיה לחוות שרתים</td><td>The core deliverable: the control engine manages a farm's energy supply in real time (each card at its optimum, the fleet held to a committed envelope); the twin sizes how many cards run behind a connection and how much power can be shed.</td></tr>
-<tr><td class="rtl"><strong>8</strong> · התייעלות באנרגיה וביזור מערכות אנרגיה <span class="meta">(2026 priority)</span></td><td>Energy efficiency of a new industrial load class (8.1, 8.3): 29–31 percent less energy per task at the card [1] and 18–45 percent per served job at the fleet (simulation), in software on installed hardware.</td></tr>
-<tr><td class="rtl"><strong>16.1</strong> · שימוש בבינה מלאכותית ככלי עזר לפיתוח ומחקר בכל הנושאים לעיל (סעיפים 1-15) <span class="meta">(2026 priority)</span></td><td><span class="r">Machine learning as the instrument: the WP2 job model predicts a job's energy-optimal cap from its features, the scaling rule places a new card's curve from one short test, and the WP3 controller solves joint allocation-and-capping over the learned curves.</span></td></tr>
-<tr><td class="rtl"><strong>6.2 / 6.3</strong> · ניהול אנרגיה מקומי וניהול ביקושים · בקרה וניהול רשת בחדירת מתחדשות גבוהה <span class="meta">(6.3: 2026 priority)</span></td><td>Demand management: cap actuation settles in about 0.2 s at the card and the demonstration targets a 60-second facility ramp; <span class="r">the project supplies the ramp, hold-duration and notice numbers the Authority's hearing [19] needs to define a curtailment product for AI load on an isolated grid.</span></td></tr>
+<tr><td class="rtl"><strong>16.2</strong> · טכנולוגיות תכנון וניהול הספקת אנרגיה לחוות שרתים</td><td><span class="r">The core deliverable: the control engine manages a farm's power in real time, keeping each card at its best setting and the whole fleet under its committed power limit. The simulator shows how many cards fit behind a connection and how much power can be shed.</span></td></tr>
+<tr><td class="rtl"><strong>8</strong> · התייעלות באנרגיה וביזור מערכות אנרגיה <span class="meta" dir="ltr">(2026 priority)</span></td><td>Energy efficiency of a new industrial load class (8.1, 8.3): 29–31 percent less energy per task at the card [1] and 18–45 percent per served job at the fleet (simulation), in software on installed hardware.</td></tr>
+<tr><td class="rtl"><strong>16.1</strong> · שימוש בבינה מלאכותית ככלי עזר לפיתוח ומחקר בכל הנושאים לעיל (סעיפים 1-15) <span class="meta" dir="ltr">(2026 priority)</span></td><td><span class="r">Machine learning as a tool: the WP2 job model predicts each job's best cap from its features. The scaling rule predicts a new card's curve from one short test. The WP3 controller decides job placement and caps together, using the learned curves.</span></td></tr>
+<tr><td class="rtl"><strong>6.2 / 6.3</strong> · ניהול אנרגיה מקומי וניהול ביקושים · בקרה וניהול רשת בחדירת מתחדשות גבוהה <span class="meta" dir="ltr">(6.3: 2026 priority)</span></td><td><span class="r">Demand management: a cap takes effect in about 0.2 s on one card, and the demonstration targets a 60-second ramp for a whole facility. The project supplies the ramp, hold-time and notice numbers that the Authority's hearing [19] needs to define a curtailment product for AI load.</span></td></tr>
 <tr><td class="rtl"><strong>15.1 / 15.3</strong> · כלי מדיניות לייעול השימוש באנרגיה · מתודולוגיה וכלי עזר בקבלת החלטות</td><td>Policy tools for efficient energy use (15.1): WP5 tests billing and connection rules in the twin and shows which reward the energy-optimal point. Decision support (15.3): the regulator-facing report quantifies firm-plus-flexible connections against the queue.</td></tr>
 </table>
 
 <h3>2.5.5.8 Preliminary results</h3>
 <p>
-<span class="r">The preliminary results are the applicant's study <em>The Joule Point</em> [1] and its ELF dataset: about 5,500 instrumented measurements over 20 models and four GPUs (A100, A10G, L4 swept finely, T4 coarsely). Headline numbers: <strong>29 to 31 percent</strong> less energy per task at the JP (43 to 46 percent of TDP, runs 1.2 times longer); <strong>18 to 45 percent</strong> less energy per served job in a measured-curve fleet simulation at equal-or-better deadline compliance; cap actuation settling in <strong>about 0.2 s</strong> (191 ms measured). Supporting: law fit median R² = 0.99 per fixed-setting sweep (pooled per-card fits 0.88 to 0.92, Fig. A1); one static cap per card serves all twenty workloads at under one percent mean penalty; under strict deadlines capping saved 28 percent of energy while keeping 95 percent of workload value; under per-instance-hour billing the renter's cost optimum is the energy-worst operating point. The measurement software, the P(θ) fitting pipeline, the exact per-card capping solver and the fleet simulator behind these numbers are the PI's working code, and ELF is openly released, so every figure here is independently reproducible; WP1&ndash;WP3 extend this foundation.</span>
+<span class="r">The preliminary results are the applicant's study <em>The Joule Point</em> [1] and its ELF dataset: about 5,500 instrumented measurements over 20 models and four GPUs (A100, A10G, L4 swept finely, T4 coarsely). Headline numbers: at the JP (43 to 46 percent of TDP), energy per task drops <strong>29 to 31 percent</strong> while jobs run 1.2 times longer. In a fleet simulation on the measured curves, energy per served job drops <strong>18 to 45 percent</strong>, with deadlines met as well or better. A cap takes effect in <strong>about 0.2 s</strong> (191 ms measured). Supporting: the law fits with median R² = 0.99 per fixed-setting sweep (pooled per-card fits 0.88 to 0.92, Fig. A1). One fixed cap per card serves all twenty workloads, losing under one percent on average. Under strict deadlines, capping still saved 28 percent of energy while keeping 95 percent of the work's value. Under per-hour billing, the renter's cheapest choice is the most wasteful one. ELF and the code behind these numbers are openly released, so every figure is reproducible. WP1&ndash;WP3 extend them.</span>
 </p>
 
 <h2>2.5.6 Application: expected benefit and impact</h2>
 
 <h3>2.5.6.1 What the project delivers, concretely</h3>
 <p>
-<span class="r">The project delivers five open artifacts: the ELF-2 dataset, the operating-point models with their one-test protocol, the control engine, the simulator built from the measurements, and the grid interfaces and policy report (Appendix Table A1: what each is, who uses it). They carry C1 (models, engine, simulator), C2 (policy report), C3 (simulator-based fleet planning) and C4 (queue scenario analysis by transmission region); all are released openly on delivery, crediting the Ministry's R&amp;D program under call 34/2026 [18].</span>
+<span class="r">The project delivers JouleFlex, the toolkit of 2.5.4.1, as concrete pieces others can use. For <strong>control (C1)</strong>: the control engine, with the ELF-2 dataset and the cap-prediction models it runs on. For <strong>pricing (C2)</strong>: pricing rules and the incentive model behind them. For <strong>planning (C3)</strong>: a fleet-design tool, built on the simulator, that weighs each GPU option's cost against its expected revenue for a given workload and power limit. For <strong>allocation (C4)</strong>: connection scenarios by region. The pricing and allocation results also appear in a policy report. Appendix Table A1 lists each piece and who uses it. Everything is released openly on delivery, crediting the Ministry's R&amp;D program under call 34/2026 [18].</span>
 </p>
 
 <h3>2.5.6.2 Benefit and impact</h3>
 
 <p>
-<span class="r"><strong>For the Israeli grid and regulator (the primary benefit).</strong> The freeze [2] affects four parties. The Ministry owns the policy and the freeze decision, with no measured basis for how much AI load can flex. The Electricity Authority (רשות החשמל), which licenses connections, must either grant connections the grid cannot back at specific substations, or keep the queue closed and block growth. Noga, the system operator, must hold the grid stable against a large, new and unmeasured load. The operators in the queue cannot build. None has the numbers to license AI load on condition of flexibility: how much it can shed, how fast, for how long, at what notice and cost. JouleFlex produces exactly those numbers.</span>
+<span class="r"><strong>Scientific contribution.</strong> The project turns a measured property of GPUs, the Joule Point, into a quantitative basis for treating AI computing as a flexible electrical load. It establishes how far the optimum holds across hardware, software and whole servers, and how much of a facility's power can be reduced, how quickly and for how long, while useful work is preserved. Today AI load is treated as fixed. These measurements, released as the open ELF-2 dataset, give the first evidence on how flexible it can be.</span>
 </p>
 <p>
-<span class="r">The third option rests on one fact: more work per joule is more work per connected megawatt, if the operator fills the same connection with more cards. A fixed-connection calculation on the measured A100 curve implies up to about 50 percent more AI work per megawatt at the GPU [1], to be confirmed at server input and facility level before any coefficient is recommended; the 27,000 MW queue includes speculative and duplicated applications, so any coefficient applies to approved capacity. WP5 puts a shekel-per-megawatt value on the flexible-connection option from public data, feeding the Authority's open hearing [19] while the rules are written. Connection constraints are locational, per substation and transmission region, so C4 is a scenario analysis by region of how much of the queue could be served under firm-plus-flexible connections at each flexibility level; with flexibility measured, committed and audited (WP4), the closed queue stops being all-or-nothing.</span>
+<span class="r"><strong>Impact on the grid.</strong> The recent freeze on data-center connections [2] shows that grid connection is becoming a constraint on AI computing in Israel. Near its Joule Point a GPU does nearly the same work at much lower power, so the same connection can host more computing: up to about 50 percent more work per megawatt at the GPU, with the facility-level figure measured in WP1 and WP4. The same reduction can be applied on request at peak times. This is the kind of evidence that flexible-connection rules under discussion [19] depend on. Those rules envisage reduced supply for 100 to 200 hours a year, down to 60 percent of a connection, and a GPU at its Joule Point already draws about 40 percent less than its normal uncapped power. Regional scenario analysis (C4) then estimates how much of the connection queue such connections could serve. All savings and reductions quoted are relative to a GPU's normal uncapped draw.</span>
 </p>
 <p>
-<span class="r"><strong>What the Authority could write into the 50 MVA connection track [19].</strong> <em>Connection coefficient.</em> A facility committing to Joule-Point operation is licensed at k times the nameplate of its installed hardware, where k is its measured power at the Joule Point as a fraction of nameplate; WP1 measures k at server input and carries it to the facility meter with cooling and building losses (PUE), and the WP4 delivery record verifies it in operation. Worked example: a 100 MW applicant that commits to JP operation keeps a 100 MW connection and installs 100/k MW of nameplate; at the board value k = 0.45 [1] that is about 220 MW of hardware, delivering on the measured A100 curve up to about 50 percent more AI work than 100 MW uncapped. The facility k is higher, since host and cooling power do not fall with the cap. <em>Curtailment product in the system operator's direction.</em> A facility drops from its uncapped operating draw to the Joule Point on Noga's instruction, giving up roughly 40 percent of its operating power for about 20 percent of its speed, specified by MW shed against the measured uncapped draw (the MS0 memo fixes the exact per-card fraction), ramp (seconds), hold duration (hours, through the evening peak), notice time, maximum events per season, recovery, work lost and cost; the JP-and-below shed is a smaller second tier, each quantity measured by WP4 at the connection point and audited by the delivery record.</span>
+<span class="r"><strong>Impact on data centers.</strong> Operators gain lower energy per unit of work on existing hardware, through software alone: 29 to 31 percent per task, and 18 to 45 percent per served job in simulation (C1). Fleet-design methods (C3) show, before capital is committed, which GPUs give the best return under a power limit. Pricing models (C2) show how customers can be rewarded for efficient use of flexible power.</span>
 </p>
 <p>
-<span class="r"><strong>Training and human capital.</strong> The project builds research capacity at the AI-energy interface, which Israel lacks: a postdoctoral researcher trained across GPU energy measurement, ML-systems control and energy-market analysis; the open ELF-2 dataset, simulator and control engine as teaching material at HIT; and the Hebrew M4, M8 and M21 briefings to Ministry, Authority, Noga and operators.</span>
-</p>
-<p>
-<span class="r"><strong>For operators and planners.</strong> Operators (C1): one software command delivers 29 to 31 percent lower energy per task (measured) and 18 to 45 percent lower energy per served job (fleet simulation) on installed hardware; C2 pricing in place of per-hour billing lets a customer who accepts JP operation or curtailment windows pay less per unit of work. Planners (C3): the simulator shows, before capital is committed, which fleet delivers the most work behind a variable connection.</span>
+<span class="r"><strong>Training and human capital.</strong> The project and its open data will support multiple student projects at HIT, in computer science and other departments. These projects teach students how computing and energy are linked, preparing them for careers in AI, data centers and the energy sector.</span>
 </p>
 
 <h2>2.5.7 Work plan</h2>
@@ -267,60 +258,58 @@ Submitted under topic 16.2 (AI and energy for data centers) of the Ministry's 20
 <h3>2.5.7.1 Stages, deliverables, duration and success metrics</h3>
 <table>
 <tr><th>Months</th><th>Stage</th><th>Deliverable</th><th>Success metric</th></tr>
-<tr><td>M1–M6</td><td>WP1: <span class="r">existing measurement software extended;</span> <span class="r">H100/L40S and vLLM sweeps</span>; board and server-input instrumentation</td><td>D1: ELF-2 v1</td><td>Law fit R² ≥ 0.95 per sweep (median 0.99 [1]); <span class="r">JP located, or its absence documented as a bounding result, per platform at board and server-input power</span></td></tr>
-<tr><td><span class="r">M3–M4</span></td><td><span class="r">Preliminary regulator memo from the existing ELF data</span></td><td><span class="r">MS0 (M4): memo (Hebrew)</span></td><td><span class="r">Connection coefficient k and the full-power-to-JP shed fraction on the measured A100, A10G and L4 curves, board-level caveat stated, in the Authority's hands during the hearing [19] rule-writing window</span></td></tr>
-<tr><td>M5–M8</td><td>WP1: shared GPUs, LLM phases, fine-tuning; sweeps where the constant should break</td><td>MS1: regime map; M8 brief (Hebrew)</td><td>Server-input (BMC) wall tier validated; validity domain documented, including the pre-registered JP shift (percentage points of TDP) at which the per-card constant breaks</td></tr>
-<tr><td>M7–M12</td><td>WP2: job model; transfer model; one-test characterization protocol</td><td>MS2: models result</td><td>Job-model placement within 5 percentage points of TDP where the constant breaks, <span class="r">scaling-rule placement within 5 points, validated leave-one-out across the measured cards</span>; protocol cost ≤ 8 hours and ≤ ₪1,500 per card model</td></tr>
-<tr><td>M9–M16</td><td>WP3: twin; joint controller under fixed, price, carbon and curtailment envelopes</td><td>MS3: controller result</td><td>Energy per served job and SLO compliance versus uncapped, static-cap and cap-only baselines, with a pre-registered floor of at least 10 percent below cap-only at equal compliance <span class="r">(gain over an already-capped fleet)</span>; zero exceedance beyond the WP1 noise band in committed windows, <span class="r">transient violations under 1 percent of intervals</span></td></tr>
-<tr><td>M14–M20</td><td>WP4: flexibility products; <span class="r">BMC-metered demonstration</span>; Israel scenario</td><td>MS4: flexibility demonstration</td><td><span class="r">Sheddable power in MW of facility load at the connection point and as a fraction of the measured uncapped draw: full-power-to-JP tier about 40 percent (exact fraction fixed by the MS0 memo); JP-and-below tier a pre-registered floor of at least 15 percent of the committed JP envelope within the ramp deadline at bounded SLO loss; measured on a BMC-metered server, projected to fleet scale in the twin; ramp within 60 seconds, hold duration in hours through the evening peak, notice time, recovery within 5 minutes, compatible with the curtailment right in the hearing [19]; delivery-record compliance and service cost;</span> <span class="r">C3 check: a twin-recommended fleet beats a same-cost uncapped design by a pre-stated work margin</span></td></tr>
-<tr><td>M17–M21</td><td>WP5: incentive model; connection valuation on published Israeli data; twin evaluation</td><td>MS5: policy report draft</td><td>Alignment condition per billing structure, confirmed in the twin; option value per MW and break-even curtailment frequency, with sensitivity to every price input; <span class="r">C4 check: a scenario analysis on at least 3 transmission regions built from public queue data, stating how much of each region's queue is served under firm-plus-flexible connections at each flexibility level</span></td></tr>
-<tr><td>M21–M24</td><td>WP5: release, documentation, validation, publication</td><td>D2: open release; D3: final report</td><td>Public repositories with reproducing pipelines; metered validation; final scientific and policy reports</td></tr>
+<tr><td>M1–M6</td><td><span class="r">WP1: extend the existing measurement software. Run H100/L40S and vLLM sweeps. Instrument board and server-input power.</span></td><td><span class="r">D1: ELF-2 v1 and the M4 regulator memo</span></td><td><span class="r">Law fit R² ≥ 0.95 per sweep (median 0.99 [1]). JP located per platform at board and server-input power, or its absence documented as a bounding result. M4 memo: the measured power reduction at the Joule Point, from the existing ELF curves (board level).</span></td></tr>
+<tr><td>M5–M8</td><td><span class="r">WP1: shared GPUs, LLM phases, fine-tuning. Sweeps where the constant should break.</span></td><td><span class="r">MS1: validity map (where the law holds) and M8 brief (Hebrew)</span></td><td><span class="r">Server-input (BMC) wall tier validated. Validity domain documented, including the JP shift (in percentage points of TDP) at which the per-card constant breaks, set in advance.</span></td></tr>
+<tr><td>M7–M12</td><td><span class="r">WP2: job model, transfer model, and one-test characterization protocol</span></td><td>MS2: models result</td><td><span class="r">The job model places the cap within 5 percentage points of TDP where the constant breaks. The scaling rule places it within 5 points, validated by predicting each measured card from the others. Protocol cost ≤ 8 hours and ≤ ₪1,500 per card model.</span></td></tr>
+<tr><td>M9–M16</td><td><span class="r">WP3: twin, and joint controller under fixed, price, carbon and curtailment power limits</span></td><td>MS3: controller result</td><td><span class="r">Energy per served job and on-time rate versus uncapped, single-cap and cap-only baselines. Target set in advance: at least 10 percent below cap-only at the same on-time rate (a gain over an already-capped fleet). No power overruns beyond WP1's meter noise in committed periods, and short violations in under 1 percent of intervals.</span></td></tr>
+<tr><td>M14–M21</td><td><span class="r">WP4–WP5: flexibility products, BMC-metered demonstration, incentive model, connection valuation on published Israeli data, and Israel scenario</span></td><td>MS4: flexibility demonstration and policy report</td><td><span class="r">Sheddable power in MW of facility load at the connection point, and as a fraction of the measured uncapped draw. Full-power-to-JP tier: about 40 percent (exact fraction fixed by the M4 memo). JP-and-below tier: a floor set in advance of at least 15 percent of the committed JP power limit, reached within the ramp deadline at bounded SLO loss. Measured on a BMC-metered server and projected to fleet scale in the twin. Ramp within 60 seconds, hold time in hours through the evening peak, notice time, and recovery within 5 minutes, compatible with the curtailment right in the hearing [19]. Delivery-record compliance and service cost. C3 check: a twin-recommended fleet beats a same-cost uncapped design by a work margin stated in advance. Alignment condition per billing structure, confirmed in the twin. Option value per MW and break-even curtailment frequency, with sensitivity to every price input. C4 check: a scenario analysis on at least 3 transmission regions from public queue data, stating how much of each region's queue is served at each flexibility level.</span></td></tr>
+<tr><td>M21–M24</td><td>WP5: release, documentation, validation, publication</td><td><span class="r">D2: open release. D3: final report</span></td><td><span class="r">Public repositories with reproducing pipelines. Metered validation. Final scientific and policy reports.</span></td></tr>
 </table>
 <p>
-<span class="r">The M4 preliminary memo, the M8 technical brief and the M21 policy draft are named deliverables, in Hebrew, circulable to the Ministry, the Authority and Noga [19]; a bounding result is itself a deliverable.</span> Minimum-success path: H100/L40S validation, one serving engine, BMC wall measurement, the job and transfer models, the joint controller, and one Israeli flexibility scenario; B200-class cards, a second engine, fine-tuning and shared GPUs are extensions as access allows.
+<span class="r">The M4 preliminary memo, the M8 technical brief and the M21 policy draft are named deliverables, written in Hebrew for the Ministry, the Authority and Noga [19]. A result that shows where the method stops working also counts as a deliverable. Minimum-success path: H100/L40S validation, one serving engine, BMC wall measurement, the job and transfer models, the joint controller, and one Israeli flexibility scenario. B200-class cards, a second engine, fine-tuning and shared GPUs are extensions as access allows.</span>
 </p>
 
 <h3>2.5.7.2 Budget by stage</h3>
 <table>
 <tr><th>Stage</th><th>Share</th><th>Amount (₪)</th><th>Principal costs</th></tr>
-<tr><td>M1–M8 (WP1; WP2 begins)</td><td>30%</td><td>148,314</td><td>Postdoctoral researcher; GPU rentals for cap sweeps</td></tr>
-<tr><td>M9–M16 (WP2 ends; WP3; WP4 begins)</td><td>33%</td><td>163,145</td><td>Postdoctoral researcher; card-model rentals for transfer validation; twin and controller work</td></tr>
-<tr><td>M17–M21 (WP4 ends; WP5)</td><td>25%</td><td>123,595</td><td>Postdoctoral researcher; BMC-metered rentals; flexibility campaign</td></tr>
-<tr><td>M22–M24 (WP5: release and validation)</td><td>12%</td><td>59,326</td><td>Postdoctoral researcher; metered validation runs; documentation; dissemination and publication</td></tr>
+<tr><td><span class="r">M1–M8 (WP1, WP2 begins)</span></td><td>30%</td><td>148,314</td><td><span class="r">Postdoctoral researcher. GPU rentals for cap sweeps.</span></td></tr>
+<tr><td><span class="r">M9–M16 (WP2 ends, WP3, WP4 begins)</span></td><td>33%</td><td>163,145</td><td><span class="r">Postdoctoral researcher. Card-model rentals for transfer validation. Twin and controller work.</span></td></tr>
+<tr><td><span class="r">M17–M21 (WP4 ends, WP5)</span></td><td>25%</td><td>123,595</td><td><span class="r">Postdoctoral researcher. BMC-metered rentals. Flexibility campaign.</span></td></tr>
+<tr><td>M22–M24 (WP5: release and validation)</td><td>12%</td><td>59,326</td><td><span class="r">Postdoctoral researcher. Metered validation runs. Documentation, dissemination and publication.</span></td></tr>
 <tr><td colspan="2"><strong>Total</strong></td><td><strong>494,380</strong></td><td>Full itemization in the מפרט תקציבי</td></tr>
 </table>
 
 <h3>2.5.7.3 Risks and mitigation</h3>
 <table>
 <tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr>
-<tr><td>Production serving software (<span class="r">requests batched as they arrive</span>, shifting phases) blurs the per-card constant</td><td>Static cap loses near-optimality for LLMs</td><td>Measured first (WP1, M1); the job model predicts the optimum where the constant breaks</td></tr>
-<tr><td>Power-cap control <span class="r">or server-input (BMC) readout</span> unavailable on some rented platforms</td><td>Measurement campaign narrowed</td><td>AWS EC2 gives passthrough and root; too-high cap floors are exposed via the graphics clock (L4 [1]); <span class="r">named BMC-capable bare-metal vendors with dated quotes (GPU Mart and equivalents); fallback to an in-line metered PDU at the wall</span></td></tr>
-<tr><td>Postdoc recruitment slips, or the single hire is lost mid-project</td><td>Scope narrows to the minimum path</td><td>PI runs the WP1 bench himself on his own measurement software; the minimum-success path is one-FTE; an M.Sc. student, funded from the unspent stipend, covers the gap; WP5 proceeds on public data</td></tr></table>
+<tr><td><span class="r">Production serving software (requests batched as they arrive, shifting phases) blurs the per-card constant</span></td><td><span class="r">One fixed cap per card is no longer near-best for LLMs</span></td><td><span class="r">Measured first (WP1, M1). The job model predicts the best cap where the constant breaks.</span></td></tr>
+<tr><td>Power-cap control <span class="r">or server-input (BMC) readout</span> unavailable on some rented platforms</td><td>Measurement campaign narrowed</td><td><span class="r">AWS EC2 gives direct GPU access and full control. Where the lowest allowed cap is above the JP, limiting the clock speed reaches it instead (L4 [1]). Named bare-metal vendors with BMC metering have given dated quotes (GPU Mart and similar). Fallback: a metered power strip at the wall.</span></td></tr>
+<tr><td>Postdoc recruitment slips, or the single hire is lost mid-project</td><td>Scope narrows to the minimum path</td><td><span class="r">The PI runs the WP1 bench himself on his own software. The minimum path needs one FTE. An M.Sc. student, funded from the unspent stipend, covers the gap. WP5 proceeds on public data.</span></td></tr></table>
 
 <h2>2.5.8 The applicant</h2>
 <p>
-<strong>Project manager and principal investigator:</strong> Alexander Apartsin, Senior Lecturer, Computer Science, HIT; single-PI, responsible for all five work packages, committing ~one day per week (~20 percent) over 24 months, no grant salary (§2.6).
+<strong>Project manager and principal investigator:</strong> Alexander Apartsin, Senior Lecturer, Computer Science, HIT. <span class="r">Single PI, responsible for all five work packages, about one day per week (20 percent) over 24 months, no grant salary (§2.6).</span>
 </p>
 <p>
-<strong>Fit of expertise to the proposed work.</strong> <span class="r">The PI produced the measured foundation this project extends: study [1] delivered the ELF dataset, the power law and the Joule Point, and its measurement software, models and simulator are working code that WP1–WP3 extend directly. His engineering record is capacity-and-cost work of exactly this kind: system-sizing at Amdocs that contributed about $10M in savings, and cost-aware AI systems in industry. He has led R&amp;D teams in industry (Head of AI, Motorola Solutions Israel Innovation Center; Head of Data Science, Questar) and, as group leader, delivered the technical work and milestones of an Israel-U.S. BIRD binational grant and an Israel Innovation Authority Magneton grant. His academic thread is energy-efficient computing, from energy-efficient remote-sensing measurement [24] to the CalexNet study of efficient inference in deep models [25].</span>
-</p>
-<p>
-<strong>Research personnel.</strong> <span class="r">One postdoctoral researcher at 90% position, both years, extends the existing ELF measurement software, models and simulator under the PI's direct supervision, reported within a month of signature (נספח טז' §2.5). Profile: GPU systems and energy instrumentation, ML systems, optimization or control; hiring-slip fallback in 2.5.7.3. WP4 and WP5, the flexibility products and the policy analysis on public Noga and Authority figures, run under the PI's direction with the advisor's guidance and are designed to be shared with the Authority and Noga during the hearing window [19].</span>
+<strong>Fit of expertise to the proposed work.</strong> <span class="r">The PI produced the measured foundation this project extends: study [1] delivered the ELF dataset, the power-response law and the Joule Point, and its software, models and simulator are working code that WP1–WP3 extend directly. His engineering record is capacity-and-cost work of this kind: system-sizing at Amdocs (about $10M in savings) and cost-aware AI systems in industry. He has led industrial R&amp;D teams (Head of AI, Motorola Solutions Israel Innovation Center, and Head of Data Science, Questar) and, as group leader, delivered the technical milestones of an Israel-U.S. BIRD grant and an Israel Innovation Authority Magneton grant. Earlier work also addressed efficiency in computing: energy-efficient remote sensing [24] and efficient deep-network inference (CalexNet [25]).</span>
 </p>
 <p>
 <strong>Advisor.</strong> <span class="r">Prof. Moshe Tshuva (Afeka College of Engineering), a senior energy-systems engineer with two decades in energy management and efficiency, advises the project, unpaid, on the energy-systems and regulatory basis of the flexibility and valuation work.</span>
 </p>
 <p>
-<strong>Resources.</strong> The project owns no hardware and nothing waits on procurement: measurement and the WP4 demo run on rented AWS and BMC-metered servers at public list prices. <span class="r">HIT provides lab space, computing and administration.</span>
+<strong>Research personnel.</strong> <span class="r">One postdoctoral researcher at 90% position, both years, extends the ELF software, models and simulator under the PI's direct supervision, reported within a month of signature (&lrm;2.5). Profile: GPU systems, energy instrumentation, ML systems, optimization or control. The hiring-slip fallback is in 2.5.7.3. WP4 and WP5 run under the PI's direction, guided by the advisor, for sharing with the Authority and Noga during the hearing [19].</span>
+</p>
+<p>
+<strong>Resources.</strong> The project owns no hardware: measurement and the WP4 demo run on rented AWS and BMC-metered servers at list prices. <span class="r">HIT provides lab space, computing and administration.</span>
 </p>
 <h2>2.5.9 Funding</h2>
 <p>
-No other, complementary, or parallel student funding is taken or sought (נספח טז' §1.5.2, §2.10).
+No other, complementary, or parallel student funding is taken or sought (&lrm;1.5.2, §2.10).
 </p>
 <h2 class="pagebreak">2.5.10 Bibliography</h2>
 <ol class="refs">
-  <li>Apartsin, A. and Aperstein, Y. (2026). <em>The Joule Point: an Energy-Optimal Operating Point for AI Inference.</em> Preprint, September 2026. DOI: <a href="https://doi.org/10.13140/RG.2.2.20385.36964">10.13140/RG.2.2.20385.36964</a> (CC BY 4.0), with the released ELF dataset.</li>
-  <li>JNS (22 July 2026). <em>Israel halts new data-center grid requests for 140 days amid surge in demand.</em> Press report on the Electricity Authority's temporary order: pending applications of approximately 27,000 MW, about three times Israel's average electricity consumption. https://www.jns.org/news/israel-news/israel-halts-new-data-center-grid-requests-for-140-days-amid-surge-in-demand (the Authority's order is published on gov.il).</li>
+  <li>Apartsin, A. and Aperstein, Y. (2026). <em>The Joule Point: an Energy-Optimal Operating Point for AI Inference.</em> arXiv preprint, September 2026. arXiv: <a href="https://arxiv.org/abs/2609.27926">2609.27926</a> (CC BY 4.0), with the released ELF dataset.</li>
+  <li>JNS (22 July 2026). <em>Israel halts new data-center grid requests for 140 days amid surge in demand.</em> Press report on the Electricity Authority's temporary order: pending applications of approximately 27,000 MW, about three times Israel's average power demand (about 9,000 MW). https://www.jns.org/news/israel-news/israel-halts-new-data-center-grid-requests-for-140-days-amid-surge-in-demand (the Authority's order is published on gov.il).</li>
   <li>International Energy Agency (2025). <em>Energy and AI: Energy Demand from AI.</em> https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai</li>
   <li>Barroso, L. A. and Hölzle, U. (2007). <em>The Case for Energy-Proportional Computing.</em> IEEE Computer 40(12), pp. 33–37.</li>
   <li>Yao, F., Demers, A., and Shenker, S. (1995). <em>A Scheduling Model for Reduced CPU Energy.</em> Proceedings of FOCS 1995, pp. 374–382.</li>
@@ -347,10 +336,10 @@ No other, complementary, or parallel student funding is taken or sought (נספ�
   <li>Aperstein, Y. and Apartsin, A. (2026). <em>CalexNet: Soft Cascade-Aligned Training and Calibration for Lightweight Early-Exit Branches.</em> Electronics 15. DOI: <a href="https://doi.org/10.3390/electronics15102149">10.3390/electronics15102149</a>.</li>
 </ol>
 <div class="appendix-rule pagebreak"></div>
-<h2>Appendix A: Figures (within the 5-page allowance of נספח א'1 §2.2)</h2>
+<h2>Appendix A: Figures (within the 5-page allowance of &lrm;2.2)</h2>
 
 <div class="meta">
-JouleFlex · קול קורא 34/2026 · Appendix to the research proposal, permitted under נספח א'1 §2.2 (graphs, tables and
+JouleFlex · קול קורא 34/2026 · Appendix to the research proposal, permitted under &lrm;2.2 (graphs, tables and
 diagrams, up to 5 A4 pages, outside the 10-page limit). All figures are measured results from the applicant's study [1].
 </div>
 
@@ -408,12 +397,12 @@ into something the regulator can contract with.
 
 <div class="appendix-rule pagebreak"></div>
 <h2>Appendix B: Gantt, milestones and deliverables (for entry into the online system)</h2>
-<p class="meta">This appendix is entered directly into the Ministry's online Gantt system (נספח א'1 §3), and Appendix
+<p class="meta">This appendix is entered directly into the Ministry's online Gantt system (&lrm;3), and Appendix
 C is the data source for the Ministry's budget Excel (נספח טז'); neither forms part of the research-description
 figures appendix, whose 5-page allowance is used by Appendix A.</p>
 
 <div class="meta">
-Call 34/2026 · 24 months · start not before 1.1.2027 · prepared for entry into the Ministry's online Gantt (נספח א'1 §3).
+Call 34/2026 · 24 months · start not before 1.1.2027 · prepared for entry into the Ministry's online Gantt (&lrm;3).
 Every milestone below carries a deliverable that is quantitative or at least judgeable, as §3.3 requires.
 </div>
 
@@ -450,27 +439,25 @@ Every milestone below carries a deliverable that is quantitative or at least jud
   <td class="q"><div class="bar"></div></td><td class="q"><div class="bar"></div></td><td class="q"><div class="bar"></div></td>
   <td class="q"><div class="bar"></div></td><td class="q"><div class="bar"></div></td><td class="q"><div class="bar"></div></td></tr>
 <tr><td class="lbl"><strong>Milestones and deliverables</strong></td>
-  <td class="q"></td><td class="q"></td><td class="q"></td><td class="q"><div class="ms"></div></td><td class="q"></td><td class="q"><div class="ms"></div></td><td class="q"></td><td class="q"><div class="ms"></div></td>
+  <td class="q"></td><td class="q"></td><td class="q"></td><td class="q"></td><td class="q"></td><td class="q"><div class="ms"></div></td><td class="q"></td><td class="q"><div class="ms"></div></td>
   <td class="q"></td><td class="q"></td><td class="q"></td><td class="q"><div class="ms"></div></td><td class="q"></td><td class="q"></td><td class="q"></td><td class="q"><div class="ms"></div></td>
-  <td class="q"></td><td class="q"></td><td class="q"></td><td class="q"><div class="ms"></div></td><td class="q"><div class="ms"></div></td><td class="q"></td><td class="q"></td><td class="q"><div class="ms"></div></td></tr>
+  <td class="q"></td><td class="q"></td><td class="q"></td><td class="q"></td><td class="q"><div class="ms"></div></td><td class="q"></td><td class="q"></td><td class="q"><div class="ms"></div></td></tr>
 </table>
 
 <h2>Milestones with judgeable outputs</h2>
 <table>
 <tr><th>ID</th><th>Month</th><th>Deliverable</th><th>Quantitative or judgeable output</th></tr>
-<tr><td>MS0</td><td>M4</td><td>Preliminary regulator memo (Hebrew)</td><td>Connection coefficient k and the full-power-to-JP shed fraction (against measured uncapped draw) on the A100, A10G and L4 curves, with the board-level caveat stated; needs no new measurement or hire</td></tr>
-<tr><td>D1</td><td>M6</td><td>ELF-2 v1: extended measurement corpus, board and server-input</td><td>Cap sweeps on at least two GPU generations beyond ELF and one production serving engine (vLLM); the three measurement tiers operational (NVML board; RAPL host proxy; BMC PSU input at server power); per-tier accuracy bands reported from vendor specifications, and cross-tier consistency shown on identical workloads (board &lt; host &lt; server-input, stable ratio); law fit R² ≥ 0.95 per sweep, or the deviation regime documented; JP location reported per card and engine at board and server-input</td></tr>
+<tr><td>D1</td><td>M6</td><td>ELF-2 v1: extended measurement corpus, board and server-input; M4 preliminary memo in Hebrew: the measured power reduction at the Joule Point, from the existing curves, with no new measurement or hire</td><td>Cap sweeps on at least two GPU generations beyond ELF and one production serving engine (vLLM); the three measurement tiers operational (NVML board; RAPL host proxy; BMC PSU input at server power); per-tier accuracy bands reported from vendor specifications, and cross-tier consistency shown on identical workloads (board &lt; host &lt; server-input, stable ratio); law fit R² ≥ 0.95 per sweep, or the deviation regime documented; JP location reported per card and engine at board and server-input</td></tr>
 <tr><td>MS1</td><td>M8</td><td>Regime map</td><td>Documented domain of validity of the response law and of the per-card constant across engines, prefill/decode phases, co-location and fine-tuning; where a job model is required; an M8 technical brief to the chief scientist unit</td></tr>
 <tr><td>MS2</td><td>M12</td><td>Job model, transfer model, one-test protocol</td><td>Job-model error versus the per-card constant, per regime; transfer-model placement within 5 percentage points of TDP, leave-one-out over at least five fully swept models; protocol cost ≤ 8 hours and ≤ ₪1,500 per card model</td></tr>
 <tr><td>MS3</td><td>M16</td><td>Joint controller result</td><td>Energy per served job and SLO compliance versus uncapped, static-cap and cap-only baselines on seeded traces, under fixed, price-following, carbon-following and step-curtailment envelopes; the isolated marginal value of joint assignment; a pre-registered floor of at least 10 percent below cap-only energy per served job at equal SLO compliance in one or more envelopes; zero exceedance beyond the WP1 noise band (defined in D1) in committed windows, overshoot magnitude and duration reported; transient violations within the band in fewer than 1 percent of control-interval epochs, per envelope class</td></tr>
-<tr><td>MS4</td><td>M20</td><td>Flexibility demonstration (rented BMC-metered server + fleet-scale twin)</td><td>Sheddable power as a fraction of the measured uncapped draw: full-power-to-JP tier about 40 percent (exact fraction fixed by the MS0 memo), JP-and-below tier a pre-registered floor of at least 15 percent of the committed JP envelope within the ramp deadline at bounded SLO loss; kilowatts measured on the rented BMC-metered server, megawatts projected at fleet scale in the twin; ramp within 60 seconds, hold duration in hours through the evening peak, notice time, recovery within 5 minutes; delivery-record compliance and service cost of curtailment; C3 check: a twin-recommended fleet beats a same-cost uncapped design by a pre-stated work margin</td></tr>
-<tr><td>MS5</td><td>M21</td><td>Policy report draft</td><td>Principal-agent and curtailment-option models on published Israeli tariff and Noga system data; every candidate instrument evaluated in the twin and ranked; measured coefficients, flexibility metrics and valuation results provided to the Electricity Authority and Noga for implementation and future revision of the flexible-connection framework (the June 2026 hearing motivates the timing); a scenario analysis on at least 3 transmission regions from public queue data, stating how much of each region's queue is served under firm-plus-flexible connections at each flexibility level</td></tr>
+<tr><td>MS4</td><td>M21</td><td>Flexibility demonstration and policy report draft</td><td>Sheddable power as a fraction of the measured uncapped draw: full-power-to-JP tier about 40 percent (exact fraction fixed by the M4 memo), JP-and-below tier a pre-registered floor of at least 15 percent of the committed JP envelope within the ramp deadline at bounded SLO loss; kilowatts measured on the rented BMC-metered server, megawatts projected at fleet scale in the twin; ramp within 60 seconds, hold duration in hours through the evening peak, notice time, recovery within 5 minutes; delivery-record compliance and service cost of curtailment; C3 check: a twin-recommended fleet beats a same-cost uncapped design by a pre-stated work margin; Principal-agent and curtailment-option models on published Israeli tariff and Noga system data; every candidate instrument evaluated in the twin and ranked; measured coefficients, flexibility metrics and valuation results provided to the Electricity Authority and Noga for implementation and future revision of the flexible-connection framework (the June 2026 hearing motivates the timing); a scenario analysis on at least 3 transmission regions from public queue data, stating how much of each region's queue is served under firm-plus-flexible connections at each flexibility level</td></tr>
 <tr><td>D2/D3</td><td>M24</td><td>Open release and final report</td><td>Public repositories (ELF-2 dataset, characterization kit, control engine, digital twin, grid interfaces) with reproducing pipelines; metered validation runs; final scientific and regulator-facing reports</td></tr>
 </table>
 
 <div class="note noprint">
  A report that bounds where the response law or the static cap does not hold, for example a serving regime in which the
-JP moves with the workload, is an explicitly legitimate output under נספח א'1 §3.3.1, provided it was defined
+JP moves with the workload, is an explicitly legitimate output under &lrm;3.3.1, provided it was defined
 that way at the outset. It is defined that way here: D1, MS1 and MS2 are stated as measurements against pre-registered
 criteria, not as guaranteed confirmations.
 </div>
@@ -479,7 +466,7 @@ criteria, not as guaranteed confirmations.
 <h2 class="rtl">הערה להזנה במערכת המקוונת</h2>
 <div class="rtl">
 <p>
-תרשים הגאנט נדרש להיות ממולא ישירות במערכת ההגשה המקוונת (נספח א'1 §3), ולכלול תיאור של אבני הדרך, לוח זמנים לכל
+תרשים הגאנט נדרש להיות ממולא ישירות במערכת ההגשה המקוונת (&lrm;3), ולכלול תיאור של אבני הדרך, לוח זמנים לכל
 אבן דרך, ותפוקה למסירה, כמותית או לפחות בת שיפוט. הטבלאות שלמעלה נערכו בפורמט שניתן להעתיק ישירות לשדות המערכת.
 </p>
 </div>
@@ -487,31 +474,31 @@ criteria, not as guaranteed confirmations.
 <div class="appendix-rule pagebreak"></div>
 <h2 class="rtl">נספח ג': מפרט תקציבי (בעברית, לפי נספח טז')</h2>
 
-<div class="meta">
+<div class="rtl meta">
 קול קורא 34/2026 · משרד האנרגיה והתשתיות · מסלול אקדמיה · מוסד: המכון הטכנולוגי חולון (HIT)<br>
 מנהל הפרויקט: אלכסנדר אפארצין, מרצה בכיר, המחלקה למדעי המחשב · משך המחקר: 24 חודשים · תחילת עבודה: לא לפני 1.1.2027
 </div>
 
-<div class="note noprint">
+<div class="rtl note noprint">
 המפרט התקציבי חייב להיכתב בעברית (נספח טז' §1.3) ולהיות מוגש בקובץ האקסל של המשרד, הכולל חמש לשוניות:
 סיכום מפרט תקציבי, תקציב שנה א', תקציב שנה ב', תקציב שנה ג', דוח כספי ודיווח אסמכתאות. המסמך הזה הוא מקור
 הנתונים למילוי הקובץ, לא תחליף לו.
 </div>
 
 <h2 class="rtl">סיכום</h2>
-<table>
+<table dir="rtl">
 <tr><th>סעיף</th><th class="num">שנה א' (₪)</th><th class="num">שנה ב' (₪)</th><th class="num">סה"כ (₪)</th></tr>
 <tr><td>כוח אדם (מלגאי/ת בתר-דוקטורט, 90% משרה)</td><td class="num">129,600</td><td class="num">129,600</td><td class="num">259,200</td></tr>
 <tr><td>חומרים אזילים וציוד מתכלה</td><td class="num">2,000</td><td class="num">2,000</td><td class="num">4,000</td></tr>
 <tr><td>שונות (כנסים, פרסומים)</td><td class="num">19,000</td><td class="num">19,000</td><td class="num">38,000</td></tr>
 <tr><td><em>בסיס לחישוב תקורה</em></td><td class="num"><em>150,600</em></td><td class="num"><em>150,600</em></td><td class="num"><em>301,200</em></td></tr>
 <tr><td>תקורה למוסד המחקר (15%)</td><td class="num">22,590</td><td class="num">22,590</td><td class="num">45,180</td></tr>
-<tr><td>קבלני משנה ועבודות חוץ (שכירת מופעי GPU בענן AWS (EC2, הרשאות root לשליטה בהספק) ושרתים ייעודיים שכורים עם טלמטריית הספק out-of-band (IPMI/Redfish) למדידה ברמת השקע) , פטור מתקורה</td><td class="num">74,000</td><td class="num">74,000</td><td class="num">148,000</td></tr>
+<tr><td>קבלני משנה ועבודות חוץ (שכירת מופעי GPU בענן AWS (EC2, הרשאות root לשליטה בהספק) ושרתים ייעודיים שכורים עם טלמטריית הספק out-of-band (IPMI/Redfish) למדידה ברמת השקע), פטור מתקורה</td><td class="num">74,000</td><td class="num">74,000</td><td class="num">148,000</td></tr>
 <tr class="total"><td>סה"כ תקציב מבוקש</td><td class="num">247,190</td><td class="num">247,190</td><td class="num">494,380</td></tr>
 </table>
 
 <h2 class="rtl">בדיקת עמידה במגבלות הקול הקורא</h2>
-<table>
+<table dir="rtl">
 <tr><th>מגבלה</th><th>מקור</th><th>הנדרש</th><th>בפועל</th><th>סטטוס</th></tr>
 <tr><td>תקציב שנתי מרבי</td><td>נספח טז' §1.4</td><td class="num">≤ 250,000</td><td class="num">247,190</td><td class="ok">עומד</td></tr>
 <tr><td>תקציב כולל למחקר דו-שנתי</td><td>נספח טז' §1.4</td><td class="num">≤ 500,000</td><td class="num">494,380</td><td class="ok">עומד</td></tr>
@@ -527,33 +514,33 @@ criteria, not as guaranteed confirmations.
 <h2 class="rtl">פירוט לפי סעיפים</h2>
 
 <h3 class="rtl">1. כוח אדם</h3>
-<table>
+<table dir="rtl">
 <tr><th>שם</th><th>תפקיד</th><th class="num">% משרה</th><th class="num">חודשי העסקה</th><th class="num">עלות שנתית (₪)</th></tr>
 <tr><td>לא נקבע</td><td>מלגאי/ת בתר-דוקטורט</td><td class="num">90%</td><td class="num">12</td><td class="num">129,600</td></tr>
 </table>
-<p class="meta">
+<p class="rtl meta">
 מלגאי הבתר-דוקטורט יבצע את קמפיין המדידות (ELF-2), את מודל ההעברה, את פיתוח בקר עיצוב-ההספק ואת ניסויי הגמישות מול הרשת, ויהיה מעורב בכל אבני
-הדרך MS0 עד MS5 ובתוצרים D1 עד D3. חוקר ראשי אינו מקבל שכר (§2.6). יש לצרף לבקשה טבלאות שכר ואישור רו"ח חתום
+הדרך MS1 עד MS4 ובתוצרים D1 עד D3. חוקר ראשי אינו מקבל שכר (§2.6). יש לצרף לבקשה טבלאות שכר ואישור רו"ח חתום
 המאשר את עלויות השכר הנהוגות במוסד (§2.2).
 </p>
-<div class="todo noprint">
+<div class="rtl todo noprint">
 אם גיוס הבתר-דוקטורט יתעכב או יופסק, ימומן מלגאי מסטרנט מתוך שורת המלגה שלא נוצלה באותה תקופה (החלפה, לא תוספת), כך שתקרת כוח האדם (60%) ותקרת התקציב השנתי נשמרות.
 </div>
 
 <h3 class="rtl">2. חומרים אזילים וציוד מתכלה</h3>
-<table>
+<table dir="rtl">
 <tr><th>שם הפריט</th><th class="num">סה"כ שנתי (₪)</th></tr>
 <tr><td>חומרים מתכלים, אמצעי אחסון וגיבוי לקמפיין המדידות</td><td class="num">2,000</td></tr>
 </table>
 
 <h3 class="rtl">3. ציוד</h3>
-<p class="meta">הפרויקט אינו רוכש ציוד מחשוב או מדידה. מדידת ההספק מתבצעת מטלמטריית היצרן (NVML לכרטיס, RAPL לצומת, BMC/Redfish לשקע) בחומרה שכורה; דיוק המדידה מדווח לפי מפרטי היצרן ומאומת בעקביות בין-שכבתית, ומיקום נקודת הג'ול (JP) אינו תלוי בהטיה כפלית קבועה של החיישן.</p>
-<div class="note noprint">
+<p class="rtl meta">הפרויקט אינו רוכש ציוד מחשוב או מדידה. מדידת ההספק מתבצעת מטלמטריית היצרן (NVML לכרטיס, RAPL לצומת, BMC/Redfish לשקע) בחומרה שכורה; דיוק המדידה מדווח לפי מפרטי היצרן ומאומת בעקביות בין-שכבתית, ומיקום נקודת הג'ול (JP) אינו תלוי בהטיה כפלית קבועה של החיישן.</p>
+<div class="rtl note noprint">
 המשרד אינו מכיר בציוד שנרכש לפני תחילת המחקר (§4.2), והתמורה עבור ציוד מחשוב היא עד 33% מערכו לכל שנת מחקר (§4.5). לכן גיוון החומרה מושג באמצעות שירותי מחשוב ענן ושרתים שכורים הנרשמים כקבלני משנה, והפרויקט אינו רוכש ציוד כלל.
 </div>
 
 <h3 class="rtl">4. שונות</h3>
-<table>
+<table dir="rtl">
 <tr><th>פריט</th><th class="num">סה"כ שנתי (₪)</th></tr>
 <tr><td>השתתפות בכנסים מדעיים רלוונטיים</td><td class="num">9,000</td></tr>
 <tr><td>פרסום מדעי (עד 10,000 ₪ למאמר)</td><td class="num">10,000</td></tr>
@@ -561,12 +548,12 @@ criteria, not as guaranteed confirmations.
 </table>
 
 <h3 class="rtl">5. קבלני משנה ועבודות חוץ</h3>
-<p>
+<p class="rtl">
 שירותי מחשוב ענן לצורך הרצות מדידה מבוקרות על משפחות מאיצים שאינן זמינות במוסד. פלטפורמת הביצוע היא AWS: מופעי EC2 עם מאיץ מלא (GPU passthrough) והרשאות root, המאפשרים שליטה עדינה במגבלת ההספק ובמדידת האנרגיה ברמת המאיץ, לפי המחירון הפומבי של AWS (תמהיל on-demand ו-spot); תדפיס מחירון מתוארך יצורף כהצעת המחיר לפי §6.3. הרצות שאינן דורשות שליטה בהספק יכולות לרוץ גם אצל
 <strong>Modal Labs</strong> (modal.com), המספק גישה לעשר משפחות מאיצים שונות בחשבון אחד, בחיוב לפי שנייה וללא חיוב
 על זמן סרק. פירוט השעות והעלויות להלן מחושב מתדפיסי המחירון הפומבי של AWS המצורפים (נאספו 29.08.2026, אזור us-east-1): תעריפי spot לריצות סריקה הניתנות להפסקה, on-demand היכן שמצוין; מופעים מרובי-מאיצים מתומחרים לשעת GPU; כרטיסי דור חזית מתוכננים לפי תעריף H100 ומתומחרים בפועל לפי המחירון בעת הריצה (§6.3):
 </p>
-<table>
+<table dir="rtl">
 <tr><th>מאיץ</th><th>מופע AWS</th><th>בסיס תמחור</th><th class="num">USD לשעת GPU</th><th class="num">שעות GPU בשנה</th><th class="num">עלות שנתית (USD)</th></tr>
 <tr><td>NVIDIA T4</td><td>g4dn.xlarge</td><td>spot</td><td class="num">0.220</td><td class="num">600</td><td class="num">132</td></tr>
 <tr><td>NVIDIA A10G</td><td>g5.xlarge</td><td>spot</td><td class="num">0.501</td><td class="num">600</td><td class="num">300</td></tr>
@@ -581,7 +568,7 @@ criteria, not as guaranteed confirmations.
 <tr><td>שכירת שרתים ייעודיים עם טלמטריית BMC (מדידת שקע והדגמת WP4)</td><td></td><td>לפי מחירון ספק מצורף</td><td class="num"></td><td class="num"></td><td class="num">2,600</td></tr>
 <tr class="total"><td>סה"כ עלות שנתית לסעיף</td><td></td><td></td><td class="num"></td><td class="num"></td><td class="num">19,664</td></tr>
 </table>
-<table>
+<table dir="rtl">
 <tr><th>המרה לשקלים</th><th class="num">ערך</th></tr>
 <tr><td>תקציב שנתי מבוקש לסעיף</td><td class="num">74,000 ₪</td></tr>
 <tr><td>שער תכנון שמרני USD/ILS</td><td class="num">3.20</td></tr>
@@ -589,11 +576,11 @@ criteria, not as guaranteed confirmations.
 <tr><td>עלות מתוכננת (ענן + שרתי BMC)</td><td class="num">19,664 $</td></tr>
 <tr><td>רזרבה לשינויי שער ולתעריפים</td><td class="num">3,461 $ (15.0%)</td></tr>
 </table>
-<p class="meta">
+<p class="rtl meta">
 סעיף זה פטור מתקורה (§7.1). התשלום מבוצע כנגד חשבוניות (§6.4). תעריפי AWS נלקחו מנקודות הקצה הפומביות של מחירון AWS (on-demand ו-spot) ב-29.08.2026, ותדפיסים מתוארכים מצורפים;
 תעריפי שרתי BMC לפי מחירון ספק מפורסם (תדפיס מצורף). שער החליפין נבדק (כ-2.96 ₪ לדולר) ולצורכי תכנון נעשה שימוש
 בשער שמרני של 3.20 ₪ לדולר</p>
-<div class="note noprint">
+<div class="rtl note noprint">
 המחירון המפורסם של הספק מהווה את הצעת המחיר לצורך §6.3, שכן מדובר בשירות עצמי (self-serve) עם תמחור פומבי ולא בהתקשרות
 פרטנית. יש לצרף להגשה תדפיס של עמוד התמחור עם תאריך. הנימוק המקצועי לבחירה בענן על פני רכישת חומרה מופיע בסעיף
 הציוד: כלל 33% לשנה על ציוד מחשוב הופך רכישת עשרה דורות מאיצים לבלתי אפשרית במסגרת תקציב זה, ואילו גיוון החומרה
@@ -601,18 +588,18 @@ criteria, not as guaranteed confirmations.
 </div>
 
 <h3 class="rtl">6. תקורה</h3>
-<p>
+<p class="rtl">
 תקורה בשיעור 15% מהתמורה עבור הוצאות המחקר, למעט סעיף קבלני משנה, בהתאם ל-§7.1. התקורה מכסה הוצאות עקיפות
 ובכללן שירותי מזכירות, ראיית חשבון, משאבי אנוש, תחזוקת חשבונות מחקר, ניהול המחקר, שימוש בספריות, גישה לשירותי
 מחשב, שימוש במתקני מחקר ובמשרדים, ומים, אנרגיה ולוגיסטיקה. הוצאות אלה אינן נרשמות בנפרד במפרט (§7.3).
 </p>
-<div class="note noprint">
+<div class="rtl note noprint">
 שיעור התקורה במכון הטכנולוגי חולון עומד על 15%, הזהה לתקרה שקובע הקול הקורא, ולכן התקציב לעיל משקף את התקורה
 המוסדית בפועל ואין צורך בהתאמה.
 </div>
 
 <h2 class="rtl">הצהרות נדרשות</h2>
-<ul>
+<ul class="rtl">
 <li>המוסד לא קיבל ולא יקבל מימון נוסף או משלים לביצוע המחקר או עבור המועסקים בו מכל גוף שאינו המשרד (§1.5.2).</li>
 <li>לא יתקיים כפל מימון לסטודנטים המועסקים במחקר מכל גורם ממשלתי אחר (§2.10).</li>
 <li>עלות הכנת ההצעה חלה על המבקש בלבד (§1.5.3).</li>
