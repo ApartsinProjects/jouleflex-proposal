@@ -18,13 +18,13 @@ Ministry of Energy Call 34/2026 (academic track, via HIT).
 ## Into the online form (text fields)
 
 Use **`form-guide.html` / `form-guide.pdf`** - it has the exact text to paste:
-- **English abstract** (300/300 words) - paste box in the guide.
+- **English abstract** (299/300 words) - paste box in the guide.
 - **Hebrew abstract** (292/300 words) - paste box in the guide.
 - **Budget table** rows, **milestones** and **Gantt** (Appendix B of the research plan) are entered in the system, not in the PDF - the guide lists them.
 
 ## Compliance quick-check (all pass)
 - Core sections 2.5.4-2.5.9 <= 10 pages; figures appendix within 5-page allowance.
-- Abstracts EN 300 / HE 292, both <= 300 words.
+- Abstracts EN 299 / HE 292, both <= 300 words.
 - David 12pt, 1.5 spacing, A4, 2.54 cm margins.
 - No PI salary; postdoc 90%; rented compute (no owned hardware).
 
